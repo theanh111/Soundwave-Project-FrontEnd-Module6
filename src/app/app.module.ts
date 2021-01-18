@@ -13,6 +13,16 @@ import { LoginComponent } from './visiter/login/login.component';
 import { RegisterComponent } from './visiter/register/register.component';
 import { ResetpasswordComponent } from './client/user/resetpassword/resetpassword.component';
 import { AppRoutingModule } from './app-routing.module';
+import { HeaderComponent } from './landing-page/header/header.component';
+import { FooterComponent } from './landing-page/footer/footer.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {JwtInterceptor} from './helper/jwt-interceptor';
+import {ErrorInterceptor} from './helper/error-interceptor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +36,24 @@ import { AppRoutingModule } from './app-routing.module';
     PlaySongComponent,
     LoginComponent,
     RegisterComponent,
-    ResetpasswordComponent
+    ResetpasswordComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud')
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
