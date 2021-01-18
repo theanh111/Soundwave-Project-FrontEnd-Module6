@@ -22,7 +22,7 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {JwtInterceptor} from './helper/jwt-interceptor';
 import {ErrorInterceptor} from './helper/error-interceptor';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './landing-page/home/home.component';
 
 @NgModule({
   declarations: [
