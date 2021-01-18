@@ -1,7 +1,8 @@
-import {ISinger} from "../singer/ISinger";
-import {User} from "../user";
-import {ICategory} from "../category/ICategory";
-import {IAlbum} from "../album/IAlbum";
+import {ISinger} from '../singer/ISinger';
+import {User} from '../user';
+import {ICategory} from '../category/ICategory';
+import {IAlbum} from '../album/IAlbum';
+
 
 export interface ISong {
   id?: number;

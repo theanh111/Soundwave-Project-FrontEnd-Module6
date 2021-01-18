@@ -1,90 +1,147 @@
 <div class="container container-flex">
   <main>
     <article class="article-featured flex-space">
-      <div class="article-image"><a href="playlist.html"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a></div>
-      <div class="article-image"><a href="playlist.html"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a></div>
-      <div class="article-image"><a href="playlist.html"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a></div>
+      <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
+  display: block;"
+                                                              src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>
+      </div>
+      <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
+  display: block;"
+                                                              src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>
+      </div>
+      <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
+  display: block;"
+                                                              src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>
+      </div>
       <p class="article-info"></p>
       <p class="article-body"></p>
     </article>
     <article class="latest-release">
       <h2 class="latest-release-title">Latest Release</h2>
-      <div class="latest-release-body flex-space">
-        <div class="latest-release-col">
-          <div class="latest-release-entry flex-space">
-            <div class="latest-release-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
-            <div class="latest-release-info">
-              <p><b>Bad Guy</b></p>
-              <p class="latest-release-sub">MAR 29, 2019</p>
-            </div>
-            <div class="latest-release-options">
-              <i class="fa fa-sort-desc" aria-hidden="true"></i>
-              <p class="latest-release-sub">3:14</p>
-            </div>
-          </div>
-          <div class="latest-release-entry flex-space">
-            <div class="latest-release-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
-            <div class="latest-release-info">
-              <p><b>Bad Guy</b></p>
-              <p class="latest-release-sub">MAR 29, 2019</p>
-            </div>
-            <div class="latest-release-options">
-              <i class="fa fa-sort-desc" aria-hidden="true"></i>
-              <p class="latest-release-sub">3:14</p>
-            </div>
-          </div>
-        </div>
-        <div class="latest-release-col display-none">
-          <div class="latest-release-entry flex-space">
-            <div class="latest-release-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
-            <div class="latest-release-info">
-              <p><b>Bad Guy</b></p>
-              <p class="latest-release-sub">MAR 29, 2019</p>
-            </div>
-            <div class="latest-release-options">
-              <i class="fa fa-sort-desc" aria-hidden="true"></i>
-              <p class="latest-release-sub">3:14</p>
-            </div>
-          </div>
-          <div class="latest-release-entry flex-space">
-            <div class="latest-release-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
-            <div class="latest-release-info">
-              <p><b>Bad Guy</b></p>
-              <p class="latest-release-sub">MAR 29, 2019</p>
-            </div>
-            <div class="latest-release-options">
-              <i class="fa fa-sort-desc" aria-hidden="true"></i>
-              <p class="latest-release-sub">3:14</p>
-            </div>
-          </div>
-        </div>
+      <!--      <table id="myTable" cellpadding="5" >-->
+      <!--        <tr style="display: inline-block" *ngFor="let song of songs">-->
+      <!--          <td>-->
+      <!--            <img style="height: 105px; width: 105px; object-fit: cover"-->
+      <!--                 src="{{song.avatar}}" (click)="playThisSong(song.id)">-->
+      <!--            <div  style=" word-break: break-all">-->
+      <!--              <p><b>{{song.name}}</b></p>-->
+      <!--            </div>-->
+
+      <!--            <p class="latest-release-sub">MAR 29, 2019</p>-->
+      <!--            <i class="fa fa-sort-desc" aria-hidden="true"></i>-->
+      <!--            <p class="latest-release-sub">3:14</p>-->
+      <!--          </td>-->
+
+      <!--&lt;!&ndash;          <td>&ndash;&gt;-->
+      <!--&lt;!&ndash;            <img style="height: 80px; width: 80px; object-fit: cover"&ndash;&gt;-->
+      <!--&lt;!&ndash;                 src="{{song.avatar}}" (click)="playThisSong(song.id)">&ndash;&gt;-->
+      <!--&lt;!&ndash;          </td>&ndash;&gt;-->
+      <!--&lt;!&ndash;          <td>&ndash;&gt;-->
+      <!--&lt;!&ndash;            <p><b>{{song.name}}</b></p>&ndash;&gt;-->
+      <!--&lt;!&ndash;            <p class="latest-release-sub">MAR 29, 2019</p>&ndash;&gt;-->
+      <!--&lt;!&ndash;          </td>&ndash;&gt;-->
+      <!--&lt;!&ndash;          <td>&ndash;&gt;-->
+      <!--&lt;!&ndash;            <i class="fa fa-sort-desc" aria-hidden="true"></i>&ndash;&gt;-->
+      <!--&lt;!&ndash;            <p class="latest-release-sub">3:14</p>&ndash;&gt;-->
+      <!--&lt;!&ndash;          </td>&ndash;&gt;-->
+      <!--        </tr>-->
+      <!--      </table>-->
+      <div class="container">
+        <table id="myTable" cellpadding="10" style="align-content: center">
+          <tbody *ngFor="let song of songs">
+          <tr>
+            <td>
+              <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
+                   src="{{song.avatar}}" (click)="playThisSong(song.id)">
+            </td>
+            <td>
+              <h4>{{song.name}}</h4>
+            </td>
+            <td>
+              <h6>{{song.singer.name}}</h6>
+            </td>
+            <td>
+              <h6>3:41</h6>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </article>
     <article class="popular-artists">
       <h2 class="popular-artists-title">Popular Artists</h2>
       <div class="artist-container flex-space">
-        <div class="popular-artist-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><p>Billie Eilish</p></div>
-        <div class="popular-artist-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><p>Eminem</p></div>
-        <div class="popular-artist-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><p>Prateek</p></div>
-        <div class="popular-artist-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><p>Ritviz</p></div>
-        <div class="popular-artist-entry display-none"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><p>Marshmello</p></div>
-        <div class="popular-artist-entry display-none"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><p>Drake</p></div>
+        <div class="popular-artist-entry"><img style="max-width: 100%;
+  display: block;"
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          <p>Billie Eilish</p></div>
+        <div class="popular-artist-entry"><img style="max-width: 100%;
+  display: block;"
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          <p>Eminem</p></div>
+        <div class="popular-artist-entry"><img style="max-width: 100%;
+  display: block;"
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          <p>Prateek</p></div>
+        <div class="popular-artist-entry"><img style="max-width: 100%;
+  display: block;"
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          <p>Ritviz</p></div>
+        <div class="popular-artist-entry display-none"><img style="max-width: 100%;
+  display: block;"
+                                                            src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          <p>Marshmello</p></div>
+        <div class="popular-artist-entry display-none"><img style="max-width: 100%;
+  display: block;"
+                                                            src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          <p>Drake</p></div>
       </div>
     </article>
     <article class="stations flex-space">
-      <div class="stations-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
-      <div class="stations-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered">Love</div></div>
-      <div class="stations-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered">Retro</div></div>
-      <div class="stations-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered">Chill</div></div>
-      <div class="stations-entry"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered">Workout</div></div>
-      <div class="stations-entry display-none"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered">Rock</div></div>
-      <div class="stations-entry display-none"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered">Pop</div></div>
+      <div class="stations-entry"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+      </div>
+      <div class="stations-entry"><img style="max-width: 100%;
+        display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered">Love</div>
+      </div>
+      <div class="stations-entry"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered">Retro</div>
+      </div>
+      <div class="stations-entry"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered">Chill</div>
+      </div>
+      <div class="stations-entry"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered">Workout</div>
+      </div>
+      <div class="stations-entry display-none"><img style="max-width: 100%;
+  display: block;"
+                                                    src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered">Rock</div>
+      </div>
+      <div class="stations-entry display-none"><img style="max-width: 100%;
+  display: block;"
+                                                    src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered">Pop</div>
+      </div>
     </article>
 
     <article class="middle-featured article-featured flex-space">
-      <div class="article-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="stations-centered mid-featured-font">Party</div></div>
-      <div class="article-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="mid-featured-font stations-centered">Electronic</div></div>
-      <div class="article-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"><div class="mid-featured-font stations-centered">Road Trip</div></div>
+      <div class="article-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-centered mid-featured-font">Party</div>
+      </div>
+      <div class="article-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="mid-featured-font stations-centered">Electronic</div>
+      </div>
+      <div class="article-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="mid-featured-font stations-centered">Road Trip</div>
+      </div>
       <p class="article-info"></p>
       <p class="article-body"></p>
     </article>
@@ -93,34 +150,52 @@
       <h2 class="latest-language-title">Latest English</h2>
       <div class="song-container flex-space">
         <div class="language-song-entry">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry display-none">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry display-none">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry display-none">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
       </div>
     </article>
@@ -128,34 +203,52 @@
       <h2 class="latest-language-title">Latest Hindi</h2>
       <div class="song-container flex-space">
         <div class="language-song-entry">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry display-none">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry display-none">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
         <div class="language-song-entry display-none">
-          <div class="language-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+          <div class="language-image"><img style="max-width: 100%;
+  display: block;"
+                                           src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+          </div>
           <p><b>Bad Guy</b></p>
-          <p class = "language-sub latest-release-sub">MAR 29, 2019</p>
+          <p class="language-sub latest-release-sub">MAR 29, 2019</p>
         </div>
       </div>
     </article>
@@ -163,8 +256,10 @@
   <aside class="sidebar">
     <h2 class="aside-title">Queue</h2>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">01</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+      <p class="queue-number">01</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -172,8 +267,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">02</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+      <p class="queue-number">02</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -181,8 +278,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">03</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+      <p class="queue-number">03</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -190,8 +289,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">04</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+      <p class="queue-number">04</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -199,8 +300,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">05</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+      <p class="queue-number">05</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -208,8 +311,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">06</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+      <p class="queue-number">06</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -217,8 +322,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">07</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></div>
+      <p class="queue-number">07</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
@@ -226,8 +333,10 @@
       <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
     </div>
     <div class="queue-entry flex-space">
-      <p class = "queue-number">08</p>
-      <div class="queue-entry-image"><img src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></div>
+      <p class="queue-number">08</p>
+      <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+      </div>
       <div class="queue-entry-info">
         <p><b>Blinding lights</b></p>
         <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>

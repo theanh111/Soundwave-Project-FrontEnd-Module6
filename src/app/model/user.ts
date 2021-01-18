@@ -5,4 +5,7 @@ export interface User {
   avatar?: string;
   comfirmPassword?: string;
   fullName?: string;
+  phoneNumber?: string;
+  address?: string;
+  email?: string;
 }

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {Observable} from 'rxjs';
+import {UserToken} from '../../../model/user-token';
+import {AuthService} from '../../../service/auth/auth.service';
+import {UserService} from '../../../service/user/user.service';
+import {User} from '../../../model/user';
 
 @Component({
   selector: 'app-my-profile',
@@ -6,10 +11,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./my-profile.component.css']
 })
 export class MyProfileComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  user: User;
+  currentUser: UserToken;
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.authService.currentUser.subscribe(value => {
+      this.currentUser = value;
+      this.userService.getUserByUsername(value.username).subscribe(value1 => {
+        this.user = value1;
+      });
+    });
+  }
 }

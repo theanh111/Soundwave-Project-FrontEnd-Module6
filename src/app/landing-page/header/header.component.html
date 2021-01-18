@@ -1,22 +1,31 @@
 <header>
   <div class="nav-col left-col">
-    <a><div class="header-logo-div"><i class="fa fa-headphones" id="header-logo" aria-hidden="true"></i></div></a>
-    <a><div class="header-title">
-      <p>Soundwave</p>
-      <p><b>Audio</b></p>
-    </div></a>
-    <ul><li><a href="#">Favourites</a></li></ul>
+      <div class="header-title">
+        <a [routerLink]="['']"><img src="assets/images/logo.png" style="height: 70px; width: auto">   </a>
+      </div>
+    <ul>
+      <li><a>Favourites</a></li>
+    </ul>
   </div>
   <div class="nav-col right-col">
     <div class="search-box">
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <input type="text" placeholder="Search" >
+      <input type="text" placeholder="Search...">
       <a href="#"><i class="fa fa-microphone" aria-hidden="true"></i></a>
     </div>
     <a href="#"><i id="notif" class="fa fa-bell-o" aria-hidden="true"></i></a>
-    <img *ngIf="currentUser" class="user-img" src="{{user.avatar}}">
+    <div class="col">
+      <div ngbDropdown class="d-inline-flex">
+        <a id="dropdownBasic1" ngbDropdownToggle><img *ngIf="currentUser" class="user-img" src="{{user.avatar}}"></a>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" *ngIf="currentUser">
+          <a class="btn btn-outline-light" ngbDropdownItem [routerLink]="['/profile']">{{user.username}}</a>
+          <a class="btn btn-outline-light" ngbDropdownItem [routerLink]="['/profile/update']">Update</a>
+          <a class="btn btn-outline-light" ngbDropdownItem (click)="logout()">Log Out</a>
+        </div>
+      </div>
+    </div>
+
+    <!--    <img *ngIf="currentUser" class="user-img" src="{{user.avatar}}">-->
     <button *ngIf="!currentUser" [routerLink]="['/login']" class="btn btn-outline-light">Log In</button>
-    <button *ngIf="currentUser" class="btn btn-outline-light" (click)="logout()">Log Out</button>
     <span style="visibility: hidden">==</span>
     <button *ngIf="!currentUser" [routerLink]="['/register']" class="btn btn-outline-primary">Sign Up</button>
   </div>
