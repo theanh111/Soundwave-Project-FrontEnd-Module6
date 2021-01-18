@@ -12,6 +12,7 @@ import { PlaySongComponent } from './song/play-song/play-song.component';
 import { LoginComponent } from './visiter/login/login.component';
 import { RegisterComponent } from './visiter/register/register.component';
 import { ResetpasswordComponent } from './client/user/resetpassword/resetpassword.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ResetpasswordComponent } from './client/user/resetpassword/resetpasswor
     ResetpasswordComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
