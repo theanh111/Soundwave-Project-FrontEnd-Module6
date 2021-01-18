@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../../../Project_Sound_Wave_FrontEnd/src/environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ICategory} from '../../../../../Project_Sound_Wave_FrontEnd/src/app/model/category/ICategory';
-import {IAlbum} from '../../../../../Project_Sound_Wave_FrontEnd/src/app/model/album/IAlbum';
+import {ICategory} from '../../model/category/ICategory';
+import {IAlbum} from '../../model/album/IAlbum';
+
 const urlApi = `${environment.apiUrl}`;
 @Injectable({
   providedIn: 'root'

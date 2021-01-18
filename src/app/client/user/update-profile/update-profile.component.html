@@ -25,27 +25,32 @@
 <!--  </table>-->
 <!--</form>-->
 
-
-
 <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+
   <div class="wrapper bg-white mt-sm-5">
     <h4 class="pb-4 border-bottom">Account settings</h4>
-    <div class="d-flex align-items-start py-3 border-bottom"> <img src="{{user.avatar}}" class="img" alt="">
-      <div class="pl-sm-4 pl-2" id="img-section"> <b>Profile Photo</b>
+    <div id="box" class="d-flex align-items-start py-3 border-bottom">
+        <img id="output" src="{{user.avatar}}" class="img" alt="User's Avatar">
+      <div class="pl-sm-4 pl-2" id="img-section">
+        <b>Profile Photo</b>
         <p>Accepted file type .png. Less than 1MB</p>
         <input type="file" accept="image/*" (change)="loadFile($event)">
-        <img id="output" class="previewImage"/>
+<!--        <p>Preview Image</p>-->
+<!--        <img id="output" class="previewImage" *ngIf=""/>-->
       </div>
     </div>
     <div class="py-2">
       <div class="row py-2">
         <div class="col-md-6"> <label>User Name</label> <input type="text" formControlName="username" readonly="readonly" [value]="user.username" class="bg-light form-control"> </div>
-        <div class="col-md-6"> <label>Full Name</label> <input type="text" formControlName="fullName" [value]="user.fullName" class="bg-light form-control"> </div>
-        <div class="col-md-6 pt-md-0 pt-3"> <label>Phone Number</label> <input formControlName="phoneNumber" [value]="user.phoneNumber" type="number" class="bg-light form-control"> </div>
+        <div class="col-md-6 pt-md-0 pt-3"> <label>Full Name</label> <input type="text" formControlName="fullName" [value]="user.fullName" class="bg-light form-control"> </div>
+
       </div>
       <div class="row py-2">
-        <div class="col-md-6"> <label>Email</label> <input type="text" formControlName="email" [value]="user.email" class="bg-light form-control"> </div>
-        <div class="col-md-6 pt-md-0 pt-3"> <label>Address</label> <input type="text" formControlName="address" [value]="user.address" class="bg-light form-control"> </div>
+        <div class="col-md-6 "> <label>Phone Number</label> <input formControlName="phoneNumber" [value]="user.phoneNumber" type="number" class="bg-light form-control"> </div>
+        <div class="col-md-6 pt-md-0 pt-3"> <label>Email</label> <input type="text" formControlName="email" [value]="user.email" class="bg-light form-control"> </div>
+      </div>
+      <div class="row py-2">
+        <div class="col-md-12"> <label>Address</label> <input type="text" formControlName="address" [value]="user.address" class="bg-light form-control"> </div>
       </div>
 <!--      <div class="row py-2">-->
 <!--        <div class="col-md-6"> <label for="country">Country</label> <select name="country" id="country" class="bg-light">-->
@@ -65,7 +70,13 @@
 <!--      </div>-->
       <div class="py-3 pb-4 border-bottom">
         <button type="submit" class="btn btn-success">Save</button>
-        <button class="btn btn-outline-light" style="color: black">Cancel</button>
+        <button class="btn btn-outline-light" style="color: black" [routerLink]="['/profile']">Cancel</button>
+      </div>
+      <div class="d-sm-flex align-items-center pt-3" id="resetpassword" >
+        <div> <b>Reset Your Password</b>
+          <p>Click button if you want to change your password</p>
+        </div>
+        <div class="ml-auto"> <button class="btn btn-outline-primary" [routerLink]="['/resetpassword']">Reset Password</button> </div>
       </div>
       <div class="d-sm-flex align-items-center pt-3" id="deactivate">
         <div> <b>Deactivate your account</b>

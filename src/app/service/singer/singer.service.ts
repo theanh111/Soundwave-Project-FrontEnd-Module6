@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../../../Project_Sound_Wave_FrontEnd/src/environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ISinger} from '../../../../../Project_Sound_Wave_FrontEnd/src/app/model/singer/ISinger';
+import {ISinger} from '../../model/singer/ISinger';
 
 const urlApi = `${environment.apiUrl}`;
 @Injectable({

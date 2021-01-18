@@ -1,8 +1,33 @@
+.svg-icon:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 10px #fff;
+  border-radius: 50%;
+  fill: #0779e4;
+  transition: 0.5s;
+}
+
+.search-box {
+  transition: 0.5s;
+}
+
+.search-box:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.user-img {
+  height: 50px;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
 
 .user-img:hover {
   cursor: pointer;
-  box-shadow: 0px 0px 10px #fff;
-  cursor: pointer;
+  transition: 0.5s;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
 }
 
 .dropdown-toggle::after {
@@ -20,12 +45,17 @@ h2{
   margin-bottom: 0.5rem;
 }
 
+#logo:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
 
 button {
   background-color: Transparent;
   position: relative;
-  height: 60px;
-  width: 200px;
+  height: 50px;
+  width: 100px;
   border: none;
   outline: none;
   color: white;
@@ -130,12 +160,6 @@ a:hover{
   margin-right: 2em;
 }
 
-.user-img{
-  border-radius: 50%;
-  width:3rem;
-  margin-right: 2em;
-}
-
 @media screen and (max-width: 800px){
   .header-title, ul, #notif{
     display:none;
@@ -161,9 +185,6 @@ a:hover{
   }
   .search-box input{
     width:40%;
-  }
-  .user-img{
-    width:2rem;
   }
 }
 

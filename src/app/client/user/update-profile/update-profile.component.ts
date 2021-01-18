@@ -21,6 +21,7 @@ export class UpdateProfileComponent implements OnInit {
   currentUser: UserToken;
   updateUserForm: FormGroup;
   downloadURL: Observable<string>;
+  avatar = '';
 
   constructor(
     private storage: AngularFireStorage,
@@ -60,6 +61,7 @@ export class UpdateProfileComponent implements OnInit {
     this.user.phoneNumber = this.updateUserForm.value.phoneNumber;
     this.user.email = this.updateUserForm.value.email;
     this.user.address = this.updateUserForm.value.address;
+    this.user.avatar = this.avatar;
     this.userService.updateUser(this.user).subscribe(() => {
       alert('Cập nhật User thành công!');
       this.router.navigate(['/profile']);
@@ -71,13 +73,11 @@ export class UpdateProfileComponent implements OnInit {
   loadFile(event) {
     const output = (document.getElementById('output') as HTMLImageElement);
     output.src = URL.createObjectURL(event.target.files[0]);
+    this.imagePreview = output.src;
     console.log(output.src);
     output.onload = () => {
       URL.revokeObjectURL(output.src);
     };
-  }
-
-  saveAvatar(event) {
     const n = Date.now();
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
@@ -85,11 +85,10 @@ export class UpdateProfileComponent implements OnInit {
     const task = this.storage.upload(`RoomsImages/${n}`, file);
     task
       .snapshotChanges()
-      .pipe( finalize(() => {
+      .pipe(finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             if (url) {
-              this.fb = url;
               this.avatar = url;
             }
             console.log(this.fb);
@@ -101,5 +100,29 @@ export class UpdateProfileComponent implements OnInit {
       }
     });
   }
+
+  // saveAvatar(event) {
+  //   const n = Date.now();
+  //   const file = event.target.files[0];
+  //   const filePath = `RoomsImages/${n}`;
+  //   const fileRef = this.storage.ref(filePath);
+  //   const task = this.storage.upload(`RoomsImages/${n}`, file);
+  //   task
+  //     .snapshotChanges()
+  //     .pipe( finalize(() => {
+  //         this.downloadURL = fileRef.getDownloadURL();
+  //         this.downloadURL.subscribe(url => {
+  //           if (url) {
+  //             this.avatar = url;
+  //           }
+  //           console.log(this.fb);
+  //         });
+  //       })
+  //     ).subscribe(url => {
+  //     if (url) {
+  //       console.log(url);
+  //     }
+  //   });
+  // }
 
 }

@@ -8,7 +8,6 @@ import { UpdateProfileComponent } from './client/user/update-profile/update-prof
 import { CreateSongComponent } from './song/create-song/create-song.component';
 import { ListSongComponent } from './song/list-song/list-song.component';
 import { UpdateSongComponent } from './song/update-song/update-song.component';
-import { PlaySongComponent } from './song/play-song/play-song.component';
 import { LoginComponent } from './visiter/login/login.component';
 import { RegisterComponent } from './visiter/register/register.component';
 import { ResetpasswordComponent } from './client/user/resetpassword/resetpassword.component';
@@ -34,7 +33,6 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     CreateSongComponent,
     ListSongComponent,
     UpdateSongComponent,
-    PlaySongComponent,
     LoginComponent,
     RegisterComponent,
     ResetpasswordComponent,

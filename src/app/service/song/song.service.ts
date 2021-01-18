@@ -19,22 +19,34 @@ export class SongService {
   }
 
   createSong(song: ISong): Observable<any> {
-    return this.httpClient.post<ISong>(URL_API + '/songs' , song);
+    return this.httpClient.post<ISong>(URL_API + '/songs', song);
   }
 
   getSongById(id: number): Observable<any> {
     return this.httpClient.post(URL_API + `/songs/getsong`, id);
   }
+
   getUserSong(id: number): Observable<any> {
-    return this.httpClient.get<ISong[]>(URL_API + `/songs/my-songs/${id}`);
+    return this.httpClient.post<ISong[]>(URL_API + `/songs/my-songs`, id);
   }
+
   updateSong(song: ISong): Observable<any> {
-    return this.httpClient.put<ISong>(URL_API +  `songs/${song.id}`, song)
+    return this.httpClient.put<ISong>(URL_API + `songs/${song.id}`, song);
   }
+
   getSong(id: number): Observable<any> {
     return this.httpClient.get<ISong>(URL_API + `songs/${id}`);
   }
+
   countViews(id: number): Observable<any> {
     return this.httpClient.post<ISong>(URL_API + `/songs/${id}`, id);
+  }
+
+  deleteSong(id: number): Observable<any> {
+    return this.httpClient.delete(URL_API + `/songs/${id}`);
+  }
+
+  getSongByName(name: string): Observable<any> {
+    return this.httpClient.get(URL_API + `/songs/search/${name}`);
   }
 }

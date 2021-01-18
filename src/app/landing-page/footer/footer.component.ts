@@ -1,6 +1,7 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ISong} from '../../model/song/ISong';
 import {BehaviorSubject} from 'rxjs';
+
 
 @Component({
   selector: 'app-footer',
@@ -10,7 +11,6 @@ import {BehaviorSubject} from 'rxjs';
 export class FooterComponent implements OnInit {
   songCurrentObject: BehaviorSubject<ISong> = new BehaviorSubject<ISong>(JSON.parse(localStorage.getItem('songSelected')));
   song: ISong;
-  // tslint:disable-next-line:variable-name
   constructor(
   ) {
   }

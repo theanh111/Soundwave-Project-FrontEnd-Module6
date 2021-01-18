@@ -2,7 +2,7 @@ body {
   margin: 0;
   color: #6a6f8c;
   background: #c8c8c8;
-  font: 600 16px/18px 'Open Sans', sans-serif
+  font: 600 16px/18px 'Open Sans', sans-serif;
 }
 
 .login-box {
@@ -11,7 +11,7 @@ body {
   max-width: 525px;
   min-height: 670px;
   position: relative;
-  background: url(https://www.teahub.io/photos/full/151-1512410_man-light-dark-music-wallpaper-artist-on-a.jpg) no-repeat center;
+  background: url(https://images.unsplash.com/photo-1480700014161-b404b4503a4c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80) no-repeat center;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)
 }
 
@@ -20,7 +20,7 @@ body {
   height: 100%;
   position: absolute;
   padding: 90px 70px 50px 70px;
-  background: rgba(0, 77, 77, .9)
+  background: rgba(21, 101, 192, 0.34)
 }
 
 .login-snip .login,
