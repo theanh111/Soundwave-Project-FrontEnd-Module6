@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserToken} from '../../model/user-token';
+import {User} from '../../model/user';
 import {Observable} from 'rxjs';
 import {ISinger} from '../../model/singer/ISinger';
 import {ICategory} from '../../model/category/ICategory';
@@ -15,7 +16,6 @@ import {CategoryService} from '../../service/category/category.service';
 import {AlbumService} from '../../service/album/album.service';
 import {finalize} from 'rxjs/operators';
 import {ISong} from '../../model/song/ISong';
-import {User} from '../../model/user';
 
 @Component({
   selector: 'app-create-song',
@@ -39,6 +39,7 @@ export class CreateSongComponent implements OnInit {
   categories: ICategory[] = [];
   albums: IAlbum[] = [];
   failMessage = '';
+  imagePreview
 
   constructor(
     private storage: AngularFireStorage,
@@ -62,7 +63,7 @@ export class CreateSongComponent implements OnInit {
     // views: new FormControl('', Validators.required),
     singer: new FormControl('', Validators.required),
     category:  new FormControl('', Validators.required),
-    // album: new FormControl('', Validators.required),
+    album: new FormControl('', Validators.required),
   });
 
   ngOnInit() {}
@@ -92,7 +93,44 @@ export class CreateSongComponent implements OnInit {
     });
   }
 
+  loadFile(event) {
+    const output = (document.getElementById('output') as HTMLImageElement);
+    output.src = URL.createObjectURL(event.target.files[0]);
+    this.imagePreview = output.src;
+    console.log(output.src);
+    output.onload = () => {
+      URL.revokeObjectURL(output.src);
+    };
+    const n = Date.now();
+    const file = event.target.files[0];
+    const filePath = `RoomsImages/${n}`;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(`RoomsImages/${n}`, file);
+    task
+      .snapshotChanges()
+      .pipe(finalize(() => {
+          this.downloadURL = fileRef.getDownloadURL();
+          this.downloadURL.subscribe(url => {
+            if (url) {
+              this.avatar = url;
+            }
+            console.log(this.fb);
+          });
+        })
+      ).subscribe(url => {
+      if (url) {
+        console.log(url);
+      }
+    });
+  }
+
   saveAvatar(event) {
+    const output = (document.getElementById('imagePreview') as HTMLImageElement);
+    output.src = URL.createObjectURL(event.target.files[0]);
+    console.log(output.src);
+    output.onload = () => {
+      URL.revokeObjectURL(output.src);
+    };
     const n = Date.now();
     const file = event.target.files[0];
     const filePath = `RoomsImages/${n}`;
@@ -106,6 +144,7 @@ export class CreateSongComponent implements OnInit {
             if (url) {
               this.fb = url;
               this.avatar = url;
+              console.log(this.avatar);
             }
             console.log(this.fb);
           });
@@ -149,11 +188,10 @@ export class CreateSongComponent implements OnInit {
     const newS: ISong = await this.setNewSong();
     console.log(newS);
     this.songService.createSong(newS).subscribe(() => {
-      alert('them roi');
-      this.router.navigate(['/songs']);
-      console.log(this.urlMp3);
+      alert('Create Successfully!');
+      this.router.navigate(['/profile']);
     }, error => {
-      alert('Loi');
+      alert('Error!');
     });
   }
   async getUserFromDB() {

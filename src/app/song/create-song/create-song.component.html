@@ -68,63 +68,111 @@
 <!--  </div>-->
 <!--</div>-->
 
+<!--<div id="box" class="d-flex align-items-start py-3 border-bottom">-->
+<!--  <img id="output" src="{{user.avatar}}" class="img" alt="User's Avatar">-->
+<!--  <div class="pl-sm-4 pl-2" id="img-section">-->
+<!--    <b>Profile Photo</b>-->
+<!--    <p>Accepted file type .png. Less than 1MB</p>-->
+<!--    <input type="file" accept="image/*" (change)="loadFile($event)">-->
+<!--    &lt;!&ndash;        <p>Preview Image</p>&ndash;&gt;-->
+<!--    &lt;!&ndash;        <img id="output" class="previewImage" *ngIf=""/>&ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+
 <div class="page-wrapper bg-dark p-t-100 p-b-50">
   <div class="wrapper wrapper--w900">
     <div class="card card-6">
       <div class="card-heading">
-        <h2 class="title">Create A New Song</h2>
+        <h2 class="title text-center">Create A New Song</h2>
       </div>
-      <div class="card-body">
-        <form method="POST">
+      <form [formGroup]="songForm" (ngSubmit)="save()">
+        <div class="card-body">
+          <div class="text-center">
+            <img style="width: 50px; height: 50px; object-fit: cover" id="output" src="assets/images/video_play_icon.png" class="img" alt="Song's Cover">
+          </div>
+          <div class="form-row">
+            <div class="name">Upload Image</div>
+            <div class="value">
+              <div class="input-group js-input-file">
+                <input type="file" accept="image/*" (change)="loadFile($event)">
+              </div>
+              <div class="label--desc">Upload your audio for the world</div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Upload Audio</div>
+            <div class="value">
+              <div class="input-group js-input-file">
+                <input type="file"
+                       id="file"
+                       (change)="saveUrlMp3($event)"
+                       name="mp3"
+                       autocomplete="off">
+              </div>
+              <div class="label--desc">Upload your audio for the world</div>
+            </div>
+          </div>
           <div class="form-row">
             <div class="name">Song Name</div>
             <div class="value">
-              <input class="input--style-6" type="text" name="full_name">
+              <input class="input--style-6" type="text" formControlName="name">
             </div>
           </div>
           <div class="form-row">
-            <div class="name">Full name</div>
+            <div class="name">Signer</div>
             <div class="value">
-              <input class="input--style-6" type="text" name="full_name">
+              <select class="form-control" formControlName="singer">-->
+                <option *ngFor="let s of singers" [value]="s.id">
+                  {{s.name}}
+                </option>
+              </select>
             </div>
           </div>
           <div class="form-row">
-            <div class="name">Email address</div>
+            <div class="name">Category</div>
+            <div class="value">
+              <select class="form-control" formControlName="category">-->
+                <option *ngFor="let c of categories" [value]="c.id">
+                  {{c.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Album</div>
+            <div class="value">
+              <select class="form-control" formControlName="album">-->
+                <option *ngFor="let a of albums" [value]="a.id">
+                  {{a.name}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Musician</div>
+            <div class="value">
+              <input type="text" formControlName="musician" class="input--style-6">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Description</div>
             <div class="value">
               <div class="input-group">
-                <input class="input--style-6" type="email" name="email" placeholder="example@email.com">
+                <textarea  formControlName="description" class="textarea--style-6" name="desc"
+                          placeholder="Something..."></textarea>
               </div>
             </div>
           </div>
-          <div class="form-row">
-            <div class="name">Message</div>
-            <div class="value">
-              <div class="input-group">
-                <textarea class="textarea--style-6" name="message" placeholder="Message sent to the employer"></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="name">Upload CV</div>
-            <div class="value">
-              <div class="input-group js-input-file">
-                <input class="input-file" type="file" name="file_cv" id="file">
-                <label class="label--file" for="file">Choose file</label>
-                <span class="input-file__info">No file chosen</span>
-              </div>
-              <div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="card-footer">
-        <button class="btn btn--radius-2 btn--blue-2" type="submit">Send Application</button>
-      </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-outline-success font-weight-bold" type="submit">Upload</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
 
-<div class="form-group col-12">
-<h1>Copyright Soundwave - Case Study Module 6</h1>
-<h1>Copyright Soundwave - Case Study Module 6</h1>
+<div class="form-group col-12 text-center">
+  <h1>Copyright Soundwave - Case Study Module 6</h1>
+  <h1>Copyright Soundwave - Case Study Module 6</h1>
 </div>
