@@ -23,6 +23,7 @@ import {JwtInterceptor} from './helper/jwt-interceptor';
 import {ErrorInterceptor} from './helper/error-interceptor';
 import { HomeComponent } from './landing-page/home/home.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import { SearchSongComponent } from './song/search-song/search-song.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
     ResetpasswordComponent,
     HeaderComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    SearchSongComponent
   ],
   imports: [
     BrowserModule,

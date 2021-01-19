@@ -46,7 +46,7 @@ export class SongService {
     return this.httpClient.delete(URL_API + `/songs/${id}`);
   }
 
-  getSongByName(name: string): Observable<any> {
-    return this.httpClient.get(URL_API + `/songs/search/${name}`);
+  searchSong(name: string): Observable<any> {
+    return this.httpClient.post(URL_API + `/songs/search/${name}`, name);
   }
 }
