@@ -1,7 +1,11 @@
+// @ts-ignore
 import {EventEmitter, Injectable} from '@angular/core';
+// @ts-ignore
 import {BehaviorSubject, Observable} from 'rxjs';
+// @ts-ignore
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../../Project_Sound_Wave_FrontEnd/src/environments/environment';
+// @ts-ignore
 import {map} from 'rxjs/operators';
 import {UserToken} from '../../model/user-token';
 import {User} from '../../model/user';
@@ -9,6 +13,7 @@ import {User} from '../../model/user';
 
 const API_URL = `${environment.apiUrl}`;
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })

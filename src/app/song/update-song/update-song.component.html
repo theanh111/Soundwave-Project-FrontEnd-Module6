@@ -2,7 +2,7 @@
   <div class="wrapper wrapper--w900">
     <div class="card card-6">
       <div class="card-heading">
-        <h2 class="title text-center">Create A New Song</h2>
+        <h2 class="title text-center">Update Song</h2>
       </div>
       <form [formGroup]="songForm" (ngSubmit)="update()">
         <div class="card-body">
@@ -13,7 +13,11 @@
             <div class="name">Upload Image</div>
             <div class="value">
               <div class="input-group js-input-file">
-                <input [value]="songCurrent.avatar" type="file" accept="image/*" (change)="saveAvatar($event)">
+                <input  [value]="songCurrent.avatar"
+                        type="file" accept="image/*"
+                        (change)="saveAvatar($event)"
+                formControlName="avatar"
+                >
               </div>
               <div class="label--desc">Upload your audio for the world</div>
             </div>
@@ -22,7 +26,7 @@
             <div class="name">Upload Audio</div>
             <div class="value">
               <div class="input-group js-input-file">
-                <input [value]="songCurrent.urlMp3" type="file"
+                <input formControlName="urlMp3" [value]="songCurrent.urlMp3" type="file"
                        id="file"
                        (change)="saveUrlMp3($event)"
                        name="mp3"
@@ -50,7 +54,7 @@
           <div class="form-row">
             <div class="name">Category</div>
             <div class="value">
-              <select class="form-control" formControlName="category">-->
+              <select class="form-control" formControlName="category">
                 <option *ngFor="let c of categories" [value]="c.id">
                   {{c.name}}
                 </option>
@@ -60,7 +64,7 @@
           <div class="form-row">
             <div class="name">Album</div>
             <div class="value">
-              <select class="form-control" formControlName="album">-->
+              <select class="form-control" formControlName="album">
                 <option *ngFor="let a of albums" [value]="a.id">
                   {{a.name}}
                 </option>
@@ -77,7 +81,7 @@
             <div class="name">Description</div>
             <div class="value">
               <div class="input-group">
-                <textarea  [value]="description" formControlName="description" class="textarea--style-6" name="desc"
+                <textarea  [value]="songCurrent.description" formControlName="description" class="textarea--style-6" name="desc"
                            placeholder="Something..."></textarea>
               </div>
             </div>

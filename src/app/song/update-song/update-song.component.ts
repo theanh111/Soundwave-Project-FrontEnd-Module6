@@ -93,7 +93,8 @@ export class UpdateSongComponent implements OnInit {
       });
     });
   }
-  // tslint:disable-next-line:typedef
+
+  // @ts-ignore
   saveUrlMp3(event) {
     const n = Date.now();
     const file = event.target.files[0];
@@ -105,8 +106,7 @@ export class UpdateSongComponent implements OnInit {
       .pipe( finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
-            // tslint:disable-next-line:triple-equals
-            if (url != '') {
+            if (url != "") {
               this.fb = url;
               this.urlMp3 = url;
             } else {
@@ -121,8 +121,7 @@ export class UpdateSongComponent implements OnInit {
       }
     });
   }
-  // @ts-ignore
-  // tslint:disable-next-line:typedef
+
   saveAvatar(event) {
     const n = Date.now();
     const file = event.target.files[0];
@@ -135,7 +134,7 @@ export class UpdateSongComponent implements OnInit {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             // tslint:disable-next-line:triple-equals
-            if (url != '') {
+            if (url != "") {
               this.fb = url;
               this.avatar = url;
             }
@@ -151,7 +150,6 @@ export class UpdateSongComponent implements OnInit {
       }
     });
   }
-  // tslint:disable-next-line:typedef
   async setNewSong() {
     const user: User = await this.getUserFromDB();
     const singer: ISinger = await this.getSinger();
@@ -160,7 +158,7 @@ export class UpdateSongComponent implements OnInit {
     let newUrlMp3: string;
     let newAvatar: string;
     // tslint:disable-next-line:triple-equals
-    if (this.urlMp3 != '') {
+    if (this.urlMp3 != "") {
       newUrlMp3 = this.urlMp3;
       console.log(newUrlMp3);
     } else {
@@ -168,7 +166,7 @@ export class UpdateSongComponent implements OnInit {
       console.log(newUrlMp3);
     }
     // tslint:disable-next-line:triple-equals
-    if (this.avatar != '') {
+    if (this.avatar != "") {
       newAvatar = this.avatar;
       console.log(newAvatar);
     } else {
