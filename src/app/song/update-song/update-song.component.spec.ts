@@ -1,3 +1,4 @@
+// @ts-ignore
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdateSongComponent } from './update-song.component';

@@ -17,6 +17,7 @@ import {AlbumService} from '../../service/album/album.service';
 import {finalize} from 'rxjs/operators';
 import {ISong} from '../../model/song/ISong';
 
+// @ts-ignore
 @Component({
   selector: 'app-create-song',
   templateUrl: './create-song.component.html',
@@ -39,7 +40,6 @@ export class CreateSongComponent implements OnInit {
   categories: ICategory[] = [];
   albums: IAlbum[] = [];
   failMessage = '';
-  imagePreview
 
   constructor(
     private storage: AngularFireStorage,
@@ -96,8 +96,6 @@ export class CreateSongComponent implements OnInit {
   loadFile(event) {
     const output = (document.getElementById('output') as HTMLImageElement);
     output.src = URL.createObjectURL(event.target.files[0]);
-    this.imagePreview = output.src;
-    console.log(output.src);
     output.onload = () => {
       URL.revokeObjectURL(output.src);
     };
@@ -228,6 +226,7 @@ export class CreateSongComponent implements OnInit {
   }
 
   getOneAlbum(): IAlbum {
+    // tslint:disable-next-line:variable-name
     const album_id = +this.songForm.get('album')?.value;
     // @ts-ignore
     return this.albumService.getOneAlbum(album_id).toPromise();
