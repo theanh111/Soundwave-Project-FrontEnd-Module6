@@ -21,7 +21,7 @@ export class UpdateProfileComponent implements OnInit {
   currentUser: UserToken;
   updateUserForm: FormGroup;
   downloadURL: Observable<string>;
-  avatar = '';
+  avatar: string;
 
   constructor(
     private storage: AngularFireStorage,
@@ -75,8 +75,6 @@ export class UpdateProfileComponent implements OnInit {
   loadFile(event) {
     const output = (document.getElementById('output') as HTMLImageElement);
     output.src = URL.createObjectURL(event.target.files[0]);
-    this.imagePreview = output.src;
-    console.log(output.src);
     output.onload = () => {
       URL.revokeObjectURL(output.src);
     };
@@ -91,7 +89,7 @@ export class UpdateProfileComponent implements OnInit {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             if (url) {
-              this.avatar = url;
+              this.user.avatar = url;
             }
             console.log(this.fb);
           });
@@ -102,29 +100,4 @@ export class UpdateProfileComponent implements OnInit {
       }
     });
   }
-
-  // saveAvatar(event) {
-  //   const n = Date.now();
-  //   const file = event.target.files[0];
-  //   const filePath = `RoomsImages/${n}`;
-  //   const fileRef = this.storage.ref(filePath);
-  //   const task = this.storage.upload(`RoomsImages/${n}`, file);
-  //   task
-  //     .snapshotChanges()
-  //     .pipe( finalize(() => {
-  //         this.downloadURL = fileRef.getDownloadURL();
-  //         this.downloadURL.subscribe(url => {
-  //           if (url) {
-  //             this.avatar = url;
-  //           }
-  //           console.log(this.fb);
-  //         });
-  //       })
-  //     ).subscribe(url => {
-  //     if (url) {
-  //       console.log(url);
-  //     }
-  //   });
-  // }
-
 }

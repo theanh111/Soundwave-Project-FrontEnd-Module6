@@ -39,7 +39,6 @@ export class CreateSongComponent implements OnInit {
   categories: ICategory[] = [];
   albums: IAlbum[] = [];
   failMessage = '';
-  imagePreview
 
   constructor(
     private storage: AngularFireStorage,
@@ -96,8 +95,6 @@ export class CreateSongComponent implements OnInit {
   loadFile(event) {
     const output = (document.getElementById('output') as HTMLImageElement);
     output.src = URL.createObjectURL(event.target.files[0]);
-    this.imagePreview = output.src;
-    console.log(output.src);
     output.onload = () => {
       URL.revokeObjectURL(output.src);
     };
