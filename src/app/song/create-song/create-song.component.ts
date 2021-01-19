@@ -58,12 +58,14 @@ export class CreateSongComponent implements OnInit {
   }
   songForm: FormGroup = this.fbd.group({
     name: new FormControl('', [Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
     musician: new FormControl('', Validators.required),
     // views: new FormControl('', Validators.required),
     singer: new FormControl('', Validators.required),
     category:  new FormControl('', Validators.required),
     album: new FormControl('', Validators.required),
+    urlMp3: new FormControl('', Validators.required),
+    urlAvatar: new FormControl('', Validators.required)
   });
 
   ngOnInit() {}
