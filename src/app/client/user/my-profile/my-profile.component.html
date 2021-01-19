@@ -1,22 +1,23 @@
 <div class="container container-flex">
   <main>
     <div class="featured-playlist flex-space">
-      <div class="featured-playlist-image" style="height: 300px; width: 300px">
-        <img style="border-radius: 5px; object-fit: cover" src="{{user.avatar}}">
+      <div class="featured-playlist-image" style="">
+        <img style="height: 300px; width: 300px;border-radius: 5px; object-fit: cover" src="{{user.avatar}}">
       </div>
       <div class="featured-playlist-details">
         <div class="featured-playlist-info">
           <div class="flex-space featured-playlist-info-top">
             <div class="featured-playlist-info-name">
               <h2>{{user.fullName}}</h2>
-              <p>{{user.username}}</p>
+              <h3>{{user.username}}</h3>
             </div>
           </div>
         </div>
         <div class="featured-playlist-writeup">
           <p>
-            Edward Christopher Sheeran is an English singer, songwriter, record producer, and actor. In early 2011,
-            Sheeran independently released the extended play, No. 5 Collaborations Project.
+            <span>Email: {{user.email}}</span> <br>
+            <span>Phone: {{user.phoneNumber}}</span><br>
+            <span>Address: {{user.address}}</span>
           </p>
         </div>
         <div class="featured-playlist-buttons">
@@ -29,11 +30,11 @@
             </tr>
             <tr>
               <td>
-                <button [routerLink]="['/songs/create']">Create Song</button>
+                <button class="btn btn-outline-primary" [routerLink]="['/songs/create']">Create Song</button>
               </td>
-              <td>
-                <button>Play All</button>
-              </td>
+<!--              <td>-->
+<!--                <button class="btn btn-outline-primary">Play All</button>-->
+<!--              </td>-->
             </tr>
           </table>
         </div>

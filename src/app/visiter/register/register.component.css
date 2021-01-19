@@ -2,14 +2,15 @@ body {
   margin: 0;
   color: #6a6f8c;
   background: #c8c8c8;
-  font: 600 16px/18px 'Open Sans', sans-serif
+  font: 600 16px/18px 'Open Sans', sans-serif;
+
 }
 
 .login-box {
   width: 100%;
   margin: auto;
   max-width: 525px;
-  min-height: 670px;
+  min-height: 900px;
   position: relative;
   background: url(https://images.unsplash.com/photo-1493247035880-efdf55d1cc99?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80) no-repeat center;
   box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19)

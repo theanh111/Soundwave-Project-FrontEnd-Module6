@@ -1,21 +1,76 @@
-<div class="row" style="margin-left: 220px">
+<div class="row" style="margin-left: 0%;margin-bottom: 200px;">
   <div class="col-md-6 mx-auto p-0">
     <div class="card">
       <div class="login-box">
         <div class="login-snip">
-          <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab" [routerLink]="['/login']">Login</label>
-          <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign Up</label>
+          <input id="tab-1" type="radio" name="tab" class="sign-in"><label for="tab-1" class="tab"
+                                                                           [routerLink]="['/login']">Login</label>
+          <input id="tab-2" type="radio" name="tab" class="sign-up" checked><label for="tab-2" class="tab">Sign
+          Up</label>
           <div class="login-space">
             <form [formGroup]="formRegister" (ngSubmit)="register()">
-            <div class="sign-up-form">
-              <div class="group"> <label for="user" class="label">Username</label> <input id="user" formControlName="username" type="text" class="input" placeholder="Create your Username"> </div>
-              <div class="group"> <label for="pass" class="label">Password</label> <input id="pass" formControlName="password" type="password" class="input" data-type="password" placeholder="Create your password"> </div>
-              <div class="group"> <label for="repeatpass" class="label">Repeat Password</label> <input id="repeatpass" formControlName="confirmPassword" type="password" class="input" data-type="password" placeholder="Repeat your password"> </div>
-              <div class="group"> <label for="phonenumber" class="label">Phone Number</label> <input id="phonenumber" formControlName="phoneNumber" type="text" class="input" placeholder="Enter your email address"> </div>
-              <div class="group"> <input type="submit" class="button" value="Sign Up"> </div>
-              <div class="hr"></div>
-              <div class="foot"><a class="already" [routerLink]="['/login']">Already Member? Click to Log In!</a></div>
-            </div>
+              <div class="sign-up-form">
+                <div class="group">
+                  <label for="user" class="label">Username</label>
+                  <input id="user"
+                         formControlName="username"
+                         type="text" class="input"
+                         placeholder="Create your Username">
+                </div>
+                <div class="alert alert-danger mt-1" role="alert"
+                     *ngIf="formRegister.get('username')!.invalid && formRegister.get('username')!.touched">
+                  <span>Username is required.</span>
+                </div>
+                <div class="group"><label for="pass" class="label">Password</label>
+                  <input id="pass"
+                         formControlName="password"
+                         type="password" class="input"
+                         data-type="password"
+                         placeholder="Create your password">
+                </div>
+                <div class="alert alert-danger mt-1" role="alert"
+                     *ngIf="formRegister.get('password')!.invalid && formRegister.get('password')!.touched">
+                  <span>Password is required.</span>
+                </div>
+                <div class="group"><label for="repeatpass" class="label">Repeat Password</label>
+                  <input id="repeatpass"
+                         formControlName="confirmPassword"
+                         type="password"
+                         class="input"
+                         data-type="password"
+                         placeholder="Repeat your password">
+                </div>
+                <div class="alert alert-danger mt-1" role="alert"
+                     *ngIf="formRegister.get('confirmPassword')!.invalid && formRegister.get('confirmPassword')!.touched">
+                  <span>Confirm password is required.</span>
+                </div>
+                <div class="group"><label for="phonenumber" class="label">Phone Number</label>
+                  <input id="phonenumber"
+                         formControlName="phoneNumber"
+                         type="text"
+                         class="input"
+                         placeholder="Enter your email address">
+                </div>
+                <div class="alert alert-danger mt-1" role="alert"
+                     *ngIf="formRegister.get('phoneNumber')!.invalid && formRegister.get('phoneNumber')!.touched">
+                  <span>Phone number is required.</span>
+                </div>
+                <div style="margin-top: 10px" class="form-group">
+                  <input class="form-uncheck-input" formControlName="check" type="checkbox" value="" id="check" required>
+                  <span for="invalidCheck">
+                                    I understand and agree to <a class="already"
+                                                                 [routerLink]="['/term-of-service']">Term Of Service</a>
+                                </span>
+                </div>
+                <div class="alert alert-danger mt-1" role="alert"
+                     *ngIf="formRegister.get('check')!.invalid && formRegister.get('check')!.touched">
+                  <span>You must agree to continue.</span>
+                </div>
+                <div class="group"><input type="submit" class="btn btn-primary btn-block btn-round" [disabled]="!formRegister.valid" value="Sign Up"></div>
+                <div class="hr"></div>
+                <div class="foot"> Already Member?<a class="already" [routerLink]="['/login']"> Click to Log In!</a>
+                </div>
+              </div>
             </form>
           </div>
         </div>

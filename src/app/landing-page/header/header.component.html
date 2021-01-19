@@ -1,21 +1,21 @@
 <header style="height: 2px">
   <div class="nav-col left-col">
     <div class="header-title">
-      <a [routerLink]="['']"><img id="logo" src="assets/images/logo.png" style="height: 70px; width: auto; object-fit: cover"> </a>
+      <a [routerLink]="['']"><img id="logo" src="assets/img/logo.png" style="border-radius: 20px;height: 70px; width: auto; object-fit: cover"> </a>
     </div>
-      <a class="btn btn-outline-light">Home</a>
-      <a class="btn btn-outline-dark">Albums</a>
-      <a class="btn btn-outline-dark">About Us</a>
+<!--      <a class="btn btn-light">Home</a>-->
+      <a style="border: transparent" class="btn btn-outline-dark">Albums</a>
+      <a style="border: transparent"  class="btn btn-outline-dark">About Us</a>
   </div>
   <div class="nav-col right-col">
     <div class="search-box" style="width: 400px">
       <input type="text" (keyup.enter)="searching($event)" placeholder="Search...">
-      <i style="margin-left: 100px; height: 20px; width: 20px" class="fa fa-search" aria-hidden="true"></i>
+      <i style="margin-left: 25%; height: 20px; width: 20px" class="fa fa-search" aria-hidden="true"></i>
     </div>
     <a href="#"><i id="notif" class="fa fa-bell-o" aria-hidden="true"></i></a>
     <div class="col">
       <div ngbDropdown class="d-inline-flex" *ngIf="currentUser">
-        <a id="dropdownBasic1" ngbDropdownToggle>
+        <a style="padding-left: 200%" id="dropdownBasic1" ngbDropdownToggle>
           <img *ngIf="currentUser" class="user-img" src="{{user.avatar}}"></a>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <a class="btn btn-outline-light" ngbDropdownItem [routerLink]="['/profile']">
