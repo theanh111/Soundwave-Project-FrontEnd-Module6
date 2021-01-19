@@ -44,7 +44,10 @@
                 <h6>{{song.singer.name}}</h6>
               </td>
               <td>
-                <h6>8 likes</h6>
+               <button (click)="likeSong(song.id)" class="btn-success">like</button>
+              </td>
+              <td>
+                <h6>{{song.views}} Like</h6>
               </td>
             </tr>
             </tbody>
