@@ -1,11 +1,11 @@
 
-.wrapper {
-  padding: 30px 50px;
-  border: 1px solid #ddd;
-  border-radius: 15px;
-  margin: 10px auto;
-  max-width: 800px
-}
+/*.wrapper {*/
+/*  padding: 30px 50px;*/
+/*  border: 1px solid #ddd;*/
+/*  border-radius: 15px;*/
+/*  margin: 10px auto;*/
+/*  max-width: 800px*/
+/*}*/
 
 
 /* ==========================================================================
@@ -91,7 +91,7 @@
 .form-row .name {
   width: 188px;
   color: #333;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 700;
   margin-top: 11px;
 }
@@ -125,11 +125,7 @@
  * More sensible default box-sizing:
  * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
  */
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
+
 
 * {
   padding: 0;
@@ -230,45 +226,6 @@ h5 {
 
 h6 {
   font-size: 13px;
-}
-
-/* ==========================================================================
-   #BACKGROUND
-   ========================================================================== */
-.bg-blue {
-  background: #2c6ed5;
-}
-
-.bg-red {
-  background: #fa4251;
-}
-
-.bg-dark {
-  background: #1a1a1a;
-}
-
-.bg-gra-01 {
-  background: -webkit-gradient(linear, left bottom, left top, from(#fbc2eb), to(#a18cd1));
-  background: -webkit-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
-  background: -moz-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
-  background: -o-linear-gradient(bottom, #fbc2eb 0%, #a18cd1 100%);
-  background: linear-gradient(to top, #fbc2eb 0%, #a18cd1 100%);
-}
-
-.bg-gra-02 {
-  background: -webkit-gradient(linear, left bottom, right top, from(#fc2c77), to(#6c4079));
-  background: -webkit-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-  background: -moz-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-  background: -o-linear-gradient(bottom left, #fc2c77 0%, #6c4079 100%);
-  background: linear-gradient(to top right, #fc2c77 0%, #6c4079 100%);
-}
-
-.bg-gra-03 {
-  background: -webkit-gradient(linear, left bottom, right top, from(#08aeea), to(#b721ff));
-  background: -webkit-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
-  background: -moz-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
-  background: -o-linear-gradient(bottom left, #08aeea 0%, #b721ff 100%);
-  background: linear-gradient(to top right, #08aeea 0%, #b721ff 100%);
 }
 
 /* ==========================================================================
@@ -605,43 +562,27 @@ textarea {
 .card-6 .card-body {
   background: #fff;
   position: relative;
-  border: 1px solid #e5e5e5;
   border-bottom: none;
   padding: 30px 0;
   padding-bottom: 0;
-  -webkit-border-top-left-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  border-top-left-radius: 3px;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-right-radius: 3px;
 }
 
 .card-6 .card-body:before {
   bottom: 100%;
   left: 75px;
-  border: solid transparent;
   content: "";
   height: 0;
   width: 0;
   position: absolute;
-  pointer-events: none;
   border-color: rgba(255, 255, 255, 0);
   border-bottom-color: #fff;
   border-width: 10px;
 }
 
 .card-6 .card-footer {
-  background: #fff;
   border: 1px solid #e5e5e5;
   border-top: none;
-  -webkit-border-bottom-left-radius: 3px;
-  -moz-border-radius-bottomleft: 3px;
-  border-bottom-left-radius: 3px;
-  -webkit-border-bottom-right-radius: 3px;
-  -moz-border-radius-bottomright: 3px;
-  border-bottom-right-radius: 3px;
-  padding: 50px 55px;
+  text-align: center;
 }
 
 @media (max-width: 767px) {
