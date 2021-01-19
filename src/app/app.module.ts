@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MySongComponent } from './client/user/my-song/my-song.component';
 import { MyProfileComponent } from './client/user/my-profile/my-profile.component';
 import { UpdateProfileComponent } from './client/user/update-profile/update-profile.component';
 import { CreateSongComponent } from './song/create-song/create-song.component';
@@ -24,11 +23,11 @@ import {ErrorInterceptor} from './helper/error-interceptor';
 import { HomeComponent } from './landing-page/home/home.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import { SearchSongComponent } from './song/search-song/search-song.component';
+import { DetailSongComponent } from './song/detail-song/detail-song.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MySongComponent,
     MyProfileComponent,
     UpdateProfileComponent,
     CreateSongComponent,
@@ -40,7 +39,8 @@ import { SearchSongComponent } from './song/search-song/search-song.component';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    SearchSongComponent
+    SearchSongComponent,
+    DetailSongComponent
   ],
   imports: [
     BrowserModule,

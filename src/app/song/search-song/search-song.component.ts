@@ -12,10 +12,11 @@ export class SearchSongComponent implements OnInit {
   songs: ISong[] = [];
   song: ISong;
   name = '';
+  nameSearch: string;
 
   constructor(
     private songService: SongService,
-    private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute
   ) {
   }
 
@@ -23,6 +24,7 @@ export class SearchSongComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
       this.name = param.get('name');
       this.getAllSongSearch(this.name);
+      this.nameSearch = this.name;
       console.log(this.name);
     });
   }

@@ -47,7 +47,6 @@ export class MyProfileComponent implements OnInit {
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
       localStorage.setItem('songSelected', JSON.stringify(this.song));
-      // console.log(this.song);
       window.location.reload();
     });
   }

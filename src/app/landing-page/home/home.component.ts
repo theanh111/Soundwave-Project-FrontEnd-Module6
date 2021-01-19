@@ -33,5 +33,4 @@ export class HomeComponent implements OnInit {
     this.songService.countViews(id).toPromise().then(r => console.log('ok'));
     console.log('vao k');
   }
-
 }

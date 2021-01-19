@@ -49,4 +49,8 @@ export class SongService {
   searchSong(name: string): Observable<any> {
     return this.httpClient.post(URL_API + `/songs/search/${name}`, name);
   }
+
+  getSongByCategoryId(id: number): Observable<any> {
+    return this.httpClient.get(URL_API + `/songs/detail/${id}`);
+  }
 }

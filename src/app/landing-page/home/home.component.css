@@ -422,25 +422,6 @@ aside{
   }
 }
 
-@media screen and (max-width:650px){
-  .playlist-aside{
-    width:100%;
-  }
-
-  .similar-artists-title h2{
-    font-size: 1.5rem;
-  }
-  .similar-artists-sub{
-    font-size: 1rem;
-  }
-
-  .similar-artists-info-name{
-    font-size:1.3rem;
-  }
-  .similar-artists-info-sub{
-    font-size:1rem;
-  }
-}
 @media screen and (max-width:550px){
   .featured-playlist{
     flex-direction:column;
