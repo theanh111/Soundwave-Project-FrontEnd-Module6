@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {ICategory} from '../../model/category/ICategory';
 
 const urlApi = `${environment.apiUrl}`;
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })

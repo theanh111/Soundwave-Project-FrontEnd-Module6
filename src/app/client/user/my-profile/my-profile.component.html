@@ -56,9 +56,8 @@
           </div>
         </div>
         <div class="playlist-next-item-entry-icons flex-space">
-          <a id="edit"><i class="fas fa-edit"></i></a>
+          <a id="edit" [routerLink]="['/songs/update/', song.id ]"><i class="fas fa-edit"></i></a>
           <a class = "mytooltip" (click)="deleteSong(song.id)">
-<!--            <span class = "mytext"> Delete This Song</span>-->
             <i id="delete" class="fas fa-trash-alt"></i></a>
           <a href=""><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
           <a href=""><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>

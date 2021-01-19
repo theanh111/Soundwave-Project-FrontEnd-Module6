@@ -6,6 +6,7 @@ import {ISong} from '../../model/song/ISong';
 
 const URL_API = `${environment.apiUrl}`;
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })
@@ -31,11 +32,11 @@ export class SongService {
   }
 
   updateSong(song: ISong): Observable<any> {
-    return this.httpClient.put<ISong>(URL_API + `songs/${song.id}`, song);
+    return this.httpClient.put<ISong>(URL_API + `/songs/${song.id}`, song);
   }
 
   getSong(id: number): Observable<any> {
-    return this.httpClient.get<ISong>(URL_API + `songs/${id}`);
+    return this.httpClient.get<ISong>(URL_API + `/songs/${id}`);
   }
 
   countViews(id: number): Observable<any> {

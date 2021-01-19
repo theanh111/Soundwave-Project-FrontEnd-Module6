@@ -8,6 +8,7 @@ import {User} from '../../model/user';
 
 const API_URL = `${environment.apiUrl}`;
 
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })

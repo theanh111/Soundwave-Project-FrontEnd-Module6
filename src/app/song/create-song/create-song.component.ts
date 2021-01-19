@@ -17,6 +17,7 @@ import {AlbumService} from '../../service/album/album.service';
 import {finalize} from 'rxjs/operators';
 import {ISong} from '../../model/song/ISong';
 
+// @ts-ignore
 @Component({
   selector: 'app-create-song',
   templateUrl: './create-song.component.html',
@@ -225,6 +226,7 @@ export class CreateSongComponent implements OnInit {
   }
 
   getOneAlbum(): IAlbum {
+    // tslint:disable-next-line:variable-name
     const album_id = +this.songForm.get('album')?.value;
     // @ts-ignore
     return this.albumService.getOneAlbum(album_id).toPromise();

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {ISinger} from '../../model/singer/ISinger';
 
 const urlApi = `${environment.apiUrl}`;
+// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })

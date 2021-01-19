@@ -1,14 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+
 import {User} from '../../../model/user';
 import {UserToken} from '../../../model/user-token';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {UserService} from '../../../service/user/user.service';
 import {AuthService} from '../../../service/auth/auth.service';
-import {Router} from '@angular/router';
-import {AngularFireStorage} from '@angular/fire/storage';
-import {finalize} from 'rxjs/operators';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {Observable} from 'rxjs';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {finalize} from 'rxjs/operators';
 
+
+
+
+
+
+
+// @ts-ignore
 @Component({
   selector: 'app-update-profile',
   templateUrl: './update-profile.component.html',
@@ -21,7 +29,7 @@ export class UpdateProfileComponent implements OnInit {
   currentUser: UserToken;
   updateUserForm: FormGroup;
   downloadURL: Observable<string>;
-  avatar: string;
+  avatar = '';
 
   constructor(
     private storage: AngularFireStorage,
@@ -100,4 +108,6 @@ export class UpdateProfileComponent implements OnInit {
       }
     });
   }
+
+
 }
