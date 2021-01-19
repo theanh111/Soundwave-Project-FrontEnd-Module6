@@ -14,7 +14,7 @@ import {SongService} from '../../service/song/song.service';
 import {SingerService} from '../../service/singer/singer.service';
 import {CategoryService} from '../../service/category/category.service';
 import {AlbumService} from '../../service/album/album.service';
-import {User} from "../../model/user";
+import {User} from '../../model/user';
 
 // @ts-ignore
 @Component({
@@ -159,6 +159,7 @@ export class UpdateSongComponent implements OnInit {
     const album: IAlbum = await  this.getOneAlbum();
     let newUrlMp3: string;
     let newAvatar: string;
+    // tslint:disable-next-line:triple-equals
     if (this.urlMp3 != '') {
       newUrlMp3 = this.urlMp3;
       console.log(newUrlMp3);
@@ -166,6 +167,7 @@ export class UpdateSongComponent implements OnInit {
       newUrlMp3 =  this.songForm.get('urlMp3')?.value;
       console.log(newUrlMp3);
     }
+    // tslint:disable-next-line:triple-equals
     if (this.avatar != '') {
       newAvatar = this.avatar;
       console.log(newAvatar);
@@ -206,6 +208,7 @@ export class UpdateSongComponent implements OnInit {
     });
   }
 
+  // tslint:disable-next-line:typedef
   async getUserFromDB() {
     const userFromLocalStorage = this.authService.currentUserValue;
     return this.userService.getUserByUsername(userFromLocalStorage.username).toPromise();
@@ -217,6 +220,7 @@ export class UpdateSongComponent implements OnInit {
       this.singers = value;
     });
   }
+  // tslint:disable-next-line:typedef
   getSinger() {
     // tslint:disable-next-line:variable-name
     const singer_id = +this.songForm.get('singer')?.value;
@@ -226,6 +230,7 @@ export class UpdateSongComponent implements OnInit {
   getAllCategory(): ICategory[] {
     this.categoryService.getAllCategory().subscribe(value => this.categories = value);
   }
+  // tslint:disable-next-line:typedef
   getCategory() {
     // tslint:disable-next-line:variable-name
     const category_id = +this.songForm.get('category')?.value;

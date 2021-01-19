@@ -1,5 +1,7 @@
+// @ts-ignore
 import { NgModule } from '@angular/core';
 import {ResetpasswordComponent} from './client/user/resetpassword/resetpassword.component';
+// @ts-ignore
 import {RouterModule, Routes} from '@angular/router';
 import {AuthGuard} from './helper/auth-guard';
 import {LoginComponent} from './visiter/login/login.component';
@@ -62,19 +64,10 @@ const routes: Routes = [
   {
     path: 'songs',
     component: ListSongComponent,
-    // children: [
-    // {
-    //   path: 'my-songs/:id',
-    //   component: MySongComponent
-    // },
-    //   {
-    //     path: 'update/:id',
-    //     component: UpdateComponent
-    //   }
-    // ]
-  }
+  },
 ];
 
+// @ts-ignore
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

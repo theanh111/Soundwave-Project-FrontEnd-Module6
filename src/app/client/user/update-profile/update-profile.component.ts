@@ -83,8 +83,6 @@ export class UpdateProfileComponent implements OnInit {
   loadFile(event) {
     const output = (document.getElementById('output') as HTMLImageElement);
     output.src = URL.createObjectURL(event.target.files[0]);
-    this.imagePreview = output.src;
-    console.log(output.src);
     output.onload = () => {
       URL.revokeObjectURL(output.src);
     };
@@ -99,7 +97,7 @@ export class UpdateProfileComponent implements OnInit {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
             if (url) {
-              this.avatar = url;
+              this.user.avatar = url;
             }
             console.log(this.fb);
           });
