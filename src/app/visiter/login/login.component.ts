@@ -3,7 +3,7 @@ import {User} from '../../model/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../service/auth/auth.service';
 import { first } from 'rxjs/operators';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -13,12 +13,14 @@ import {FormBuilder, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   // @ts-ignore
   currentUser: UserToken;
+  formLogin: FormGroup;
   user: User = {
     username: '',
     password: ''
   };
 
   constructor(private router: Router,
+              private fb: FormBuilder,
               private activatedRoute: ActivatedRoute,
               private authService: AuthService) {
   }
@@ -27,6 +29,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.authService.currentUser.subscribe(value => this.currentUser = value);
     // this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/host';
+    this.formLogin = this.fb.group({
+      username: [null, [Validators.required]],
+      password: [null, [Validators.required]]
+    });
   }
 
   // tslint:disable-next-line:typedef
