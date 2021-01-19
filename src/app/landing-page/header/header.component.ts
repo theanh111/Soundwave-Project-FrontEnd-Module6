@@ -6,6 +6,7 @@ import {User} from '../../model/user';
 import {SongService} from '../../service/song/song.service';
 import {ISong} from '../../model/song/ISong';
 import {UserToken} from '../../model/user-token';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -13,19 +14,21 @@ import {UserToken} from '../../model/user-token';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
   name: string;
   songs: ISong[] = [];
   user: User;
   currentUser: UserToken;
+  searchForm: FormGroup = this.fb.group({
+    name: new FormControl()
+  });
 
   constructor(
     private songService: SongService,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
-  ) {
-  }
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.authService.currentUser.subscribe(value => {
@@ -36,14 +39,10 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  searching(event) {
-    this.name = event.target.value;
-    this.songService.getSongByName(this.name).subscribe(value => {
-      this.songs = value;
-      localStorage.setItem('historySearch', event.target.value);
-    });
+  searchSong() {
+    let name: string = this.searchForm.value.name;
+    this.router.navigate([`/songs/search/${name}`]);
   }
-
   logout() {
     this.authService.logout();
     this.router.navigate(['']);

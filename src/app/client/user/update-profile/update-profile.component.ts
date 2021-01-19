@@ -63,7 +63,7 @@ export class UpdateProfileComponent implements OnInit {
     this.user.address = this.updateUserForm.value.address;
     if (!this.avatar == null) {
       this.user.avatar = this.avatar;
-    };
+    }
     this.userService.updateUser(this.user).subscribe(() => {
       alert('Cập nhật User thành công!');
       this.router.navigate(['/profile']);
