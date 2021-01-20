@@ -16,4 +16,5 @@ export interface ISong {
   user?: User;
   category?: ICategory;
   album?: IAlbum ;
+  isLiked?: boolean;
 }

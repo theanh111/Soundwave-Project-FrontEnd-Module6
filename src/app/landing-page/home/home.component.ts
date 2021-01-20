@@ -20,13 +20,13 @@ export class HomeComponent implements OnInit {
   userCurrent: UserToken;
   user: User;
   songLikes: ISong[] = [];
+
   constructor(
     private songService: SongService,
     private authService: AuthService,
     private userService: UserService,
     private likeService: LikeSongService,
     private fb: FormBuilder
-
   ) {
   }
 
@@ -36,39 +36,45 @@ export class HomeComponent implements OnInit {
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
         console.log(this.user.id);
-        this.getAllLikeSong(this.user.id);
-        console.log(this.songLikes);
+        this.getAllSong(this.user.id);
+        // console.log(this.songLikes);
 
       });
     });
-    this.getAllSong();
 
-    console.log(this.songLikes);
+    console.log(this.songs);
 
   }
 
-  getAllSong() {
+  getAllSong(userId: any) {
     this.songService.getAllSong().subscribe((data: any) => {
       this.songs = data;
+      this.songs.map(song => song.isLiked = false);
+      this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
+        this.songLikes = data;
+        for (let i = 0; i < this.songs.length; i++) {
+          for (let j = 0; j < this.songLikes.length; j++) {
+            if (this.songs[i].id == this.songLikes[j].id) {
+              this.songs[i].isLiked = true;
+            }
+          }
+        }
+        console.log(this.songLikes);
+      });
     });
   }
-  getAllLikeSong(id: any) {
-    this.likeService.getAllLikeUser(id).subscribe((data: any) => {
-      this.songLikes = data;
-    });
-  }
-
   playThisSong(id: any) {
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
       localStorage.setItem('songSelected', JSON.stringify(this.song));
       window.location.reload();
     });
-    this.songService.countViews(id).toPromise().then(r => console.log('ok'));
-    console.log('vao k');
   }
+
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
+    this.getAllSong(this.user.id)
+    // this.getAllLikeSong(this.user.id);
   }
 
 }
