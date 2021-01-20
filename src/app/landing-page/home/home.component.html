@@ -36,13 +36,13 @@
                      src="{{song.avatar}}" (click)="playThisSong(song.id)">
               </td>
               <td>
-                <a  [routerLink]="['/songs/detail', song.id]"><h4>{{song.name}}</h4></a>
+                <a [routerLink]="['/songs/detail', song.id]"><h4>{{song.name}}</h4></a>
               </td>
               <td>
                 <h6 style="font-weight: lighter">{{song.singer.name}}</h6>
               </td>
               <td>
-<!--               <button (click)="likeSong(song.id)" class="btn-success">like</button>-->
+                <!--               <button (click)="likeSong(song.id)" class="btn-success">like</button>-->
               </td>
               <td>
                 <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
@@ -239,16 +239,17 @@
     </main>
     <aside class="sidebar col-lg-6 col-md-2">
       <h2 class="aside-title">History</h2>
-      <div class="queue-entry flex-space">
-        <p class="queue-number">01</p>
+      <div class="queue-entry flex-space" *ngFor="let history of historySongs; let i = index">
+        <p class="queue-number">{{i + 1}}</p>
         <div class="queue-entry-image"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+  display: block;" src="{{history.avatar}}">
         </div>
         <div class="queue-entry-info">
-          <p><b>Blinding lights</b></p>
-          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          <p><b>{{history.name}}</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">{{history.singer.name}}</p>
         </div>
-        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        <div class="like-icon">
+          <i id="like" class="fa fa-heart" aria-hidden="true"></i></div>
       </div>
     </aside>
   </div>

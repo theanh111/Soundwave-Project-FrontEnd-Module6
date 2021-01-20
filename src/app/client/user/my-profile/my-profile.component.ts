@@ -23,8 +23,7 @@ export class MyProfileComponent implements OnInit {
     private songService: SongService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
-    private userService: UserService,
-    private router: Router
+    private userService: UserService
   ) {
   }
 
@@ -36,7 +35,6 @@ export class MyProfileComponent implements OnInit {
       this.getMySongs(this.user.id);
     });
   }
-
 
   // @ts-ignore
   getMySongs(id: number): ISong[] {
