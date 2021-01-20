@@ -57,6 +57,7 @@ export class MyProfileComponent implements OnInit {
       this.getMySongs(this.user.id);
     });
     this.getAllCategory();
+    this.getAllPlaylist();
   }
 
   // @ts-ignore
@@ -109,6 +110,7 @@ playThisSong(id: any) {
     const playList: PlayList = {
       name: this.playForm.get('name').value,
       description: this.playForm.get('description').value,
+      user: this.user
     }
     if (category != null) {
       playList.category = category;
@@ -130,5 +132,10 @@ playThisSong(id: any) {
     // tslint:disable-next-line:variable-name
     const category_id = +this.playForm.get('category')?.value;
     return  this.categoryService.getCategory(category_id).toPromise();
+  }
+  getAllPlaylist() {
+    this.playListService.getAllPlaylist().subscribe(value => {
+      this.playLists = value;
+    })
   }
 }
