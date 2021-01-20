@@ -38,7 +38,7 @@
                      src="{{song.avatar}}" (click)="playThisSong(song.id)">
               </td>
               <td>
-                <h4>{{song.name}}</h4>
+                <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
               </td>
               <td>
                 <h6>{{song.singer.name}}</h6>
