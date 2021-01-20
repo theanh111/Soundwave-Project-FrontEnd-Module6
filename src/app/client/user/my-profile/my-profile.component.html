@@ -40,14 +40,14 @@
     <br>
     <div class="playlist-next-item flex-space" *ngFor="let song of songs; let i = index">
       <div class="playlist-next-item-entry flex-space">
-        <div class="playlist-next-item-entry-info flex-space">
+        <div style="width: 50%" class="playlist-next-item-entry-info flex-space">
           <div style="width: 10px;">
-            <span style="width: 50px" class="playlist-next-item-entry-number">{{i + 1}}</span>
+            <span style="width: 50px; margin:2px" class="playlist-next-item-entry-number">{{i + 1}}</span>
           </div>
           <div class="playlist-next-item-entry-info-image">
             <img (click)="playThisSong(song.id)" style="height: 50px; width: 50px; object-fit: cover" src="{{song.avatar}}">
           </div>
-          <div style="width: 100px;word-break: break-all" class="playlist-next-item-entry-info-name">
+          <div style="width: 200px;word-break: break-all" class="playlist-next-item-entry-info-name">
             <a [routerLink]="['/songs/detail', song.id]"><p><b>{{song.name}}</b></p></a>
 <!--            <p id="categoryName">{{song.category.name}}</p>-->
             <span class="playlist-next-item-entry-info-name-sub">
@@ -200,10 +200,17 @@
         <h4 style="color: #1b1b1b"  class="modal-title">Pick your playlist to add song:</h4>
 
       </div>
+      <ng-template #rt let-r="result" let-t="term">
+        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
+      </ng-template>
       <div >
-        <select class="input-group-lg" name="" id="">
-          <option value=""></option>
-        </select>
+        <input id="typeahead-basic" type="text" class="form-control"  [ngbTypeahead]="search"
+               [resultTemplate]="rt"
+               [inputFormatter]="formatter" />
+
+<!--        <select class="input-group-lg" name="" id="">-->
+<!--          <option value=""></option>-->
+<!--        </select>-->
       </div>
       <div  class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
