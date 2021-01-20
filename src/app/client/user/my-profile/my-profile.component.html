@@ -33,6 +33,12 @@
                 <button class="btn btn-outline-primary" [routerLink]="['/songs/create']">Create Song</button>
               </td>
             </tr>
+            <tr>
+              <td>
+                <button class="btn btn-outline-primary" (click)="openScrollableContent(createPlaylist)">Them playlist
+                </button>
+              </td>
+            </tr>
           </table>
         </div>
       </div>
@@ -45,11 +51,12 @@
             <span style="width: 50px; margin:2px" class="playlist-next-item-entry-number">{{i + 1}}</span>
           </div>
           <div class="playlist-next-item-entry-info-image">
-            <img (click)="playThisSong(song.id)" style="height: 50px; width: 50px; object-fit: cover" src="{{song.avatar}}">
+            <img (click)="playThisSong(song.id)" style="height: 50px; width: 50px; object-fit: cover"
+                 src="{{song.avatar}}">
           </div>
           <div style="width: 200px;word-break: break-all" class="playlist-next-item-entry-info-name">
             <a [routerLink]="['/songs/detail', song.id]"><p><b>{{song.name}}</b></p></a>
-<!--            <p id="categoryName">{{song.category.name}}</p>-->
+            <!--            <p id="categoryName">{{song.category.name}}</p>-->
             <span class="playlist-next-item-entry-info-name-sub">
               {{song.singer.name}}
             </span>
@@ -60,9 +67,10 @@
         </div>
         <div class="playlist-next-item-entry-icons flex-space">
           <a id="edit" [routerLink]="['/songs/update/', song.id ]"><i class="fas fa-edit"></i></a>
-          <a class = "mytooltip" (click)="deleteSong(song.id)">
+          <a class="mytooltip" (click)="deleteSong(song.id)">
             <i id="delete" class="fas fa-trash-alt"></i></a>
-          <a role="button" (click)="openScrollableContent(longContent)" ><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
+          <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                                                                           aria-hidden="true"></i></a>
           <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
           <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
         </div>

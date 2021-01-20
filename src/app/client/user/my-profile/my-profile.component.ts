@@ -9,19 +9,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ISong} from '../../../model/song/ISong';
 import {LikeSongService} from '../../../service/like/like-song.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {ISinger} from '../../../model/singer/ISinger';
-import {SingerService} from '../../../service/singer/singer.service';
+import {PlayListService} from '../../../service/playList/play-list.service';
+import {PlayList} from '../../../model/playList/play-list';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ICategory} from '../../../model/category/ICategory';
+import {CategoryService} from '../../../service/category/category.service';
 import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-
-const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-  'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-  'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-  'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-  'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
 
 @Component({
   selector: 'app-my-profile',
@@ -33,11 +26,16 @@ export class MyProfileComponent implements OnInit {
   song: ISong;
   user: User;
   id: number;
+  categories: ICategory[] = [];
   songLikes: ISong[] = [];
   closeResult: string;
-  singers: ISinger[] = [];
-  public model: any;
-
+  playList: PlayList;
+  playLists: PlayList[] = [];
+  playForm: FormGroup = this.fb.group({
+    name: new FormControl(),
+    category: new FormControl(),
+    description: new FormControl()
+  })
 
   constructor(
     private songService: SongService,
@@ -46,18 +44,20 @@ export class MyProfileComponent implements OnInit {
     private userService: UserService,
     private likeService: LikeSongService,
     private modalService: NgbModal,
-    private singerService: SingerService
+    private playListService: PlayListService,
+    private fb: FormBuilder,
+    private categoryService: CategoryService
   ) {
   }
 
   ngOnInit(): void {
-    this.getAllSinger();
     const userFromLocalStorage = this.authService.currentUserValue;
     this.userService.getUserByUsername(userFromLocalStorage.username).subscribe(value => {
       this.user = value;
-      // @ts-ignore
       this.getMySongs(this.user.id);
     });
+    this.getAllCategory();
+    this.getAllPlaylist();
   }
 
   // @ts-ignore
@@ -106,21 +106,45 @@ export class MyProfileComponent implements OnInit {
   openScrollableContent(longContent) {
     this.modalService.open(longContent, { scrollable: true });
   }
-
-  // @ts-ignore
-  getAllSinger(): ISinger[] {
-    this.singerService.getAllSinger().subscribe(value => {
-      this.singers = value;
+  async setNewPlayList() {
+    const category: ICategory = await this.getCategory();
+    const playList: PlayList = {
+      name: this.playForm.get('name').value,
+      description: this.playForm.get('description').value,
+      user: this.user
+    };
+    if (category != null) {
+      playList.category = category;
+    }
+    return playList;
+  }
+  async savePlayList() {
+    const newPlay: PlayList = await this.setNewPlayList();
+    this.playListService.savePlayList(newPlay).subscribe(() => {
+      alert('Save new playlist successfully');
     });
   }
+  // @ts-ignore
+  getAllCategory(): ICategory[] {
+    this.categoryService.getAllCategory().subscribe(value => this.categories = value);
+  }
 
-
+  getCategory() {
+    // tslint:disable-next-line:variable-name
+    const category_id = +this.playForm.get('category')?.value;
+    return  this.categoryService.getCategory(category_id).toPromise();
+  }
+  getAllPlaylist() {
+    this.playListService.getAllPlaylist().subscribe(value => {
+      this.playLists = value;
+    });
+  }
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term.length < 1 ? []
-        : this.singers.filter(v => v.name.toLowerCase()
+        : this.playLists.filter(v => v.name.toLowerCase()
           .indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
   formatter = (x: {name: string}) => x.name;

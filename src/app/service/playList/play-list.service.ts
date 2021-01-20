@@ -15,4 +15,7 @@ export class PlayListService {
   savePlayList(playList: PlayList): Observable<any> {
     return this.httpClient.post<PlayList>(URL_API + `/playlists`, playList);
   }
+  getAllPlaylist(): Observable<any> {
+    return this.httpClient.get<PlayList>(URL_API + `/playlists`);
+  }
 }
