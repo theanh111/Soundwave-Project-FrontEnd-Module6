@@ -8,6 +8,11 @@ import {SongService} from '../../../service/song/song.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ISong} from '../../../model/song/ISong';
 import {LikeSongService} from '../../../service/like/like-song.service';
+import {PlayListService} from '../../../service/playList/play-list.service';
+import {PlayList} from '../../../model/playList/play-list';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {ICategory} from '../../../model/category/ICategory';
+import {CategoryService} from '../../../service/category/category.service';
 
 @Component({
   selector: 'app-my-profile',
@@ -19,14 +24,25 @@ export class MyProfileComponent implements OnInit {
   song: ISong;
   user: User;
   id: number;
+  categories: ICategory[] = [];
   songLikes: ISong[] = [];
+  playList: PlayList;
+  playLists: PlayList[] = [];
+  playForm: FormGroup = this.fb.group({
+    name: new FormControl(),
+    category: new FormControl(),
+    description: new FormControl()
+  })
 
   constructor(
     private songService: SongService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private likeService: LikeSongService
+    private likeService: LikeSongService,
+    private playListService: PlayListService,
+    private fb: FormBuilder,
+    private categoryService: CategoryService
   ) {
   }
 
@@ -34,9 +50,9 @@ export class MyProfileComponent implements OnInit {
     const userFromLocalStorage = this.authService.currentUserValue;
     this.userService.getUserByUsername(userFromLocalStorage.username).subscribe(value => {
       this.user = value;
-      // @ts-ignore
       this.getMySongs(this.user.id);
     });
+    this.getAllCategory();
   }
 
   // @ts-ignore
@@ -79,5 +95,32 @@ export class MyProfileComponent implements OnInit {
       this.songService.deleteSong(id).subscribe(() => console.log('ok'));
       window.location.reload();
     }
+  }
+  async setNewPlayList() {
+    const category: ICategory = await this.getCategory();
+    const playList: PlayList = {
+      name: this.playForm.get('name').value,
+      description: this.playForm.get('description').value,
+    }
+    if (category != null) {
+      playList.category = category;
+    }
+    return playList;
+  }
+  async savePlayList() {
+    const newPlay: PlayList = await this.setNewPlayList();
+    this.playListService.savePlayList(newPlay).subscribe(() => {
+      alert("Save new playlist successfully");
+    })
+  }
+  // @ts-ignore
+  getAllCategory(): ICategory[] {
+    this.categoryService.getAllCategory().subscribe(value => this.categories = value);
+  }
+
+  getCategory() {
+    // tslint:disable-next-line:variable-name
+    const category_id = +this.playForm.get('category')?.value;
+    return  this.categoryService.getCategory(category_id).toPromise();
   }
 }
