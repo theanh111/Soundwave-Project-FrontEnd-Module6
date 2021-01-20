@@ -5,10 +5,22 @@ img:hover {
   cursor: pointer;
 }
 
-:root {
-  --main-bg-color: #0c1027;
-  --main-font-color: #ffffff;
+a {
+  text-decoration: none;
 }
+
+p {
+  transition: 0.5s;
+  width: 200px;
+  color: white;
+}
+
+p:hover {
+  font-size: 18px;
+  transition: 0.5s;
+  text-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
 
 body {
   background-color: #0c1027;

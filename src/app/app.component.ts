@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Soundwave-Project-FrontEnd-Module6';
+  title = 'Sound Wave - Online Audio Streaming';
 }

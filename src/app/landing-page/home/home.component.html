@@ -18,10 +18,8 @@
         <p class="article-body"></p>
       </article>
       <article class="latest-release">
-        <!--      <a [routerLink]="['/songs/lastest']"><h2 class="latest-release-title">Latest Release</h2></a>-->
-        <!--      <a [routerLink]="['/songs/lastest']">-->
         <div id="title">
-          <h1>Lastest Songs</h1>
+          <h1>New Songs</h1>
         </div>
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
@@ -38,16 +36,16 @@
                      src="{{song.avatar}}" (click)="playThisSong(song.id)">
               </td>
               <td>
-                <h4>{{song.name}}</h4>
+                <a  [routerLink]="['/songs/detail', song.id]"><h4>{{song.name}}</h4></a>
               </td>
               <td>
-                <h6>{{song.singer.name}}</h6>
+                <h6 style="font-weight: lighter">{{song.singer.name}}</h6>
               </td>
               <td>
-               <button (click)="likeSong(song.id)" class="btn-success">like</button>
+<!--               <button (click)="likeSong(song.id)" class="btn-success">like</button>-->
               </td>
               <td>
-                <h6>{{song.views}} Like</h6>
+                <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
               </td>
             </tr>
             </tbody>
@@ -63,7 +61,7 @@
             <p>Suni Hạ Linh</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
   display: block;"
-                                                 src="https://lh3.googleusercontent.com/proxy/ABglV1sk_5z95_OAXqunFeumYBcXRpUFW4ijPM186nDOkaxmKUZdQvGRu_p38dOuoEAW9ECg2pLTazEjKW9Uw_YIYLPoyBxt-LzSZ5RJZMExsQ">
+                                                 src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
             <p>Erik</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
           display: block;"

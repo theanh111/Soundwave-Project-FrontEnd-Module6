@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {UserToken} from '../../../model/user-token';
 import {AuthService} from '../../../service/auth/auth.service';
 import {UserService} from '../../../service/user/user.service';
 import {User} from '../../../model/user';
-import {ISong} from '../../../model/song/ISong';
 import {SongService} from '../../../service/song/song.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ISong} from '../../../model/song/ISong';
 
 @Component({
   selector: 'app-my-profile',
@@ -37,17 +37,17 @@ export class MyProfileComponent implements OnInit {
     });
   }
 
+
   // @ts-ignore
   getMySongs(id: number): ISong[] {
     this.songService.getUserSong(id).subscribe(value => this.songs = value);
   }
 
   playThisSong(id: any) {
-    this.songService.countViews(id).subscribe();
+    this.songService.countViews(id).subscribe(() => console.log());
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
       localStorage.setItem('songSelected', JSON.stringify(this.song));
-      // console.log(this.song);
       window.location.reload();
     });
   }

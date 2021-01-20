@@ -32,9 +32,6 @@
               <td>
                 <button class="btn btn-outline-primary" [routerLink]="['/songs/create']">Create Song</button>
               </td>
-<!--              <td>-->
-<!--                <button class="btn btn-outline-primary">Play All</button>-->
-<!--              </td>-->
             </tr>
           </table>
         </div>
@@ -48,11 +45,11 @@
             <span style="width: 50px" class="playlist-next-item-entry-number">{{i + 1}}</span>
           </div>
           <div class="playlist-next-item-entry-info-image">
-            <a href=""><img style="height: 50px; width: 50px; object-fit: cover" src="{{song.avatar}}"></a>
+            <img (click)="playThisSong(song.id)" style="height: 50px; width: 50px; object-fit: cover" src="{{song.avatar}}">
           </div>
           <div style="width: 100px;word-break: break-all" class="playlist-next-item-entry-info-name">
-            <a href=""><p style="width: 200px"><b>{{song.name}}</b></p></a>
-            <p class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</p>
+            <a [routerLink]="['/songs/detail', song.id]"><p><b>{{song.name}}</b></p></a>
+            <span class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</span>
           </div>
         </div>
         <div class="playlist-next-item-entry-icons flex-space">
@@ -64,125 +61,126 @@
         </div>
       </div>
     </div>
+    <span id="show">View More</span>
   </main>
 
-  <!--  <aside class="playlist-aside">-->
-  <!--    <div class="similar-artists">-->
-  <!--      <div class="similar-artists-title flex-space">-->
-  <!--        <h2>Similar Artists</h2>-->
-  <!--        <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>-->
-  <!--      </div>-->
-  <!--      <div class="similar-artists-entry flex-space">-->
-  <!--        <div class="similar-artists-image"><img src="src/eminem_artist.jpeg"></div>-->
-  <!--        <div class="similar-artists-info">-->
-  <!--          <p class="similar-artists-info-name"><b>Eminem</b></p>-->
-  <!--          <p class="similar-artists-info-sub">Hip Hop</p>-->
-  <!--        </div>-->
-  <!--        <div class="similar-artists-options">-->
-  <!--          <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>-->
-  <!--          <p>4:44</p>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--      <div class="similar-artists-entry flex-space">-->
-  <!--        <div class="similar-artists-image"><img src="src/drake_artist.jpg"></div>-->
-  <!--        <div class="similar-artists-info">-->
-  <!--          <p class="similar-artists-info-name"><b>Eminem</b></p>-->
-  <!--          <p class="similar-artists-info-sub">Hip Hop</p>-->
-  <!--        </div>-->
-  <!--        <div class="similar-artists-options">-->
-  <!--          <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>-->
-  <!--          <p>4:44</p>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--      <div class="similar-artists-entry flex-space">-->
-  <!--        <div class="similar-artists-image"><img src="src/divide_cover.png"></div>-->
-  <!--        <div class="similar-artists-info">-->
-  <!--          <p class="similar-artists-info-name"><b>Eminem</b></p>-->
-  <!--          <p class="similar-artists-info-sub">Hip Hop</p>-->
-  <!--        </div>-->
-  <!--        <div class="similar-artists-options">-->
-  <!--          <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>-->
-  <!--          <p>4:44</p>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--    <div class="recently-played">-->
-  <!--      <div class="recently-played-title similar-artists-title flex-space">-->
-  <!--        <h2>Recently Played</h2>-->
-  <!--        <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">01</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">02</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">03</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">04</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">05</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">06</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">07</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--      <div class="queue-entry flex-space">-->
-  <!--        <p class = "queue-number">08</p>-->
-  <!--        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>-->
-  <!--        <div class="queue-entry-info">-->
-  <!--          <p><b>Blinding lights</b></p>-->
-  <!--          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>-->
-  <!--        </div>-->
-  <!--        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>-->
-  <!--      </div>-->
-  <!--    </div>-->
-  <!--  </aside>-->
+    <aside class="playlist-aside">
+      <div class="similar-artists">
+        <div class="similar-artists-title flex-space">
+          <h2>Similar Artists</h2>
+          <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
+        </div>
+        <div class="similar-artists-entry flex-space">
+          <div class="similar-artists-image"><img src="src/eminem_artist.jpeg"></div>
+          <div class="similar-artists-info">
+            <p class="similar-artists-info-name"><b>Eminem</b></p>
+            <p class="similar-artists-info-sub">Hip Hop</p>
+          </div>
+          <div class="similar-artists-options">
+            <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+            <p>4:44</p>
+          </div>
+        </div>
+        <div class="similar-artists-entry flex-space">
+          <div class="similar-artists-image"><img src="src/drake_artist.jpg"></div>
+          <div class="similar-artists-info">
+            <p class="similar-artists-info-name"><b>Eminem</b></p>
+            <p class="similar-artists-info-sub">Hip Hop</p>
+          </div>
+          <div class="similar-artists-options">
+            <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+            <p>4:44</p>
+          </div>
+        </div>
+        <div class="similar-artists-entry flex-space">
+          <div class="similar-artists-image"><img src="src/divide_cover.png"></div>
+          <div class="similar-artists-info">
+            <p class="similar-artists-info-name"><b>Eminem</b></p>
+            <p class="similar-artists-info-sub">Hip Hop</p>
+          </div>
+          <div class="similar-artists-options">
+            <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+            <p>4:44</p>
+          </div>
+        </div>
+      </div>
+      <div class="recently-played">
+        <div class="recently-played-title similar-artists-title flex-space">
+          <h2>Recently Played</h2>
+          <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">01</p>
+          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">02</p>
+          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">03</p>
+          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">04</p>
+          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">05</p>
+          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">06</p>
+          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">07</p>
+          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+        <div class="queue-entry flex-space">
+          <p class = "queue-number">08</p>
+          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+          <div class="queue-entry-info">
+            <p><b>Blinding lights</b></p>
+            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          </div>
+          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        </div>
+      </div>
+    </aside>
 </div>

@@ -40,7 +40,7 @@ export class SongService {
   }
 
   countViews(id: number): Observable<any> {
-    return this.httpClient.post<ISong>(URL_API + `/songs/${id}`, id);
+    return this.httpClient.post<ISong>(URL_API + `/songs/count-views`, id);
   }
 
   deleteSong(id: number): Observable<any> {
@@ -49,5 +49,9 @@ export class SongService {
 
   searchSong(name: string): Observable<any> {
     return this.httpClient.post(URL_API + `/songs/search/${name}`, name);
+  }
+
+  getSongByCategoryId(id: number): Observable<any> {
+    return this.httpClient.get(URL_API + `/songs/detail/${id}`);
   }
 }

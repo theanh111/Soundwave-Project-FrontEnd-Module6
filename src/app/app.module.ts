@@ -1,10 +1,7 @@
-// @ts-ignore
 import { BrowserModule } from '@angular/platform-browser';
-// @ts-ignore
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { MySongComponent } from './client/user/my-song/my-song.component';
 import { MyProfileComponent } from './client/user/my-profile/my-profile.component';
 import { UpdateProfileComponent } from './client/user/update-profile/update-profile.component';
 import { CreateSongComponent } from './song/create-song/create-song.component';
@@ -16,26 +13,21 @@ import { ResetpasswordComponent } from './client/user/resetpassword/resetpasswor
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './landing-page/header/header.component';
 import { FooterComponent } from './landing-page/footer/footer.component';
-// @ts-ignore
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-// @ts-ignore
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AngularFireStorageModule} from '@angular/fire/storage';
-// @ts-ignore
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {JwtInterceptor} from './helper/jwt-interceptor';
 import {ErrorInterceptor} from './helper/error-interceptor';
 import { HomeComponent } from './landing-page/home/home.component';
-// @ts-ignore
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import { SearchSongComponent } from './song/search-song/search-song.component';
+import { DetailSongComponent } from './song/detail-song/detail-song.component';
 
-// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
-    MySongComponent,
     MyProfileComponent,
     UpdateProfileComponent,
     CreateSongComponent,
@@ -48,6 +40,7 @@ import { SearchSongComponent } from './song/search-song/search-song.component';
     FooterComponent,
     HomeComponent,
     SearchSongComponent,
+    DetailSongComponent
   ],
   imports: [
     BrowserModule,
