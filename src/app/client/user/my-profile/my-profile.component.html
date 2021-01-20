@@ -75,6 +75,31 @@
           <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
         </div>
       </div>
+      <div class="modal">
+        <div class="card card-deck">
+          <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist()">
+            <ng-template #longContent let-modal>
+              <div class="modal-header">
+                <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+              </div>
+              <div>
+                <input type="hidden" [value]="song.id" formControlName="song">
+                <select class="input-group-lg" formControlName="playlist">
+                  <option *ngFor="let pl of playLists" [value]="pl.id">
+                    {{pl.name}}
+                  </option>
+                </select>
+              </div>
+              <div>
+                <button type="submit" class="btn-danger">Add to playlist</button>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+              </div>
+            </ng-template>
+          </form>
+        </div>
+      </div>
     </div>
     <span id="show">View More</span>
   </main>
@@ -205,28 +230,28 @@
 </div>
 
 
-<div class="modal">
-  <div class="card card-deck">
-    <form>
-    <ng-template #longContent let-modal>
-      <div class="modal-header">
-        <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
-      </div>
-      <div>
-        <select class="input-group-lg">
-<!--          <option value=""></option>-->
-          <option *ngFor="let pl of playLists" [value]="pl.id">
-            {{pl.name}}
-          </option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
-      </div>
-    </ng-template>
-    </form>
-  </div>
-</div>
+<!--<div class="modal">-->
+<!--  <div class="card card-deck">-->
+<!--    <form>-->
+<!--    <ng-template #longContent let-modal>-->
+<!--      <div class="modal-header">-->
+<!--        <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>-->
+<!--      </div>-->
+<!--      <div>-->
+<!--        <select class="input-group-lg">-->
+<!--&lt;!&ndash;          <option value=""></option>&ndash;&gt;-->
+<!--          <option *ngFor="let pl of playLists" [value]="pl.id">-->
+<!--            {{pl.name}}-->
+<!--          </option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>-->
+<!--      </div>-->
+<!--    </ng-template>-->
+<!--    </form>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="modal">
   <div class="card card-deck">
     <ng-template #createPlaylist let-modal>

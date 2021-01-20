@@ -14,6 +14,7 @@ import {PlayList} from '../../../model/playList/play-list';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ICategory} from '../../../model/category/ICategory';
 import {CategoryService} from '../../../service/category/category.service';
+import {SongPlaylistService} from '../../../service/songPlaylist/song-playlist.service';
 
 
 @Component({
@@ -36,7 +37,10 @@ export class MyProfileComponent implements OnInit {
     category: new FormControl(),
     description: new FormControl()
   })
-
+  songPlaylistForm: FormGroup = this.fb.group({
+    song: new FormControl(),
+    playlist: new FormControl()
+  })
   constructor(
     private songService: SongService,
     private activatedRoute: ActivatedRoute,
@@ -46,7 +50,8 @@ export class MyProfileComponent implements OnInit {
     private modalService: NgbModal,
     private playListService: PlayListService,
     private fb: FormBuilder,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private songPlaylistService: SongPlaylistService
   ) {
   }
 
@@ -137,5 +142,15 @@ playThisSong(id: any) {
     this.playListService.getAllPlaylist().subscribe(value => {
       this.playLists = value;
     })
+  }
+  getSongAddToList() {
+    let s_id = +this.songPlaylistForm.get('song').value;
+    return  this.songService.getSongById(s_id).toPromise();
+  }
+  async addSongToPlaylist() {
+    console.log("da vao ham");
+    const newSong: ISong = await this.getSongAddToList();
+    let p_id = +this.songPlaylistForm.get('playlist').value;
+    this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert("add to playlist ok!"));
   }
 }
