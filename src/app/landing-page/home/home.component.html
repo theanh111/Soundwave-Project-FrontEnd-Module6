@@ -44,15 +44,12 @@
                 <h6>{{song.singer.name}}</h6>
               </td>
               <td>
-<!--                <div *ngIf="song.id != songLike.id" >-->
-<!--                  <button (click)="likeSong(song.id)" >Like</button>-->
-<!--                </div>-->
-               <button *ngIf="song.isLiked" (click)="likeSong(song.id)"  class="btn-danger">unLike</button>
-               <button *ngIf="!song.isLiked" (click)="likeSong(song.id)" class="btn-success">like</button>
+                <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
               </td>
               <td>
-                <h6>{{song.views}} view</h6>
-                <h6>{{song.like}} Like</h6>
+                <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                <h6>{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
               </td>
             </tr>
             </tbody>
