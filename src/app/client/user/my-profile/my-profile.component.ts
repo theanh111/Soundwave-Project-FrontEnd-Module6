@@ -8,6 +8,7 @@ import {SongService} from '../../../service/song/song.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ISong} from '../../../model/song/ISong';
 import {LikeSongService} from '../../../service/like/like-song.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-my-profile',
@@ -20,13 +21,15 @@ export class MyProfileComponent implements OnInit {
   user: User;
   id: number;
   songLikes: ISong[] = [];
+  closeResult: string;
 
   constructor(
     private songService: SongService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private likeService: LikeSongService
+    private likeService: LikeSongService,
+    private modalService: NgbModal
   ) {
   }
 
@@ -79,5 +82,9 @@ export class MyProfileComponent implements OnInit {
       this.songService.deleteSong(id).subscribe(() => console.log('ok'));
       window.location.reload();
     }
+  }
+
+  openScrollableContent(longContent) {
+    this.modalService.open(longContent, { scrollable: true });
   }
 }
