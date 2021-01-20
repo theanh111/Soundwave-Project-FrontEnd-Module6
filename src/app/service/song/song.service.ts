@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from '../../../../../Project_Sound_Wave_FrontEnd/src/environments/environment';
 import {ISong} from '../../model/song/ISong';
+import {environment} from "../../../environments/environment";
 
 const URL_API = `${environment.apiUrl}`;
 

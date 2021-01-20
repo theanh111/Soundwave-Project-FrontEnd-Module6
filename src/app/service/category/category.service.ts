@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {environment} from '../../../../../Project_Sound_Wave_FrontEnd/src/environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {ICategory} from '../../model/category/ICategory';
+import {environment} from "../../../environments/environment";
 
 const urlApi = `${environment.apiUrl}`;
 // @ts-ignore
