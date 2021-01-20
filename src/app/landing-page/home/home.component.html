@@ -1,4 +1,4 @@
-<div class="container col-lg-12" style="margin-top: 50px">
+<div class="container col-lg-12">
   <div class="container container-flex col-lg-12">
     <main class="col-lg-12 col-md-6">
       <article class="article-featured flex-space">
@@ -18,13 +18,15 @@
         <p class="article-body"></p>
       </article>
       <article class="latest-release">
+        <!--      <a [routerLink]="['/songs/lastest']"><h2 class="latest-release-title">Latest Release</h2></a>-->
+        <!--      <a [routerLink]="['/songs/lastest']">-->
         <div id="title">
           <h1>Lastest Songs</h1>
         </div>
-        <div class="container container-flex">
+        <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
             <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
-            <tr>
+            <tr >
               <td>
                 <h1 *ngIf="i == 0" class="numberOne">{{i + 1}}</h1>
                 <h1 *ngIf="i == 1" class="numberTwo">{{i + 1}}</h1>
@@ -36,17 +38,21 @@
                      src="{{song.avatar}}" (click)="playThisSong(song.id)">
               </td>
               <td>
-                <a [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
+                <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
               </td>
               <td>
                 <h6>{{song.singer.name}}</h6>
               </td>
               <td>
-               <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
-               <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+<!--                <div *ngIf="song.id != songLike.id" >-->
+<!--                  <button (click)="likeSong(song.id)" >Like</button>-->
+<!--                </div>-->
+               <button *ngIf="song.isLiked" (click)="likeSong(song.id)"  class="btn-danger">unLike</button>
+               <button *ngIf="!song.isLiked" (click)="likeSong(song.id)" class="btn-success">like</button>
               </td>
               <td>
-                <h6>{{song.views}}<i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                <h6>{{song.views}} view</h6>
+                <h6>{{song.like}} Like</h6>
               </td>
             </tr>
             </tbody>
@@ -56,25 +62,30 @@
       <article class="popular-artists">
         <a [routerLink]="['/singers']"><h2 class="popular-artists-title">Popular Artists</h2></a>
         <div class="artist-container flex-space">
-          <div class="popular-artist-entry">
-            <img style="width: 100px; height: 100px; object-fit: cover; display: block;" src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
-            <p>Suni Hạ Linh</p>
-          </div>
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover; display: block;" src="https://lh3.googleusercontent.com/proxy/ABglV1sk_5z95_OAXqunFeumYBcXRpUFW4ijPM186nDOkaxmKUZdQvGRu_p38dOuoEAW9ECg2pLTazEjKW9Uw_YIYLPoyBxt-LzSZ5RJZMExsQ">
-            <p>Erik</p>
-          </div>
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover; display: block;" src="https://cdn.vietnammoi.vn/stores/news_dataimages/vudt/122016/12/11/2503_MBI_7016.jpg">
-            <p>Sơn Tùng MTP</p>
-          </div>
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover; display: block;" src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg">
-            <p>Jack</p>
-          </div>
-          <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;display: block;" src="https://esportsobserver.com/wp-content/uploads/2019/02/Marshmellow-Fortnite-Concert-Opinion.jpg">
-            <p>Marshmello</p>
-          </div>
-          <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover; display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            <p>Drake</p>
-          </div>
+          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                 src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
+            <p>Suni Hạ Linh</p></div>
+          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                 src="https://lh3.googleusercontent.com/proxy/ABglV1sk_5z95_OAXqunFeumYBcXRpUFW4ijPM186nDOkaxmKUZdQvGRu_p38dOuoEAW9ECg2pLTazEjKW9Uw_YIYLPoyBxt-LzSZ5RJZMExsQ">
+            <p>Erik</p></div>
+          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+          display: block;"
+                                                 src="https://cdn.vietnammoi.vn/stores/news_dataimages/vudt/122016/12/11/2503_MBI_7016.jpg">
+            <p>Sơn Tùng MTP</p></div>
+          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+          display: block;"
+                                                 src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg">
+            <p>Jack</p></div>
+          <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                  src="https://esportsobserver.com/wp-content/uploads/2019/02/Marshmellow-Fortnite-Concert-Opinion.jpg">
+            <p>Marshmello</p></div>
+          <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                  src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+            <p>Drake</p></div>
         </div>
       </article>
       <article class="stations flex-space">
@@ -235,17 +246,16 @@
     </main>
     <aside class="sidebar col-lg-6 col-md-2">
       <h2 class="aside-title">History</h2>
-      <div class="queue-entry flex-space" *ngFor="let history of historySongs">
-        <div class="queue-entry-image">
-          <img style="max-width: 100%; display: block;" src="{{history.avatar}}">
+      <div class="queue-entry flex-space">
+        <p class="queue-number">01</p>
+        <div class="queue-entry-image"><img style="max-width: 100%;
+  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
         </div>
         <div class="queue-entry-info">
-          <p><b>{{history.name}}</b></p>
-          <p class="language-sub latest-release-sub queue-entry-sub">{{history.singer.name}}</p>
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
         </div>
-        <div class="like-icon">
-          <i class="fa fa-headphones" aria-hidden="true"></i>
-        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
       </div>
     </aside>
   </div>

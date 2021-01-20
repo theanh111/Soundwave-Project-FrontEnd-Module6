@@ -53,7 +53,10 @@ export class HomeComponent implements OnInit {
   getAllSong(userId: any) {
     this.songService.getAllNewSong().subscribe((data: any) => {
       this.songs = data;
-      this.songs.map(song => song.isLiked = false);
+      this.songs.map(song => {
+        song.isLiked = false
+        this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
+      });
       this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
         this.songLikes = data;
         for (let i = 0; i < this.songs.length; i++) {
