@@ -1,0 +1,315 @@
+#userImage {
+  margin-top: 15px;
+  outline: 1px white;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  height: 220px;
+  width: 220px;
+  border-radius: 5px;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+#userImage:hover {
+  transform: scale(1.05);
+  transition: 0.5s;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+  cursor: pointer;
+}
+
+h1 {
+  margin-top: 15px;
+  font-size: 50px;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+#show {
+  display: block;
+  margin-left: 50%;
+  width: 200px;
+  height: 50px;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#add:hover {
+  color: #0779e4;
+  transition: 0.2s;
+  text-shadow: 0 0 5px rgba(81, 203, 238, 0.2);
+  cursor: pointer;
+}
+
+#like:hover {
+  color: #FF0099;
+  transition: 0.2s;
+  text-shadow: 0 0 5px rgba(81, 203, 238, 0.2);
+  cursor: pointer;
+}
+
+#songName {
+  transition: 0.5s;
+  width: 200px;
+  color: white;
+}
+
+#songName:hover {
+  font-size: 18px;
+  transition: 0.5s;
+  text-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}
+
+#img {
+  max-width: 100%;
+  display: block;
+  border-radius: 5px;
+}
+
+#img:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+  cursor: pointer;
+}
+
+div {
+  border-radius: 3px;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+}
+
+/*************************
+		PLAYLIST PAGE
+*************************/
+
+.playlist-aside {
+  width: 20%;
+}
+
+.similar-artists, .recently-played {
+  width: 100%;
+}
+
+
+.similar-artists-title {
+  align-items: center;
+}
+
+.similar-artists-title h2 {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding: 0;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  width: 70%;
+}
+
+.similar-artists-sub {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  padding: 0;
+  font-size: 0.7rem;
+  color: #9c9da7;
+  white-space: nowrap;
+  width: 25%;
+}
+
+.similar-artists-entry {
+  width: 100%;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.similar-artists-image {
+  width: 30%;
+}
+
+.similar-artists-info {
+  width: 40%;
+}
+
+.similar-artists-info p {
+  margin: 0;
+  padding: 0;
+}
+
+.similar-artists-info-sub {
+  color: #9c9da7;
+  font-size: 0.7rem;
+}
+
+.similar-artists-options {
+  width: 20%;
+  color: #9c9da7;
+  font-size: 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.similar-artists-options-menu {
+  margin-bottom: 0.2em;
+}
+
+.similar-artists-options p {
+  margin: 0;
+}
+
+.container-flex, .flex-space {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-flex {
+  margin-bottom: 6em;
+}
+
+main {
+  width: 75%;
+}
+
+aside {
+  width: 20%;
+}
+
+/*Playlist next item*/
+.playlist-next-item {
+  flex-direction: column;
+}
+
+.playlist-next-item-entry {
+  width: 100%;
+  background: #1a1e33;
+  padding: 0.5em 0;
+  margin: 0.5em 0;
+}
+
+.playlist-next-item-entry p {
+  padding: 0;
+  margin: 0;
+}
+
+.playlist-next-item-entry-info {
+  width: 35%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.playlist-next-item-entry-info-image {
+  width: 30%;
+}
+
+.playlist-next-item-entry-icons {
+  align-items: center;
+  width: 20%;
+  justify-content: space-around;
+}
+
+.playlist-next-item-entry-icons a {
+  color: #9c9da7;
+}
+
+.playlist-next-item-entry-number, .playlist-next-item-entry-info-name-sub {
+  font-size: 0.8rem;
+  color: #9c9da7;
+}
+
+
+@media screen and (max-width: 960px) and (min-width: 650px) {
+  .display-none-960 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .similar-artists-info-name {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 750px) and (min-width: 651px) {
+  .featured-playlist-writeup p {
+    font-size: 0.6rem;
+  }
+
+  .playlist-next-item-entry-info {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .playlist-aside {
+    width: 100%;
+  }
+
+  .similar-artists-title h2 {
+    font-size: 1.5rem;
+  }
+
+  .similar-artists-sub {
+    font-size: 1rem;
+  }
+
+  .similar-artists-info-name {
+    font-size: 1.3rem;
+  }
+
+  .similar-artists-info-sub {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .featured-playlist {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .featured-playlist-image {
+    width: 100%;
+  }
+
+  .featured-playlist-details {
+    width: 95%;
+  }
+
+  .featured-playlist-info-top {
+    margin-top: 0.5em;
+  }
+
+  .featured-playlist-writeup {
+    margin-top: 0.5em;
+  }
+
+  .featured-playlist-buttons {
+    margin: 0.5em 0;
+  }
+
+  .playlist-next-item-entry-info {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 365px) {
+  .similar-artists-title h2 {
+    font-size: 1.4rem;
+  }
+
+  .playlist-next-item-entry-info {
+    width: 70%;
+  }
+}
+
+
