@@ -20,11 +20,11 @@
   <h2>You May Like</h2>
   <div class="container container-flex">
     <main>
-      <div class="playlist-next-item flex-space" *ngFor="let songRecommend of songsRecommend; let i = index">
+      <div class="playlist-next-item flex-space" *ngFor="let songRecommend of songsRecommend">
         <div class="playlist-next-item-entry flex-space" *ngIf="songRecommend.id != song.id">
           <div class="playlist-next-item-entry-info flex-space">
             <div style="width: 10px;">
-              <span style="width: 50px" class="playlist-next-item-entry-number">{{i + 1}}</span>
+              <span style="width: 50px" class="playlist-next-item-entry-number"></span>
             </div>
             <div class="playlist-next-item-entry-info-image">
               <img (click)="playThisSong(songRecommend.id)" id="img" style="height: 50px; width: 50px; object-fit: cover"

@@ -192,7 +192,7 @@ export class UpdateSongComponent implements OnInit {
     console.log(newS);
     this.songService.updateSong(newS).subscribe(() => {
       alert('update song successful');
-      this.router.navigate(['songs']);
+      this.router.navigate(['/profile']);
       console.log(this.urlMp3);
     });
   }

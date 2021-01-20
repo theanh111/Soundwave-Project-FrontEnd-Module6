@@ -17,4 +17,10 @@ export class LikeSongService {
   getAllLikeUser(id: number): Observable<any> {
     return this.httpClient.get<ISong[]>(URL_API + `/songs/all-like/${id}`);
   }
+  getSongMostLike(): Observable<any> {
+    return this.httpClient.get<ISong[]>(URL_API + `/songs/most-likes`);
+  }
+  getLikeSong(id: number): Observable<any> {
+    return this.httpClient.get<number>(URL_API + `/like-songs/${id}`);
+  }
 }
