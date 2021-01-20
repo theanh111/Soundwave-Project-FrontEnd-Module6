@@ -25,7 +25,7 @@
         </div>
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
-            <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
+            <tbody *ngFor="let song of songs.slice(0, 5); let i = index, let songLike of songLikes">
             <tr>
               <td>
                 <h1 *ngIf="i == 0" class="numberOne">{{i + 1}}</h1>
@@ -44,7 +44,8 @@
                 <h6>{{song.singer.name}}</h6>
               </td>
               <td>
-               <button (click)="likeSong(song.id)" class="btn-success">like</button>
+               <button *ngIf="song.id == songLike.id" (click)="likeSong(songLike.id)" class="btn-success">unLike</button>
+               <button *ngIf="song.id != songLike.id" (click)="likeSong(song.id)" class="btn-success">like</button>
               </td>
               <td>
                 <h6>{{song.views}} Like</h6>

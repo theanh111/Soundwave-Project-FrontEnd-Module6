@@ -7,6 +7,7 @@ import {User} from '../../model/user';
 import {UserToken} from '../../model/user-token';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {LikeSongService} from '../../service/like/like-song.service';
+import {LikeSong} from '../../model/likeSong/like-song';
 
 @Component({
   selector: 'app-home',
@@ -18,10 +19,7 @@ export class HomeComponent implements OnInit {
   song: ISong;
   userCurrent: UserToken;
   user: User;
-  likeForm: FormGroup = this.fb.group({
-    user: new FormControl(),
-    song: new FormControl()
-  })
+  songLikes: ISong[] = [];
   constructor(
     private songService: SongService,
     private authService: AuthService,
@@ -37,14 +35,26 @@ export class HomeComponent implements OnInit {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
+        console.log(this.user.id);
+        this.getAllLikeSong(this.user.id);
+        console.log(this.songLikes);
+
       });
     });
     this.getAllSong();
+
+    console.log(this.songLikes);
+
   }
 
   getAllSong() {
     this.songService.getAllSong().subscribe((data: any) => {
       this.songs = data;
+    });
+  }
+  getAllLikeSong(id: any) {
+    this.likeService.getAllLikeUser(id).subscribe((data: any) => {
+      this.songLikes = data;
     });
   }
 
@@ -60,4 +70,5 @@ export class HomeComponent implements OnInit {
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
   }
+
 }
