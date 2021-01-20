@@ -37,7 +37,6 @@ export class UpdateSongComponent implements OnInit {
   // @ts-ignore
   selectedFile: File = null;
   // @ts-ignore
-  fb;
   // @ts-ignore
   downloadURL: Observable<string>;
   singers: ISinger[] = [];
@@ -105,13 +104,11 @@ export class UpdateSongComponent implements OnInit {
       .pipe( finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
-            if (url != "") {
-              this.fb = url;
+            if (url !== '') {
               this.urlMp3 = url;
             } else {
               this.urlMp3 = this.songForm.get('urlMp3')?.value;
             }
-            console.log(this.fb);
           });
         })
       ).subscribe(url => {
@@ -132,14 +129,12 @@ export class UpdateSongComponent implements OnInit {
       .pipe( finalize(() => {
           this.downloadURL = fileRef.getDownloadURL();
           this.downloadURL.subscribe(url => {
-            if (url != "") {
-              this.fb = url;
+            if (url !== '') {
               this.avatar = url;
             }
             else {
               this.avatar = this.songForm.get('avatar')?.value;
             }
-            console.log(this.fb);
           });
         })
       ).subscribe(url => {
@@ -155,14 +150,14 @@ export class UpdateSongComponent implements OnInit {
     const album: IAlbum = await  this.getOneAlbum();
     let newUrlMp3: string;
     let newAvatar: string;
-    if (this.urlMp3 != "") {
+    if (this.urlMp3 !== '') {
       newUrlMp3 = this.urlMp3;
       console.log(newUrlMp3);
     } else {
       newUrlMp3 =  this.songForm.get('urlMp3')?.value;
       console.log(newUrlMp3);
     }
-    if (this.avatar != "") {
+    if (this.avatar !== '') {
       newAvatar = this.avatar;
       console.log(newAvatar);
     } else {
@@ -197,7 +192,7 @@ export class UpdateSongComponent implements OnInit {
     console.log(newS);
     this.songService.updateSong(newS).subscribe(() => {
       alert('update song successful');
-      this.router.navigate(['songs']);
+      this.router.navigate(['/profile']);
       console.log(this.urlMp3);
     });
   }
@@ -224,6 +219,7 @@ export class UpdateSongComponent implements OnInit {
   getAllCategory(): ICategory[] {
     this.categoryService.getAllCategory().subscribe(value => this.categories = value);
   }
+
   // tslint:disable-next-line:typedef
   getCategory() {
     // tslint:disable-next-line:variable-name

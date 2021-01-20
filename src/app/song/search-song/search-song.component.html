@@ -1,24 +1,26 @@
-<h2 style="color: white" *ngIf="songs.length == 0">Không tìm thấy kết quả</h2>
-<div *ngIf="songs.length >= 1">
-  <div class="playlist-next-item flex-space" *ngFor="let song of songs; let i = index">
-    <div class="playlist-next-item-entry flex-space">
-      <div class="playlist-next-item-entry-info flex-space">
-        <div style="width: 10px;">
-          <span style="width: 50px" class="playlist-next-item-entry-number">{{i + 1}}</span>
+<h2 style="color: white; text-align: center; margin-top: 80px" *ngIf="songs.length == 0">Không tìm thấy kết quả</h2>
+<h2 style="color: white; text-align: center; margin-top: 20px" *ngIf="songs.length >= 1">Top Result: "{{nameSearch}}"</h2>
+<div class="container" style="margin-top: 30px">
+  <div *ngIf="songs.length >= 1">
+    <div class="playlist-next-item flex-space" *ngFor="let song of songs; let i = index">
+      <div class="playlist-next-item-entry flex-space">
+        <div class="playlist-next-item-entry-info flex-space">
+          <div style="width: 10px;">
+            <span style="width: 50px" class="playlist-next-item-entry-number">{{i + 1}}</span>
+          </div>
+          <div class="playlist-next-item-entry-info-image">
+            <a (click)="playThisSong(song.id)"><img style="height: 50px; width: 50px; object-fit: cover" src="{{song.avatar}}"></a>
+          </div>
+          <div style="width: 100px;word-break: break-all" class="playlist-next-item-entry-info-name">
+            <a [routerLink]="['/songs/detail', song.id]"><p style="width: 200px"><b>{{song.name}}</b></p></a>
+            <p class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</p>
+          </div>
         </div>
-        <div class="playlist-next-item-entry-info-image">
-          <a href=""><img style="height: 50px; width: 50px; object-fit: cover" src="{{song.avatar}}"></a>
+        <div class="playlist-next-item-entry-icons flex-space">
+          <a href=""><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
         </div>
-        <div style="width: 100px;word-break: break-all" class="playlist-next-item-entry-info-name">
-          <a href=""><p style="width: 200px"><b>{{song.name}}</b></p></a>
-          <p class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</p>
-        </div>
-      </div>
-      <div class="playlist-next-item-entry-icons flex-space">
-        <a id="edit"><i class="fas fa-edit"></i></a>
-        <a href=""><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
-        <a href=""><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
       </div>
     </div>
   </div>
+
 </div>

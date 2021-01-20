@@ -19,6 +19,10 @@ export class SongService {
     return this.httpClient.get<any>(URL_API + '/songs');
   }
 
+  getAllNewSong(): Observable<ISong[]> {
+    return this.httpClient.get<any>(URL_API + '/songs/date-new');
+  }
+
   createSong(song: ISong): Observable<any> {
     return this.httpClient.post<ISong>(URL_API + `/songs`, song);
   }
@@ -40,7 +44,7 @@ export class SongService {
   }
 
   countViews(id: number): Observable<any> {
-    return this.httpClient.post<ISong>(URL_API + `/songs/${id}`, id);
+    return this.httpClient.post<ISong>(URL_API + `/songs/count-views`, id);
   }
 
   deleteSong(id: number): Observable<any> {
@@ -49,5 +53,13 @@ export class SongService {
 
   searchSong(name: string): Observable<any> {
     return this.httpClient.post(URL_API + `/songs/search/${name}`, name);
+  }
+
+  // getSongByCategoryId(id: number): Observable<any> {
+  //   return this.httpClient.get(URL_API + `/songs/detail/${id}`);
+  // }
+
+  getSongByCategoryId(id: number): Observable<any> {
+    return this.httpClient.get(URL_API + `/songs/category/${id}`);
   }
 }
