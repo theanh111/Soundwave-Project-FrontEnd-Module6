@@ -35,7 +35,7 @@ export class MyProfileComponent implements OnInit {
     name: new FormControl(),
     category: new FormControl(),
     description: new FormControl()
-  })
+  });
 
   constructor(
     private songService: SongService,
@@ -68,9 +68,11 @@ export class MyProfileComponent implements OnInit {
       this.songs.map(song => song.isLiked = false);
       this.likeService.getAllLikeUser(id).subscribe((data: any) => {
         this.songLikes = data;
+        // tslint:disable-next-line:prefer-for-of
         for (let i = 0; i < this.songs.length; i++) {
+          // tslint:disable-next-line:prefer-for-of
           for (let j = 0; j < this.songLikes.length; j++) {
-            if (this.songs[i].id == this.songLikes[j].id) {
+            if (this.songs[i].id === this.songLikes[j].id) {
               this.songs[i].isLiked = true;
             }
           }

@@ -30,12 +30,10 @@
             </tr>
             <tr>
               <td>
-                <button class="btn btn-outline-primary" [routerLink]="['/songs/create']">Create Song</button>
+                <button class="btn btn-outline-primary" [routerLink]="['/songs/create']">Create New Song</button>
               </td>
-            </tr>
-            <tr>
               <td>
-                <button class="btn btn-outline-primary" (click)="openScrollableContent(createPlaylist)">Them playlist
+                <button class="btn btn-outline-primary" (click)="openScrollableContent(createPlaylist)">Create New Playlist
                 </button>
               </td>
             </tr>
@@ -212,7 +210,7 @@
         <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
       </ng-template>
       <div >
-        <input id="typeahead-basic" type="text" class="form-control"  [ngbTypeahead]="search"
+        <input id="typeahead" type="text" class="form-control"  [ngbTypeahead]="search"
                [resultTemplate]="rt"
                [inputFormatter]="formatter" />
 
@@ -220,6 +218,23 @@
 <!--          <option value=""></option>-->
 <!--        </select>-->
       </div>
+      <div  class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<div class="modal">
+  <div class="card card-deck">
+    <ng-template  #createPlaylist let-modal>
+      <div  class="modal-header">
+        <h4 style="color: #1b1b1b"  class="modal-title">Create a new playlist</h4>
+
+      </div>
+     <div>
+
+     </div>
       <div  class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
       </div>
