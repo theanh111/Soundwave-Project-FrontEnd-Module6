@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
         console.log(this.user.id);
         this.getAllSong(this.user.id);
         // console.log(this.songLikes);
-
       });
     });
 
@@ -78,11 +77,6 @@ export class HomeComponent implements OnInit {
     this.songService.countViews(id).subscribe(() => console.log());
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
-      // if (this.historySongs.length >= 5) {
-      //   this.historySongs.shift();
-      // this.historySongs.push(this.song.id);
-      // } else {
-
       localStorage.setItem('songSelected', JSON.stringify(this.song));
       let array = [];
       array[0] = this.song.id;
@@ -94,9 +88,5 @@ export class HomeComponent implements OnInit {
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id)
-    // this.getAllLikeSong(this.user.id);
-
-
   }
-
 }
