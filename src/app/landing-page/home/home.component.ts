@@ -28,7 +28,8 @@ export class HomeComponent implements OnInit {
     private songService: SongService,
     private authService: AuthService,
     private userService: UserService,
-    private likeService: LikeSongService
+    private likeService: LikeSongService,
+    private fb: FormBuilder
   ) {
   }
 
@@ -38,15 +39,24 @@ export class HomeComponent implements OnInit {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
+        console.log(this.user.id);
         this.getAllSong(this.user.id);
+        // console.log(this.songLikes);
+
       });
     });
+
+    console.log(this.songs);
+
   }
 
   getAllSong(userId: any) {
     this.songService.getAllNewSong().subscribe((data: any) => {
       this.songs = data;
-      this.songs.map(song => song.isLiked = false);
+      this.songs.map(song => {
+        song.isLiked = false
+        this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
+      });
       this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
         this.songLikes = data;
         for (let i = 0; i < this.songs.length; i++) {
@@ -71,6 +81,11 @@ export class HomeComponent implements OnInit {
     this.songService.countViews(id).subscribe(() => console.log());
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
+      // if (this.historySongs.length >= 5) {
+      //   this.historySongs.shift();
+      // this.historySongs.push(this.song.id);
+      // } else {
+
       localStorage.setItem('songSelected', JSON.stringify(this.song));
       let array = [];
       array[0] = this.song.id;
@@ -81,7 +96,10 @@ export class HomeComponent implements OnInit {
 
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
-    this.getAllSong(this.user.id);
+    this.getAllSong(this.user.id)
     // this.getAllLikeSong(this.user.id);
+
+
   }
+
 }
