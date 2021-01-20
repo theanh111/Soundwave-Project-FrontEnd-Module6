@@ -2,6 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {ISong} from '../../model/song/ISong';
 import {SongService} from '../../service/song/song.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
+import {LikeSongService} from '../../service/like/like-song.service';
+import {UserToken} from '../../model/user-token';
+import {User} from '../../model/user';
+import {AuthService} from '../../service/auth/auth.service';
+import {UserService} from '../../service/user/user.service';
 
 
 @Component({
@@ -14,14 +19,24 @@ export class DetailSongComponent implements OnInit {
   id: number;
   song: ISong;
   categoryId: number;
+  user: User;
+  songLikes: ISong[];
 
   constructor(
     private songService: SongService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private likeService: LikeSongService,
+    private authService: AuthService,
+    private userService: UserService
   ) {
   }
 
   ngOnInit(): void {
+    this.authService.currentUser.subscribe(value => {
+      this.userService.getUserByUsername(value.username).subscribe(value1 => {
+        this.user = value1;
+      });
+    });
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
       this.id = +param.get('id');
       this.getSongById(this.id);

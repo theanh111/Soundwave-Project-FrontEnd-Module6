@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         .subscribe(data => {
           // tslint:disable-next-line:no-unused-expression
           localStorage.removeItem('songSelected');
+          window.location.reload();
           window.location.replace('');
           // this.router.navigate([this.returnUrl]);
         });

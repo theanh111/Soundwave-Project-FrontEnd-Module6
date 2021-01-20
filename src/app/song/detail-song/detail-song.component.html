@@ -39,7 +39,8 @@
           </div>
           <div class="playlist-next-item-entry-icons flex-space">
             <a href=""><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
-            <a href=""><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+            <a *ngIf="!songRecommend.isLiked" (click)="likeSong(songRecommend.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+            <a *ngIf="songRecommend.isLiked" (click)="likeSong(songRecommend.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>

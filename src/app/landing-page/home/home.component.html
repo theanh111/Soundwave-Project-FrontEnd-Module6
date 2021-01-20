@@ -19,7 +19,7 @@
       </article>
       <article class="latest-release">
         <div id="title">
-          <h1>Lastest Songs</h1>
+          <h1>New Songs</h1>
         </div>
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
@@ -39,11 +39,11 @@
                 <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
               </td>
               <td>
-                <h6>{{song.singer.name}}</h6>
+                <p>{{song.singer.name}}</p>
               </td>
               <td>
-                <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
-                <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
               </td>
               <td>
                 <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
@@ -239,18 +239,17 @@
         </div>
       </article>
     </main>
-    <aside class="sidebar col-lg-6 col-md-2">
+    <aside class="sidebar col-lg-6 col-md-2" *ngFor="let history of historySongs">
       <h2 class="aside-title">History</h2>
       <div class="queue-entry flex-space">
-        <p class="queue-number">01</p>
-        <div class="queue-entry-image"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="queue-entry-image"><img style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; max-width: 100%;
+  display: block;" src="{{history.avatar}}">
         </div>
         <div class="queue-entry-info">
-          <p><b>Blinding lights</b></p>
-          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+          <p><b>{{history.name}}</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">{{history.singer.name}}</p>
         </div>
-        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        <div class="like-icon"><i class="fas fa-play"></i></div>
       </div>
     </aside>
   </div>

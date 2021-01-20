@@ -18,7 +18,7 @@ export class CommentSongService {
     return this.httpClient.get<ICommentSong[]>(URL_API + `/comment-songs/song/${id}`);
   }
 
-  addComment(commentSong: ICommentSong): Observable<ICommentSong> {
+  addComment(commentSong: ICommentSong): Observable<any> {
     return this.httpClient.post<ICommentSong>(URL_API + `/comment-songs`, commentSong);
   }
 }

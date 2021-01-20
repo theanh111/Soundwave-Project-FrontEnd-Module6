@@ -28,26 +28,24 @@ export class HomeComponent implements OnInit {
     private songService: SongService,
     private authService: AuthService,
     private userService: UserService,
-    private likeService: LikeSongService,
-    private fb: FormBuilder
+    private likeService: LikeSongService
   ) {
   }
 
   ngOnInit(): void {
+    if (this.userCurrent == null) {
+      this.songService.getAllNewSong().subscribe(value => {
+        this.songs = value;
+      });
+    }
     this.getHistorySongs();
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
-        console.log(this.user.id);
         this.getAllSong(this.user.id);
-        // console.log(this.songLikes);
-
       });
     });
-
-    console.log(this.songs);
-
   }
 
   getAllSong(userId: any) {
@@ -57,22 +55,22 @@ export class HomeComponent implements OnInit {
         song.isLiked = false;
         this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
       });
+      // tslint:disable-next-line:no-shadowed-variable
       this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
         this.songLikes = data;
         for (let i = 0; i < this.songs.length; i++) {
           for (let j = 0; j < this.songLikes.length; j++) {
-            if (this.songs[i].id == this.songLikes[j].id) {
+            if (this.songs[i].id === this.songLikes[j].id) {
               this.songs[i].isLiked = true;
             }
           }
         }
-        console.log(this.songLikes);
       });
     });
   }
+
   getHistorySongs() {
     this.songService.getSong(this.historySong.value).subscribe(value => {
-      console.log(value);
       this.historySongs[0] = value;
     });
   }
@@ -93,5 +91,4 @@ export class HomeComponent implements OnInit {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id);
   }
-
 }
