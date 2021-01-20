@@ -19,6 +19,10 @@ export class SongService {
     return this.httpClient.get<any>(URL_API + '/songs');
   }
 
+  getAllNewSong(): Observable<ISong[]> {
+    return this.httpClient.get<any>(URL_API + '/songs/date-new');
+  }
+
   createSong(song: ISong): Observable<any> {
     return this.httpClient.post<ISong>(URL_API + `/songs`, song);
   }

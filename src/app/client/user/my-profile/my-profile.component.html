@@ -49,138 +49,144 @@
           </div>
           <div style="width: 100px;word-break: break-all" class="playlist-next-item-entry-info-name">
             <a [routerLink]="['/songs/detail', song.id]"><p><b>{{song.name}}</b></p></a>
-            <span class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</span>
+<!--            <p id="categoryName">{{song.category.name}}</p>-->
+            <span class="playlist-next-item-entry-info-name-sub">
+              {{song.singer.name}}
+            </span>
           </div>
+        </div>
+        <div style="margin-top: 20px; margin-left: 200px">
+          <span id="categoryName">{{song.category.name}}</span>
         </div>
         <div class="playlist-next-item-entry-icons flex-space">
           <a id="edit" [routerLink]="['/songs/update/', song.id ]"><i class="fas fa-edit"></i></a>
           <a class = "mytooltip" (click)="deleteSong(song.id)">
             <i id="delete" class="fas fa-trash-alt"></i></a>
           <a href=""><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
-          <a href=""><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+          <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+          <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
         </div>
       </div>
     </div>
     <span id="show">View More</span>
   </main>
-
-    <aside class="playlist-aside">
-      <div class="similar-artists">
-        <div class="similar-artists-title flex-space">
-          <h2>Similar Artists</h2>
-          <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
+  <aside class="playlist-aside">
+    <div class="similar-artists">
+      <div class="similar-artists-title flex-space">
+        <h2>Similar Artists</h2>
+        <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
+      </div>
+      <div class="similar-artists-entry flex-space">
+        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px" src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg"></div>
+        <div class="similar-artists-info">
+          <p class="similar-artists-info-name"><b>Jack</b></p>
+          <p class="similar-artists-info-sub">V-Pop</p>
         </div>
-        <div class="similar-artists-entry flex-space">
-          <div class="similar-artists-image"><img src="src/eminem_artist.jpeg"></div>
-          <div class="similar-artists-info">
-            <p class="similar-artists-info-name"><b>Eminem</b></p>
-            <p class="similar-artists-info-sub">Hip Hop</p>
-          </div>
-          <div class="similar-artists-options">
-            <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
-            <p>4:44</p>
-          </div>
-        </div>
-        <div class="similar-artists-entry flex-space">
-          <div class="similar-artists-image"><img src="src/drake_artist.jpg"></div>
-          <div class="similar-artists-info">
-            <p class="similar-artists-info-name"><b>Eminem</b></p>
-            <p class="similar-artists-info-sub">Hip Hop</p>
-          </div>
-          <div class="similar-artists-options">
-            <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
-            <p>4:44</p>
-          </div>
-        </div>
-        <div class="similar-artists-entry flex-space">
-          <div class="similar-artists-image"><img src="src/divide_cover.png"></div>
-          <div class="similar-artists-info">
-            <p class="similar-artists-info-name"><b>Eminem</b></p>
-            <p class="similar-artists-info-sub">Hip Hop</p>
-          </div>
-          <div class="similar-artists-options">
-            <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
-            <p>4:44</p>
-          </div>
+        <div class="similar-artists-options">
+          <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+          <p>4:44</p>
         </div>
       </div>
-      <div class="recently-played">
-        <div class="recently-played-title similar-artists-title flex-space">
-          <h2>Recently Played</h2>
-          <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
+      <div class="similar-artists-entry flex-space">
+        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px" src="https://tudienwiki.com/wp-content/uploads/2020/09/Binz.png"></div>
+        <div class="similar-artists-info">
+          <p class="similar-artists-info-name"><b>Binz</b></p>
+          <p class="similar-artists-info-sub">Hip Hop</p>
         </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">01</p>
-          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">02</p>
-          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">03</p>
-          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">04</p>
-          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">05</p>
-          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">06</p>
-          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">07</p>
-          <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="queue-entry flex-space">
-          <p class = "queue-number">08</p>
-          <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
-          <div class="queue-entry-info">
-            <p><b>Blinding lights</b></p>
-            <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
-          </div>
-          <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+        <div class="similar-artists-options">
+          <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+          <p>4:44</p>
         </div>
       </div>
-    </aside>
+      <div class="similar-artists-entry flex-space">
+        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px" src="https://static2.yan.vn/YanNews/2167221/201905/tieu-su-su-nghiep-va-cuoc-doi-cua-ca-si-min-f0ea35dc.jpg"></div>
+        <div class="similar-artists-info">
+          <p class="similar-artists-info-name"><b>Min</b></p>
+          <p class="similar-artists-info-sub">V-Pop</p>
+        </div>
+        <div class="similar-artists-options">
+          <div class="similar-artists-options-menu"><i class="fa fa-bars" aria-hidden="true"></i></div>
+          <p>4:44</p>
+        </div>
+      </div>
+    </div>
+    <div class="recently-played">
+      <div class="recently-played-title similar-artists-title flex-space">
+        <h2>Recently Played</h2>
+        <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">01</p>
+        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">02</p>
+        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">03</p>
+        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">04</p>
+        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">05</p>
+        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">06</p>
+        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">07</p>
+        <div class="queue-entry-image"><img src="src/song_pic1.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+      <div class="queue-entry flex-space">
+        <p class="queue-number">08</p>
+        <div class="queue-entry-image"><img src="src/bad_guy.jpg"></div>
+        <div class="queue-entry-info">
+          <p><b>Blinding lights</b></p>
+          <p class="language-sub latest-release-sub queue-entry-sub">The Weeknd</p>
+        </div>
+        <div class="like-icon"><a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i></a></div>
+      </div>
+    </div>
+  </aside>
 </div>

@@ -18,6 +18,7 @@ h4 {
   transition: 0.5s;
   color: white;
 }
+
 h4:hover {
   transition: 0.5s;
   text-shadow: 0 0 5px rgba(81, 203, 238, 1);
@@ -26,7 +27,7 @@ h4:hover {
 
 .numberOne {
   color: #12c2e9;
-  display:block;
+  display: block;
   text-align: center;
   font-weight: bold;
 }
@@ -43,6 +44,62 @@ h4:hover {
   display: block;
   text-align: center;
   font-weight: bold;
+}
+
+#unlike {
+  transition: 0.2s;
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+#like {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FF0099;
+  transition: 0.2s;
+  cursor: pointer;
+  color: #FF0099;
+}
+
+#unlikeHistorySong {
+  transition: 0.2s;
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+#unlikeHistorySong:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#likeHistorySong {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FF0099;
+  transition: 0.2s;
+  cursor: pointer;
+  color: #FF0099;
+}
+
+#likeHistorySong:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#like:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+#unlike:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .popular-artist-entry img {
@@ -72,13 +129,14 @@ h4:hover {
 }
 
 @keyframes reveal {
-  80%{
+  80% {
     letter-spacing: 8px;
   }
   100% {
     background-size: 300% 300%;
   }
 }
+
 @keyframes glow {
   40% {
     text-shadow: 0 0 8px #fff;
@@ -104,7 +162,7 @@ img:hover {
   --main-font-color: #ffffff;
 }
 
-h2{
+h2 {
   margin-bottom: 0.5rem;
 }
 
@@ -115,95 +173,96 @@ h2{
 
 /*Featured*/
 
-.container{
-  width:90%;
-  max-width:900px;
+.container {
+  width: 90%;
+  max-width: 900px;
   margin: 0 auto;
 }
 
-.container-flex, .flex-space{
+.container-flex, .flex-space {
   display: flex;
   justify-content: space-between;
 }
 
-.container-flex{
+.container-flex {
   margin-bottom: 6em;
 }
 
-main{
-  width:75%;
+main {
+  width: 75%;
 }
 
-aside{
-  width:20%;
+aside {
+  width: 20%;
 }
 
-.article-image{
+.article-image {
   width: 30%;
 }
 
 
 /*Latest Release*/
-.latest-release-col{
-  width:47.5%;
+.latest-release-col {
+  width: 47.5%;
 }
 
-.latest-release-entry{
-  margin-bottom:0.8em;
+.latest-release-entry {
+  margin-bottom: 0.8em;
 }
 
-.latest-release-image{
-  width:25%;
+.latest-release-image {
+  width: 25%;
 }
 
-.latest-release-info{
+.latest-release-info {
   margin: auto 0;
 }
-.latest-release-info p{
+
+.latest-release-info p {
   margin-top: 0;
   margin-bottom: 0.5em;
 }
 
-.latest-release-options p{
+.latest-release-options p {
   margin-top: 0.5em;
   margin-bottom: 0;
 }
 
-.latest-release-sub{
+.latest-release-sub {
   font-weight: 1;
   font-size: 0.75rem;
   color: #9c9da7;
 }
 
 /*Popular Artists*/
-.popular-artist-entry{
-  width:16%;
+.popular-artist-entry {
+  width: 16%;
 }
 
-.popular-artist-entry img{
+.popular-artist-entry img {
   border-radius: 50%;
 }
 
-.popular-artist-entry p{
-  margin-top:0.4em;
+.popular-artist-entry p {
+  margin-top: 0.4em;
   margin-bottom: 0;
   text-align: center;
   font-size: 0.73rem;
 }
 
 /*Stations*/
-.stations{
-  margin-top:2em;
-  padding:1em;
-  background:#101642;
+.stations {
+  margin-top: 2em;
+  padding: 1em;
+  background: #101642;
 }
 
-.stations-entry{
+.stations-entry {
   position: relative;
   width: 13.5%;
 }
 
-.stations-entry img{
+.stations-entry img {
   border-radius: 50%;
 }
 
@@ -215,113 +274,124 @@ aside{
   font-size: 0.73rem;
 }
 
-.mid-featured-font{
+.mid-featured-font {
   font-weight: 700;
   font-size: 1rem;
 }
 
-.article-image{
+.article-image {
   position: relative;
 }
 
-.middle-featured{
-  margin-top:2em;
+.middle-featured {
+  margin-top: 2em;
 }
 
 /*Language Song*/
 
-.language-song-entry{
+.language-song-entry {
   width: 16%;
 }
 
-.language-song-entry p{
+.language-song-entry p {
   margin-bottom: 0;
   overflow: hidden;
 }
 
-.language-sub{
-  font-size:0.7rem;
-  margin-top:0;
+.language-sub {
+  font-size: 0.7rem;
+  margin-top: 0;
 }
 
 /*Aside Section*/
 
-.queue-entry{
+.queue-entry {
   align-items: center;
   margin-bottom: 1em;
 }
 
-.queue-number{
-  width:10%;
-}
-.queue-entry-image{
-  width:20%;
+.queue-number {
+  width: 10%;
 }
 
-.queue-entry-info{
-  width:60%;
+.queue-entry-image {
+  width: 20%;
+}
+
+.queue-entry-info {
+  width: 60%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.like-icon{
-  width:5%;
+
+.like-icon {
+  width: 5%;
 }
 
-.queue-entry-info p{
+.queue-entry-info p {
   font-size: 0.8rem;
   margin-bottom: 0;
   overflow: hidden;
 }
-@media screen and (max-width: 840px){
-  .queue-entry-info p, .queue-entry-sub, .queue-number{
-    font-size:0.6rem;
+
+@media screen and (max-width: 840px) {
+  .queue-entry-info p, .queue-entry-sub, .queue-number {
+    font-size: 0.6rem;
   }
 }
-@media screen and (max-width: 650px){
-  .container-flex{
+
+@media screen and (max-width: 650px) {
+  .container-flex {
     flex-direction: column;
     margin-bottom: 0px;
   }
-  main, aside{
-    width:100%;
+
+  main, aside {
+    width: 100%;
   }
-  aside{
+
+  aside {
     margin-bottom: 6em;
   }
-  .queue-entry-info p, .queue-entry-sub, .queue-number{
-    font-size:1rem;
+
+  .queue-entry-info p, .queue-entry-sub, .queue-number {
+    font-size: 1rem;
   }
 }
-@media screen and (max-width: 520px){
-  .display-none{
+
+@media screen and (max-width: 520px) {
+  .display-none {
     display: none;
   }
-  .latest-release-col{
-    width:100%;
-  }
-  .popular-artist-entry{
-    width:23%;
+
+  .latest-release-col {
+    width: 100%;
   }
 
-  .stations-entry{
-    width:18%;
+  .popular-artist-entry {
+    width: 23%;
   }
 
-  .language-song-entry{
-    width:32%;
+  .stations-entry {
+    width: 18%;
+  }
+
+  .language-song-entry {
+    width: 32%;
   }
 
 }
 
 /*MAIN*/
-.featured-playlist{
+.featured-playlist {
   background: #141b41;
 }
 
-.featured-playlist-image{
-  width:45%;
+.featured-playlist-image {
+  width: 45%;
 }
+
 .featured-playlist-image::after {
   display: block;
   position: relative;
@@ -331,38 +401,45 @@ aside{
   width: 100%;
   content: '';
 }
-.featured-playlist-details{
-  width:52.5%;
+
+.featured-playlist-details {
+  width: 52.5%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.featured-playlist-info-name h2{
-  margin:0;
+
+.featured-playlist-info-name h2 {
+  margin: 0;
   padding: 0;
 }
-.featured-playlist-info-top{
+
+.featured-playlist-info-top {
   align-items: center;
 }
-.featured-playlist p{
-  padding:0;
-  margin:0;
+
+.featured-playlist p {
+  padding: 0;
+  margin: 0;
   font-size: 0.8rem;
   color: #9c9da7;
 }
-.followers p{
-  font-size:0.6rem;
+
+.followers p {
+  font-size: 0.6rem;
 }
-.featured-playlist-buttons{
+
+.featured-playlist-buttons {
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.play-all-button{
+.play-all-button {
   margin-right: 1em;
 }
-.play-all-button button{
+
+.play-all-button button {
   background-image: linear-gradient(to right, #4327b4, #be46dd);
   color: white;
   border: none;
@@ -371,100 +448,113 @@ aside{
   text-decoration: none;
   margin-bottom: 0.2em;
 }
-.play-all-button p{
+
+.play-all-button p {
   font-size: 0.7rem;
 }
 
 /*Playlist next item*/
-.playlist-next-item{
+.playlist-next-item {
   flex-direction: column;
 }
 
-.playlist-next-item-entry{
-  width:100%;
+.playlist-next-item-entry {
+  width: 100%;
   background: #1a1e33;
   padding: 0.5em 0;
   margin: 0.5em 0;
 }
-.playlist-next-item-entry p{
+
+.playlist-next-item-entry p {
   padding: 0;
   margin: 0;
 }
-.playlist-next-item-entry-info{
-  width:35%;
+
+.playlist-next-item-entry-info {
+  width: 35%;
   align-items: center;
   justify-content: space-around;
-}
-.playlist-next-item-entry-info-image{
-  width:30%;
 }
 
-.playlist-next-item-entry-icons{
+.playlist-next-item-entry-info-image {
+  width: 30%;
+}
+
+.playlist-next-item-entry-icons {
   align-items: center;
-  width:20%;
+  width: 20%;
   justify-content: space-around;
 }
-.playlist-next-item-entry-icons a{
+
+.playlist-next-item-entry-icons a {
   color: #9c9da7;
 }
 
-.playlist-next-item-entry-number, .playlist-next-item-entry-info-name-sub{
+.playlist-next-item-entry-number, .playlist-next-item-entry-info-name-sub {
   font-size: 0.8rem;
   color: #9c9da7;
 }
 
 
-
-@media screen and (max-width:960px) and (min-width:650px){
-  .display-none-960{
+@media screen and (max-width: 960px) and (min-width: 650px) {
+  .display-none-960 {
     display: none;
   }
 }
 
-@media screen and (max-width:750px){
-  .similar-artists-info-name{
-    font-size:0.8rem;
+@media screen and (max-width: 750px) {
+  .similar-artists-info-name {
+    font-size: 0.8rem;
   }
 }
-@media screen and (max-width:750px) and (min-width:651px){
-  .featured-playlist-writeup p{
+
+@media screen and (max-width: 750px) and (min-width: 651px) {
+  .featured-playlist-writeup p {
     font-size: 0.6rem;
   }
-  .playlist-next-item-entry-info{
+
+  .playlist-next-item-entry-info {
     width: 40%;
   }
 }
 
-@media screen and (max-width:550px){
-  .featured-playlist{
-    flex-direction:column;
+@media screen and (max-width: 550px) {
+  .featured-playlist {
+    flex-direction: column;
     align-items: center;
   }
-  .featured-playlist-image{
+
+  .featured-playlist-image {
     width: 100%;
   }
-  .featured-playlist-details{
-    width:95%;
+
+  .featured-playlist-details {
+    width: 95%;
   }
-  .featured-playlist-info-top{
+
+  .featured-playlist-info-top {
     margin-top: 0.5em;
   }
-  .featured-playlist-writeup{
-    margin-top:0.5em;
+
+  .featured-playlist-writeup {
+    margin-top: 0.5em;
   }
-  .featured-playlist-buttons{
+
+  .featured-playlist-buttons {
     margin: 0.5em 0;
   }
-  .playlist-next-item-entry-info{
+
+  .playlist-next-item-entry-info {
     width: 50%;
   }
 }
 
-@media screen and (max-width:365px){
-  .similar-artists-title h2{
+@media screen and (max-width: 365px) {
+  .similar-artists-title h2 {
     font-size: 1.4rem;
   }
-  .playlist-next-item-entry-info{
+
+  .playlist-next-item-entry-info {
     width: 70%;
   }
 }

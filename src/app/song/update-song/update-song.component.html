@@ -1,19 +1,19 @@
-<div class="page-wrapper bg-dark p-t-100 p-b-50">
+<div class="page-wrapper p-t-100 p-b-50">
   <div class="wrapper wrapper--w900">
     <div class="card card-6">
       <div class="card-heading">
         <h2 class="title text-center">Update Song</h2>
       </div>
       <form [formGroup]="songForm" (ngSubmit)="update()">
-        <div style="color: #1b1b1b" class="card-body">
+        <div style="color: #1b1b1b; border-radius: 20px" class="card-body">
           <div class="text-center">
-            <img style="width: 50px; height: 50px; object-fit: cover" id="output" src="assets/images/video_play_icon.png" class="img" alt="Song's Cover">
+
           </div>
           <div class="form-row">
-            <div class="name">Upload Image</div>
+            <div class="name"><img style="width: 150px; height: 150px; border-radius: 10px; object-fit: cover" id="output" src="assets/images/video_play_icon.png" class="img" alt="Song's Cover"></div>
             <div class="value">
               <div class="input-group js-input-file">
-                <input  [value]="songCurrent.avatar"
+                <input style="margin-top: 50px" [value]="songCurrent.avatar"
                         type="file" accept="image/*"
                         (change)="saveAvatar($event)"
                 formControlName="avatar"
@@ -86,10 +86,18 @@
               </div>
             </div>
           </div>
+          <div class="form-row">
+            <div class="name">
+              <button style="border: solid; color: #1b1b1b; border-radius: 5px "
+                      class="btn btn-outline-success btn--radius"  type="submit">Upload
+              </button>
+            </div>
+            <div style="margin-top: 20px" class="value">
+              <span >All * fields are required</span>
+            </div>
+          </div>
         </div>
-        <div class="card-footer">
-          <button class="btn btn-outline-success font-weight-bold" type="submit">Upload</button>
-        </div>
+
       </form>
     </div>
   </div>
