@@ -278,7 +278,9 @@ aside {
 
 .playlist-next-item-entry p {
   padding: 0;
-  margin: 0;
+  min-width: 270px;
+  display: flex;
+  flex-direction: column;
 }
 
 .playlist-next-item-entry-info {
