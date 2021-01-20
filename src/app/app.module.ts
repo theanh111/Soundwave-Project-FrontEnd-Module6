@@ -24,6 +24,7 @@ import { HomeComponent } from './landing-page/home/home.component';
 import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
 import { SearchSongComponent } from './song/search-song/search-song.component';
 import { DetailSongComponent } from './song/detail-song/detail-song.component';
+import { CommentListComponent } from './song/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
     FooterComponent,
     HomeComponent,
     SearchSongComponent,
-    DetailSongComponent
+    DetailSongComponent,
+    CommentListComponent
   ],
   imports: [
     BrowserModule,

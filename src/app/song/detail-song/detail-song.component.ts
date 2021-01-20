@@ -41,11 +41,8 @@ export class DetailSongComponent implements OnInit {
     this.songService.getSongById(this.id).subscribe(value => {
       this.song = value;
       this.categoryId = this.song.category.id;
-      console.log(this.categoryId);
       this.songService.getSongByCategoryId(this.categoryId).subscribe(value1 => {
-        console.log(value1.length);
         this.songsRecommend = value1;
-        console.log(this.songsRecommend);
       });
     });
   }
