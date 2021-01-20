@@ -51,7 +51,8 @@
                <button *ngIf="!song.isLiked" (click)="likeSong(song.id)" class="btn-success">like</button>
               </td>
               <td>
-                <h6>{{song.views}} Like</h6>
+                <h6>{{song.views}} view</h6>
+                <h6>{{song.like}} Like</h6>
               </td>
             </tr>
             </tbody>

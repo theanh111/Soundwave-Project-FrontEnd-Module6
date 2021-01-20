@@ -17,4 +17,5 @@ export interface ISong {
   category?: ICategory;
   album?: IAlbum ;
   isLiked?: boolean;
+  like?: number;
 }
