@@ -9,6 +9,37 @@
   transition: 0.5s;
 }
 
+#unlike {
+  transition: 0.2s;
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+#like {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FF0099;
+  transition: 0.2s;
+  cursor: pointer;
+  color: #FF0099;
+}
+
+#unlikeHistorySong {
+  transition: 0.2s;
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+#unlikeHistorySong:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+
 #userImage:hover {
   transform: scale(1.05);
   transition: 0.5s;

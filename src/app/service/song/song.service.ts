@@ -6,7 +6,6 @@ import {environment} from "../../../environments/environment";
 
 const URL_API = `${environment.apiUrl}`;
 
-// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })
