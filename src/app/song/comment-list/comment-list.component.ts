@@ -75,6 +75,6 @@ export class CommentListComponent implements OnInit {
 
   clear() {
     // @ts-ignore
-    let input: HTMLElement = document.getElementById('inputComment').value = '';
+    const input: HTMLElement = document.getElementById('inputComment').value = '';
   }
 }
