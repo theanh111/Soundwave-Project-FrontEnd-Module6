@@ -77,27 +77,24 @@
       </div>
       <div class="modal">
         <div class="card card-deck">
-          <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist()">
-            <ng-template #longContent let-modal>
+          <ng-template #longContent let-modal>
+            <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
               <div class="modal-header">
                 <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
               </div>
               <div>
-                <input type="hidden" [value]="song.id" formControlName="song">
                 <select class="input-group-lg" formControlName="playlist">
                   <option *ngFor="let pl of playLists" [value]="pl.id">
                     {{pl.name}}
                   </option>
                 </select>
               </div>
-              <div>
-                <button type="submit" class="btn-danger">Add to playlist</button>
-              </div>
               <div class="modal-footer">
+                <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
                 <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
               </div>
-            </ng-template>
-          </form>
+            </form>
+          </ng-template>
         </div>
       </div>
     </div>
@@ -280,7 +277,9 @@
               </td>
             </tr>
             <tr>
-              <td><button type="submit" class="btn-danger">Create</button></td>
+              <td>
+                <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Create</button>
+              </td>
             </tr>
           </table>
         </form>

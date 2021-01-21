@@ -36,11 +36,12 @@ export class MyProfileComponent implements OnInit {
     name: new FormControl(),
     category: new FormControl(),
     description: new FormControl()
-  })
+  });
   songPlaylistForm: FormGroup = this.fb.group({
     song: new FormControl(),
     playlist: new FormControl()
-  })
+  });
+
   constructor(
     private songService: SongService,
     private activatedRoute: ActivatedRoute,
@@ -67,7 +68,7 @@ export class MyProfileComponent implements OnInit {
 
   // @ts-ignore
   getMySongs(id: number): ISong[] {
-    this.songService.getUserSong(id).subscribe(value =>  {
+    this.songService.getUserSong(id).subscribe(value => {
       this.songs = value;
       this.songs = value;
       this.songs.map(song => song.isLiked = false);
@@ -91,7 +92,7 @@ export class MyProfileComponent implements OnInit {
     // this.getAllLikeSong(this.user.id);
   }
 
-playThisSong(id: any) {
+  playThisSong(id: any) {
     this.songService.countViews(id).subscribe(() => console.log());
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
@@ -108,26 +109,29 @@ playThisSong(id: any) {
   }
 
   openScrollableContent(longContent) {
-    this.modalService.open(longContent, { scrollable: true });
+    this.modalService.open(longContent, {scrollable: true});
   }
+
   async setNewPlayList() {
     const category: ICategory = await this.getCategory();
     const playList: PlayList = {
       name: this.playForm.get('name').value,
       description: this.playForm.get('description').value,
       user: this.user
-    }
+    };
     if (category != null) {
       playList.category = category;
     }
     return playList;
   }
+
   async savePlayList() {
     const newPlay: PlayList = await this.setNewPlayList();
     this.playListService.savePlayList(newPlay).subscribe(() => {
-      alert("Save new playlist successfully");
-    })
+      alert('Save new playlist successfully');
+    });
   }
+
   // @ts-ignore
   getAllCategory(): ICategory[] {
     this.categoryService.getAllCategory().subscribe(value => this.categories = value);
@@ -136,21 +140,30 @@ playThisSong(id: any) {
   getCategory() {
     // tslint:disable-next-line:variable-name
     const category_id = +this.playForm.get('category')?.value;
-    return  this.categoryService.getCategory(category_id).toPromise();
+    return this.categoryService.getCategory(category_id).toPromise();
   }
+
   getAllPlaylist() {
     this.playListService.getAllPlaylist().subscribe(value => {
       this.playLists = value;
-    })
+    });
   }
-  getSongAddToList() {
-    let s_id = +this.songPlaylistForm.get('song').value;
-    return  this.songService.getSongById(s_id).toPromise();
+
+  getSongAddToList(id) {
+    return this.songService.getSongById(id).toPromise();
   }
-  async addSongToPlaylist() {
-    console.log("da vao ham");
-    const newSong: ISong = await this.getSongAddToList();
+  checkSongPlaylist(id, song: ISong) {
+    return this.songPlaylistService.checkSongPlaylist(id, song).toPromise();
+  }
+  async addSongToPlaylist(id: number) {
+    const newSong: ISong = await this.getSongAddToList(id);
     let p_id = +this.songPlaylistForm.get('playlist').value;
-    this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert("add to playlist ok!"));
+    let checkSong: boolean = await this.checkSongPlaylist(p_id, newSong);
+    if (checkSong) {
+      this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert('add to playlist ok!'));
+    }
+    else {
+          alert('this song had in this playlist');
+    }
   }
 }

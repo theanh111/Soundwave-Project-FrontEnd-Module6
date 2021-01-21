@@ -14,4 +14,7 @@ export class SongPlaylistService {
   addSongToPlaylist(p_id: number, song: ISong): Observable<any> {
     return this.httpClient.post<ISong>(UPR_API + `/song-playlists/${p_id}`, song);
   }
+  checkSongPlaylist(p_id: number, song: ISong): Observable<any> {
+    return this.httpClient.post<boolean>(UPR_API + `/song-playlists/check-song/${p_id}`, song);
+  }
 }
