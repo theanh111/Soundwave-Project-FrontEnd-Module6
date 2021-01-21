@@ -8,6 +8,7 @@ import {LikeSongService} from '../../service/like/like-song.service';
 import {FormBuilder} from '@angular/forms';
 import {UserToken} from '../../model/user-token';
 import {User} from '../../model/user';
+import {ActivatedRoute, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,9 @@ export class HomeComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private likeService: LikeSongService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: RouterModule,
+    private route: ActivatedRoute
   ) {
   }
 
@@ -93,13 +96,10 @@ export class HomeComponent implements OnInit {
       window.location.reload();
     });
   }
-
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
-    this.getAllSong(this.user.id)
+    this.getAllSong(this.user.id);
     // this.getAllLikeSong(this.user.id);
-
-
   }
 
 }
