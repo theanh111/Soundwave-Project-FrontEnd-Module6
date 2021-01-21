@@ -48,6 +48,7 @@ export class MyProfileComponent implements OnInit {
     private fb: FormBuilder,
     private categoryService: CategoryService
   ) {
+    this.getAllPlaylist();
   }
 
   ngOnInit(): void {
@@ -57,7 +58,6 @@ export class MyProfileComponent implements OnInit {
       this.getMySongs(this.user.id);
     });
     this.getAllCategory();
-    this.getAllPlaylist();
   }
 
   // @ts-ignore

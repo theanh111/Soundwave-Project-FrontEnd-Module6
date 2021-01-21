@@ -33,7 +33,8 @@
                 <button class="btn btn-outline-primary" [routerLink]="['/songs/create']">Create New Song</button>
               </td>
               <td>
-                <button class="btn btn-outline-primary" (click)="openScrollableContent(createPlaylist)">Create New Playlist
+                <button class="btn btn-outline-primary" (click)="openScrollableContent(createPlaylist)">Create New
+                  Playlist
                 </button>
               </td>
             </tr>
@@ -83,7 +84,9 @@
         <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
       </div>
       <div class="similar-artists-entry flex-space">
-        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px" src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg"></div>
+        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px"
+                                                src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg">
+        </div>
         <div class="similar-artists-info">
           <p class="similar-artists-info-name"><b>Jack</b></p>
           <p class="similar-artists-info-sub">V-Pop</p>
@@ -94,7 +97,8 @@
         </div>
       </div>
       <div class="similar-artists-entry flex-space">
-        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px" src="https://tudienwiki.com/wp-content/uploads/2020/09/Binz.png"></div>
+        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px"
+                                                src="https://tudienwiki.com/wp-content/uploads/2020/09/Binz.png"></div>
         <div class="similar-artists-info">
           <p class="similar-artists-info-name"><b>Binz</b></p>
           <p class="similar-artists-info-sub">Hip Hop</p>
@@ -105,7 +109,9 @@
         </div>
       </div>
       <div class="similar-artists-entry flex-space">
-        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px" src="https://static2.yan.vn/YanNews/2167221/201905/tieu-su-su-nghiep-va-cuoc-doi-cua-ca-si-min-f0ea35dc.jpg"></div>
+        <div class="similar-artists-image"><img style="height: 50px; width: 50px; object-fit: cover; border-radius: 5px"
+                                                src="https://static2.yan.vn/YanNews/2167221/201905/tieu-su-su-nghiep-va-cuoc-doi-cua-ca-si-min-f0ea35dc.jpg">
+        </div>
         <div class="similar-artists-info">
           <p class="similar-artists-info-name"><b>Min</b></p>
           <p class="similar-artists-info-sub">V-Pop</p>
@@ -198,27 +204,23 @@
 </div>
 
 
-
 <div class="modal">
   <div class="card card-deck">
-    <ng-template  #longContent let-modal>
-      <div  class="modal-header">
-        <h4 style="color: #1b1b1b"  class="modal-title">Pick your playlist to add song:</h4>
+    <ng-template #longContent let-modal>
+      <div style="background-color: #1a1e33" class="modal-header">
+        <h4  class="modal-title">Pick your playlist to add song:</h4>
 
       </div>
-      <ng-template #rt let-r="result" let-t="term">
-        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>
-      </ng-template>
-      <div >
-        <input id="typeahead" type="text" class="form-control"  [ngbTypeahead]="search"
-               [resultTemplate]="rt"
-               [inputFormatter]="formatter" />
-
-<!--        <select class="input-group-lg" name="" id="">-->
-<!--          <option value=""></option>-->
-<!--        </select>-->
-      </div>
-      <div  class="modal-footer">
+<!--      <ng-template #rt let-r="result" let-t="term">-->
+<!--        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>-->
+<!--      </ng-template>-->
+<!--      <div style="color: #1a1e33;margin: auto">-->
+<!--        <label class="col-form-label-lg">Playlist: </label>-->
+<!--        <input id="typeahead-template" type="text" class="input-group-lg" [ngbTypeahead]="search"-->
+<!--               [resultTemplate]="rt"-->
+<!--               [inputFormatter]="formatter"/>-->
+<!--      </div>-->
+      <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
       </div>
     </ng-template>
@@ -227,17 +229,46 @@
 
 <div class="modal">
   <div class="card card-deck">
-    <ng-template  #createPlaylist let-modal>
-      <div  class="modal-header">
-        <h4 style="color: #1b1b1b"  class="modal-title">Create a new playlist</h4>
+    <ng-template #createPlaylist let-modal>
+      <div style="background-color: #1a1e33" class="modal-header">
+        <h4 class="modal-title">Create a new playlist</h4>
 
       </div>
-     <div>
+      <form [formGroup]="playForm" (ngSubmit)="savePlayList()">
+      <div style=" border-radius: 10px; color:#1a1e33">
 
-     </div>
-      <div  class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+          <table style="color: #1a1e33;margin: auto" cellpadding="10px">
+            <tr>
+              <td><label class="col-form-label-lg">Name</label></td>
+              <td><input class="input-group-lg" type="text" formControlName="name"></td>
+            </tr>
+            <tr>
+              <td><label class="col-form-label-lg">Description</label></td>
+              <td><input class="input-group-lg" type="text" formControlName="description"></td>
+            </tr>
+            <tr>
+              <td><label class="col-form-label-lg">Category</label></td>
+              <td>
+                <select style="width: 100%;height: 30px" class="input-group-lg" formControlName="category">-->
+                  <option *ngFor="let c of categories" [value]="c.id">
+                    {{c.name}}
+                  </option>
+                </select>
+              </td>
+            </tr>
+
+          </table>
+
       </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-success">Create</button>
+        <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close</button>
+      </div>
+      </form>
     </ng-template>
   </div>
 </div>
+
+
+
+

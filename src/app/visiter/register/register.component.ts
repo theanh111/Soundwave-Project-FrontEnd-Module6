@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../service/auth/auth.service';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {User} from '../../model/user';
 
@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   formRegister: FormGroup;
   // @ts-ignore
   user: User;
+  // submitted = false;
 
   constructor(private serviceAuth: AuthService,
               private fb: FormBuilder,
@@ -24,12 +25,14 @@ export class RegisterComponent implements OnInit {
     this.formRegister = this.fb.group({
       username: [null, [Validators.required]],
       phoneNumber: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
       confirmPassword: [null, [Validators.required]],
       check: [null, [Validators.required]]
     });
+    // tslint:disable-next-line:ban-types
+  }comparePassword(password: String, confirmPassword: String){
+    return password !== confirmPassword;
   }
-
   // tslint:disable-next-line:typedef
   register() {
     const user1: User = this.formRegister.value;
