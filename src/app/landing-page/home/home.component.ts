@@ -20,11 +20,14 @@ import {PlayList} from '../../model/playList/play-list';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  historySong: BehaviorSubject<number> = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('historySongs')));
+  // historySong: BehaviorSubject<number> = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('historySongs')));
+  historySong: BehaviorSubject<string> = new BehaviorSubject<string>(JSON.parse(localStorage.getItem('Storage')));
+  // historySong = localStorage.getItem('historySongs');
   songs: ISong[] = [];
   song: ISong;
   array: [];
-  historySongs: ISong[] = [];
+  historySongs: ISong[];
+  testString: string;
   userCurrent: UserToken;
   user: User;
   songLikes: ISong[] = [];
@@ -50,14 +53,17 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.userCurrent == null) {
+      this.songService.getAllNewSong().subscribe(value => {
+        this.songs = value;
+      });
+    }
     this.getHistorySongs();
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
-        // console.log(this.user.id);
         this.getAllSong(this.user.id);
-        // console.log(this.songLikes);
       });
     });
     this.getAllPlaylist();
@@ -65,46 +71,66 @@ export class HomeComponent implements OnInit {
     // console.log(this.songs);
     // console.log(this.playlistsNewest);
   }
+
   getAllSong(userId: any) {
     this.songService.getAllNewSong().subscribe((data: any) => {
       this.songs = data;
       this.songs.map(song => {
-        song.isLiked = false
+        song.isLiked = false;
         this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
       });
+      // tslint:disable-next-line:no-shadowed-variable
       this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
         this.songLikes = data;
         for (let i = 0; i < this.songs.length; i++) {
           for (let j = 0; j < this.songLikes.length; j++) {
-            if (this.songs[i].id == this.songLikes[j].id) {
+            if (this.songs[i].id === this.songLikes[j].id) {
               this.songs[i].isLiked = true;
             }
           }
         }
-        // console.log(this.songLikes);
+        console.log(this.songLikes);
       });
     });
   }
+
   getHistorySongs() {
-    this.songService.getSong(this.historySong.value).subscribe(value => {
-      // console.log(value);
-      this.historySongs[0] = value;
+    this.songService.getSong(Number(this.historySong.value)).subscribe(value => {
+      this.historySongs = value;
     });
   }
 
   playThisSong(id: any) {
+    // this.songService.countViews(id).subscribe(() => console.log());
+    // this.songService.getSongById(id).subscribe(value => {
+    //   this.song = value;
+    //   localStorage.setItem('songSelected', JSON.stringify(this.song));
+    //   let array = [];
+    //   array[0] = this.song.id;
+    //   localStorage.setItem('historySongs', JSON.stringify(array));
+    //   window.location.reload();
+    // });
+
     this.songService.countViews(id).subscribe(() => console.log());
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
-      // if (this.historySongs.length >= 5) {
-      //   this.historySongs.shift();
-      // this.historySongs.push(this.song.id);
-      // } else {
-
       localStorage.setItem('songSelected', JSON.stringify(this.song));
-      let array = [];
-      array[0] = this.song.id;
-      localStorage.setItem('historySongs', JSON.stringify(array));
+      this.testString = String(this.song.id);
+      if (localStorage.getItem('Storage') == null) {
+        let Values = [];
+        Values.push(this.testString);
+        localStorage.setItem('Storage', JSON.stringify(Values));
+      } else {
+        let array = JSON.parse(localStorage.getItem('Storage'));
+        if (array.length === 5) {
+          array.shift();
+          localStorage.setItem('Storage', JSON.stringify(array));
+        }
+        let Values = [];
+        Values = JSON.parse(localStorage.getItem('Storage'));
+        Values.push(this.testString);
+        localStorage.setItem('Storage', JSON.stringify(Values));
+      }
       window.location.reload();
     });
   }

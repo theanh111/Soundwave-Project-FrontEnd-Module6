@@ -24,6 +24,9 @@ import { HomeComponent } from './landing-page/home/home.component';
 import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SearchSongComponent } from './song/search-song/search-song.component';
 import { DetailSongComponent } from './song/detail-song/detail-song.component';
+import { CommentListComponent } from './song/comment-list/comment-list.component';
+import { PlayingSongsComponent } from './landing-page/playing-songs/playing-songs.component';
+import { MenuComponent } from './landing-page/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +44,9 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
     HomeComponent,
     SearchSongComponent,
     DetailSongComponent,
+    CommentListComponent,
+    PlayingSongsComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +65,4 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
   ],
   bootstrap: [AppComponent]
 })
-
-// @ts-ignore
 export class AppModule { }
