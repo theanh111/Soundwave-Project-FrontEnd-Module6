@@ -74,6 +74,28 @@
           <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
         </div>
       </div>
+      <div class="modal">
+        <div class="card card-deck">
+          <ng-template #longContent let-modal>
+            <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
+              <div class="modal-header">
+                <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+              </div>
+              <div>
+                <select class="input-group-lg" formControlName="playlist">
+                  <option *ngFor="let pl of playLists" [value]="pl.id">
+                    {{pl.name}}
+                  </option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
+                <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
     </div>
     <span id="show">View More</span>
   </main>
@@ -204,39 +226,39 @@
 </div>
 
 
-<div class="modal">
-  <div class="card card-deck">
-    <ng-template #longContent let-modal>
-      <div style="background-color: #1a1e33" class="modal-header">
-        <h4  class="modal-title">Pick your playlist to add song:</h4>
-
-      </div>
-<!--      <ng-template #rt let-r="result" let-t="term">-->
-<!--        <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>-->
-<!--      </ng-template>-->
-<!--      <div style="color: #1a1e33;margin: auto">-->
-<!--        <label class="col-form-label-lg">Playlist: </label>-->
-<!--        <input id="typeahead-template" type="text" class="input-group-lg" [ngbTypeahead]="search"-->
-<!--               [resultTemplate]="rt"-->
-<!--               [inputFormatter]="formatter"/>-->
-<!--      </div>-->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
-      </div>
-    </ng-template>
-  </div>
-</div>
+<!--<div  class="modal">-->
+<!--  <div class="card card-deck">-->
+<!--    <ng-template  #longContent let-modal>-->
+<!--      <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">-->
+<!--        <div style="background-color: #1a1e33" class="modal-header">-->
+<!--          <h4  class="modal-title">Pick your playlist to add song:</h4>-->
+<!--        </div>-->
+<!--        <ng-template #rt let-r="result" let-t="term">-->
+<!--          <ngb-highlight [result]="r.name" [term]="t"></ngb-highlight>-->
+<!--        </ng-template>-->
+<!--        <div  style="color: #1a1e33;margin: auto;height:300px ">-->
+<!--          <label class="col-form-label-lg">Playlist: </label>-->
+<!--          <input id="typeahead-template" type="text" class="input-group-lg"  [ngbTypeahead]="search"-->
+<!--                 [resultTemplate]="rt"-->
+<!--                 [inputFormatter]="formatter"/>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>-->
+<!--          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </ng-template>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="modal">
   <div class="card card-deck">
     <ng-template #createPlaylist let-modal>
       <div style="background-color: #1a1e33" class="modal-header">
         <h4 class="modal-title">Create a new playlist</h4>
-
       </div>
       <form [formGroup]="playForm" (ngSubmit)="savePlayList()">
       <div style=" border-radius: 10px; color:#1a1e33">
-
           <table style="color: #1a1e33;margin: auto" cellpadding="10px">
             <tr>
               <td><label class="col-form-label-lg">Name</label></td>
@@ -256,9 +278,7 @@
                 </select>
               </td>
             </tr>
-
           </table>
-
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-outline-success">Create</button>

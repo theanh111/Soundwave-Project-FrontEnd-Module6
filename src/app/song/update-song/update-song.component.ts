@@ -150,14 +150,14 @@ export class UpdateSongComponent implements OnInit {
     const album: IAlbum = await  this.getOneAlbum();
     let newUrlMp3: string;
     let newAvatar: string;
-    if (this.urlMp3 !== '') {
+    if (this.urlMp3 != "") {
       newUrlMp3 = this.urlMp3;
       console.log(newUrlMp3);
     } else {
       newUrlMp3 =  this.songForm.get('urlMp3')?.value;
       console.log(newUrlMp3);
     }
-    if (this.avatar !== '') {
+    if (this.avatar != "") {
       newAvatar = this.avatar;
       console.log(newAvatar);
     } else {

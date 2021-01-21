@@ -65,7 +65,7 @@
             <div class="name">Album</div>
             <div class="value">
               <select class="form-control" formControlName="album">
-                <option *ngFor="let a of albums" [value]="a.id" [selected]="songCurrent.album.id == a.id">
+                <option *ngFor="let a of albums" [value]="a.id">
                   {{a.name}}
                 </option>
               </select>
