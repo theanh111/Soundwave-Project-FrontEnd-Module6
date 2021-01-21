@@ -20,7 +20,7 @@ input[type="text"] {
 }
 
 .chatContainer {
-border-radius: 5px;
+  border-radius: 5px;
   height: 100%;
   width: 100%;
   background-color: #1a1e33;
@@ -73,7 +73,6 @@ border-radius: 5px;
   margin-bottom: 10px;
 
 }
-
 
 .card {
   position: relative;
