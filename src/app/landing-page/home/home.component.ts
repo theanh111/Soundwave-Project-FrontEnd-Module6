@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   userCurrent: UserToken;
   user: User;
   songLikes: ISong[] = [];
+  songMostLike: ISong[] = [];
 
   constructor(
     private songService: SongService,
@@ -35,6 +36,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getHistorySongs();
+    this.getAllSongMostLike();
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
@@ -54,7 +56,7 @@ export class HomeComponent implements OnInit {
     this.songService.getAllNewSong().subscribe((data: any) => {
       this.songs = data;
       this.songs.map(song => {
-        song.isLiked = false
+        song.isLiked = false;
         this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
       });
       this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
@@ -96,10 +98,11 @@ export class HomeComponent implements OnInit {
 
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
-    this.getAllSong(this.user.id)
+    this.getAllSong(this.user.id);
     // this.getAllLikeSong(this.user.id);
-
-
+  }
+  getAllSongMostLike(){
+    this.songService.getSongsMostLike().subscribe(value => {this.songMostLike = value; console.log(this.songMostLike); });
   }
 
 }

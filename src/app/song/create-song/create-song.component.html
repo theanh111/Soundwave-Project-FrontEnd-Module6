@@ -90,7 +90,7 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="name">Album *</div>
+            <div class="name">Album</div>
             <div class="value">
               <select class="form-control" formControlName="album">-->
                 <option *ngFor="let a of albums" [value]="a.id">
@@ -98,10 +98,10 @@
                 </option>
               </select>
             </div>
-            <div class="alert alert-danger mt-1" role="alert"
-                 *ngIf="songForm.get('album')!.invalid && songForm.get('album')!.touched">
-              <span>Album is required.</span>
-            </div>
+<!--            <div class="alert alert-danger mt-1" role="alert"-->
+<!--                 *ngIf="songForm.get('album')!.invalid && songForm.get('album')!.touched">-->
+<!--              <span>Album is required.</span>-->
+<!--            </div>-->
           </div>
 
           <div class="form-row">

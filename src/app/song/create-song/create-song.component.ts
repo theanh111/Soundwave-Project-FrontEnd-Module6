@@ -63,7 +63,7 @@ export class CreateSongComponent implements OnInit {
     // views: new FormControl('', Validators.required),
     singer: new FormControl('', Validators.required),
     category:  new FormControl('', Validators.required),
-    album: new FormControl('', Validators.required),
+    // album: new FormControl('', Validators.required),
     urlMp3: new FormControl('', Validators.required),
     urlAvatar: new FormControl('', Validators.required)
   });
