@@ -1,0 +1,26 @@
+<!--    <aside class="sidebar col-lg-12 col-md-2" *ngFor="let history of historySongs">-->
+<!--      <h2 class="aside-title">History</h2>-->
+<!--      <div class="queue-entry flex-space">-->
+<!--        <div class="queue-entry-image"><img style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; max-width: 100%;-->
+<!--  display: block;" src="{{history.avatar}}">-->
+<!--        </div>-->
+<!--        <div class="queue-entry-info">-->
+<!--          <p><b>{{history.name}}</b></p>-->
+<!--          <p class="language-sub latest-release-sub queue-entry-sub">{{history.singer.name}}</p>-->
+<!--        </div>-->
+<!--        <div class="like-icon"><i class="fas fa-play"></i></div>-->
+<!--      </div>-->
+<!--    </aside>-->
+<div class="sidenav">
+  <a>Next Up</a>
+  <div class="ProfileItem"  *ngFor="let history of historySongs">
+    <div class="ProfileImg">
+      <div class="imageContain"><img style="object-fit: cover; height: 50px; width: 50px; border-radius: 5px  " src="{{history.avatar}}"></div>
+    </div>
+    <div class="ProfileDes">
+      <a class="profileTitle">{{history.name}}</a>
+      <div class="profileInfo">{{history.singer.name}}</div>
+    </div>
+    <div class="like-icon"><i class="fas fa-play"></i></div>
+  </div>
+</div>

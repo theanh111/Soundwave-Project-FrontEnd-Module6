@@ -1,21 +1,12 @@
 <div class="container col-lg-12">
   <div class="container container-flex col-lg-12">
     <main class="col-lg-12 col-md-6">
-      <article class="article-featured flex-space">
-        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
-  display: block;"
-                                                                src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>
+      <article class="article-featured flex-space" >
+        <div class="card-group" *ngFor="let songTest of songs.slice(0,4)">
+          <div>
+            <img style="width: 200px; height: 200px; object-fit: cover" src="{{songTest.avatar}}" alt="Card image cap">
+          </div>
         </div>
-        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
-  display: block;"
-                                                                src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>
-        </div>
-        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
-  display: block;"
-                                                                src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>
-        </div>
-        <p class="article-info"></p>
-        <p class="article-body"></p>
       </article>
       <article class="latest-release">
         <div id="title">
@@ -239,19 +230,20 @@
         </div>
       </article>
     </main>
-    <aside class="sidebar col-lg-6 col-md-2" *ngFor="let history of historySongs">
-      <h2 class="aside-title">History</h2>
-      <div class="queue-entry flex-space">
-        <div class="queue-entry-image"><img style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; max-width: 100%;
-  display: block;" src="{{history.avatar}}">
-        </div>
-        <div class="queue-entry-info">
-          <p><b>{{history.name}}</b></p>
-          <p class="language-sub latest-release-sub queue-entry-sub">{{history.singer.name}}</p>
-        </div>
-        <div class="like-icon"><i class="fas fa-play"></i></div>
-      </div>
-    </aside>
+    <app-playing-songs></app-playing-songs>
+<!--    <aside class="sidebar col-lg-6 col-md-2" *ngFor="let history of historySongs">-->
+<!--      <h2 class="aside-title">History</h2>-->
+<!--      <div class="queue-entry flex-space">-->
+<!--        <div class="queue-entry-image"><img style="width: 50px; height: 50px; border-radius: 5px; object-fit: cover; max-width: 100%;-->
+<!--  display: block;" src="{{history.avatar}}">-->
+<!--        </div>-->
+<!--        <div class="queue-entry-info">-->
+<!--          <p><b>{{history.name}}</b></p>-->
+<!--          <p class="language-sub latest-release-sub queue-entry-sub">{{history.singer.name}}</p>-->
+<!--        </div>-->
+<!--        <div class="like-icon"><i class="fas fa-play"></i></div>-->
+<!--      </div>-->
+<!--    </aside>-->
   </div>
 </div>
 
