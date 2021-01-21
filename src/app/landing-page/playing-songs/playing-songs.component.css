@@ -2,15 +2,23 @@ body {
   font-family: "Lato", sans-serif;
 }
 
+.song {
+  color: #818181;
+}
+
+.song:hover {
+  color: #f1f1f1;
+}
+
 .sidenav {
-  box-shadow: 0 0 5px black;;
-  height: 100%;
+  overflow-y: scroll;
+  height: 1000px;
   width: 300px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 50px;
   right: 0;
-  background-color: #0F2027;
+  background-color: transparent;
   overflow-x: hidden;
   padding-top: 20px;
 }
@@ -23,53 +31,22 @@ body {
   display: block;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+.sidenav::-webkit-scrollbar {
+  display: none;
 }
 
-.main {
-  margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
+.sidenav a:hover {
+  display: block;
+  color: #f1f1f1;
+  border-radius: 50%;
 }
+
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
-}
-
-.ProfileItem {
-  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  position: relative;
-}
-.ProfileDes {
-  padding: 5px 18px 0px 10px !important;
-  position: relative;
-  right: 35%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  display: inline-block;
-  width: 65%;
 }
 
 .ProfileItem:hover {
   background-color: #20353e;
 }
 
-.profileTitle {
-  color: #5a5a5a;
-  font-weight: bold;
-  text-decoration: none;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.profileInfo {
-  color: #5a5a5a;
-  font-size: 12px;
-  font-weight: normal;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}

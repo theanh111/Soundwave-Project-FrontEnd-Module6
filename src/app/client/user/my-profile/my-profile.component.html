@@ -47,7 +47,6 @@
       <div class="playlist-next-item-entry flex-space">
         <div style="width: 50%" class="playlist-next-item-entry-info flex-space">
           <div style="width: 10px;">
-            <span style="width: 50px; margin:2px" class="playlist-next-item-entry-number">{{i + 1}}</span>
           </div>
           <div class="playlist-next-item-entry-info-image">
             <img (click)="playThisSong(song.id)" style="height: 50px; width: 50px; object-fit: cover"
@@ -55,10 +54,7 @@
           </div>
           <div style="width: 200px;word-break: break-all" class="playlist-next-item-entry-info-name">
             <a [routerLink]="['/songs/detail', song.id]"><p><b>{{song.name}}</b></p></a>
-            <!--            <p id="categoryName">{{song.category.name}}</p>-->
-            <span class="playlist-next-item-entry-info-name-sub">
-              {{song.singer.name}}
-            </span>
+            <span class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</span>
           </div>
         </div>
         <div style="margin-top: 20px; margin-left: 200px">
