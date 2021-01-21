@@ -4,7 +4,7 @@
       <div class="col-3">
         <img (click)="playThisSong(song.id)" id="userImage" src="{{song.avatar}}">
       </div>
-      <div class="col-6">
+      <div class="col-lg-9">
         <h1>{{song.name}}</h1>
         <h4>{{song.singer.name}}</h4>
         <h6>{{song.category.name}}</h6>
@@ -15,6 +15,8 @@
     </div>
   </div>
   <br>
+  <br>
+  <app-comment-list class="container col-sm-6"></app-comment-list>
   <br>
   <br>
   <h2>You May Like</h2>
@@ -37,7 +39,8 @@
           </div>
           <div class="playlist-next-item-entry-icons flex-space">
             <a href=""><i id="add" class="fa fa-plus" aria-hidden="true"></i></a>
-            <a href=""><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+            <a *ngIf="!songRecommend.isLiked" (click)="likeSong(songRecommend.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+            <a *ngIf="songRecommend.isLiked" (click)="likeSong(songRecommend.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
           </div>
         </div>
       </div>

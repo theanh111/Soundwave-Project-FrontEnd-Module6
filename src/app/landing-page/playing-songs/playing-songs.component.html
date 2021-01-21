@@ -1,0 +1,13 @@
+<div class="sidenav">
+  <a>Next Up</a>
+  <div class="ProfileItem"  *ngFor="let history of historySongs">
+    <div class="ProfileImg">
+      <div class="imageContain"><img style="object-fit: cover; height: 50px; width: 50px; border-radius: 5px  " src="{{history.avatar}}"></div>
+    </div>
+    <div class="ProfileDes">
+      <a class="profileTitle">{{history.name}}</a>
+      <div class="profileInfo">{{history.singer.name}}</div>
+    </div>
+    <div class="like-icon"><i class="fas fa-play"></i></div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+  box-shadow: 0 0 5px black;;
+  height: 100%;
+  width: 300px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #0F2027;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.ProfileItem {
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  position: relative;
+}
+.ProfileDes {
+  padding: 5px 18px 0px 10px !important;
+  position: relative;
+  right: 35%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: inline-block;
+  width: 65%;
+}
+
+.ProfileItem:hover {
+  background-color: #20353e;
+}
+
+.profileTitle {
+  color: #5a5a5a;
+  font-weight: bold;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profileInfo {
+  color: #5a5a5a;
+  font-size: 12px;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

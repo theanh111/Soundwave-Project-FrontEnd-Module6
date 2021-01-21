@@ -6,7 +6,6 @@ import {ISong} from '../../model/song/ISong';
 
 const URL_API = `${environment.apiUrl}`;
 
-// @ts-ignore
 @Injectable({
   providedIn: 'root'
 })
