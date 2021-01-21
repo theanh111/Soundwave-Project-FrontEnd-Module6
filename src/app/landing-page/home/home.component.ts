@@ -5,9 +5,14 @@ import {BehaviorSubject} from 'rxjs';
 import {AuthService} from '../../service/auth/auth.service';
 import {UserService} from '../../service/user/user.service';
 import {LikeSongService} from '../../service/like/like-song.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {UserToken} from '../../model/user-token';
 import {User} from '../../model/user';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CategoryService} from '../../service/category/category.service';
+import {SongPlaylistService} from '../../service/songPlaylist/song-playlist.service';
+import {PlayListService} from '../../service/playList/play-list.service';
+import {PlayList} from '../../model/playList/play-list';
 
 @Component({
   selector: 'app-home',
@@ -23,13 +28,24 @@ export class HomeComponent implements OnInit {
   userCurrent: UserToken;
   user: User;
   songLikes: ISong[] = [];
+  playList: PlayList;
+  playLists: PlayList[] = [];
+  playlistsNewest: PlayList[] = [];
+  songPlaylistForm: FormGroup = this.fb.group({
+    song: new FormControl(),
+    playlist: new FormControl()
+  });
 
   constructor(
     private songService: SongService,
     private authService: AuthService,
     private userService: UserService,
     private likeService: LikeSongService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private categoryService: CategoryService,
+    private songPlaylistService: SongPlaylistService,
+    private playListService: PlayListService,
   ) {
   }
 
@@ -39,17 +55,16 @@ export class HomeComponent implements OnInit {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
-        console.log(this.user.id);
+        // console.log(this.user.id);
         this.getAllSong(this.user.id);
         // console.log(this.songLikes);
-
       });
     });
-
-    console.log(this.songs);
-
+    this.getAllPlaylist();
+    this.getAllPlaylistNewest();
+    // console.log(this.songs);
+    // console.log(this.playlistsNewest);
   }
-
   getAllSong(userId: any) {
     this.songService.getAllNewSong().subscribe((data: any) => {
       this.songs = data;
@@ -66,13 +81,13 @@ export class HomeComponent implements OnInit {
             }
           }
         }
-        console.log(this.songLikes);
+        // console.log(this.songLikes);
       });
     });
   }
   getHistorySongs() {
     this.songService.getSong(this.historySong.value).subscribe(value => {
-      console.log(value);
+      // console.log(value);
       this.historySongs[0] = value;
     });
   }
@@ -98,8 +113,44 @@ export class HomeComponent implements OnInit {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id)
     // this.getAllLikeSong(this.user.id);
-
+  }
+  openScrollableContent(longContent) {
+    this.modalService.open(longContent, {scrollable: true});
+  }
+  getSongAddToList(id) {
+    return this.songService.getSongById(id).toPromise();
+  }
+  checkSongPlaylist(id, song: ISong) {
+    return this.songPlaylistService.checkSongPlaylist(id, song).toPromise();
+  }
+  async addSongToPlaylist(id: number) {
+    const newSong: ISong = await this.getSongAddToList(id);
+    let p_id = +this.songPlaylistForm.get('playlist').value;
+    let checkSong: boolean = await this.checkSongPlaylist(p_id, newSong);
+    if (checkSong) {
+      this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert('add to playlist ok!'));
+    }
+    else {
+      alert('this song had in this playlist');
+    }
+  }
+  getAllPlaylist() {
+    this.playListService.getAllPlaylist().subscribe(value => {
+      this.playLists = value;
+    });
+  }
+  getAllPlaylistNewest() {
+    this.playListService.getPlaylistsNewest().subscribe((data: any) => {
+      this.playlistsNewest = data;
+      this.playlistsNewest.map(async playlist => {
+        playlist.song = await this.getSongByPlaylist(playlist.id)
+        console.log(playlist.song);
+      });
+      // console.log(this.playlistsNewest);
+    })
 
   }
-
+  getSongByPlaylist(id: number) {
+    return this.songPlaylistService.getSongByPlaylist(id).toPromise();
+  }
 }

@@ -21,4 +21,7 @@ export class PlayListService {
   getOnePlaylist(id: number): Observable<any> {
     return this.httpClient.get<PlayList>(URL_API + `/playlists/${id}`);
   }
+  getPlaylistsNewest(): Observable<any> {
+    return this.httpClient.get<PlayList[]>(URL_API + `/playlists/date-new`);
+  }
 }

@@ -17,4 +17,7 @@ export class SongPlaylistService {
   checkSongPlaylist(p_id: number, song: ISong): Observable<any> {
     return this.httpClient.post<boolean>(UPR_API + `/song-playlists/check-song/${p_id}`, song);
   }
+  getSongByPlaylist(id: number): Observable<any> {
+    return this.httpClient.get<ISong[]>(UPR_API + `/song-playlists/songs/${id}`);
+  }
 }
