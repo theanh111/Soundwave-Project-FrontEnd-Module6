@@ -20,9 +20,7 @@ import {PlayList} from '../../model/playList/play-list';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // historySong: BehaviorSubject<number> = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('historySongs')));
-  historySong: BehaviorSubject<string> = new BehaviorSubject<string>(JSON.parse(localStorage.getItem('Storage')));
-  // historySong = localStorage.getItem('historySongs');
+  historySong: BehaviorSubject<number> = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('historySongs')));
   songs: ISong[] = [];
   song: ISong;
   array: [];
@@ -64,6 +62,8 @@ export class HomeComponent implements OnInit {
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
         this.getAllSong(this.user.id);
+        // console.log(this.songLikes);
+
       });
     });
     this.getAllPlaylist();
@@ -79,7 +79,6 @@ export class HomeComponent implements OnInit {
         song.isLiked = false;
         this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
       });
-      // tslint:disable-next-line:no-shadowed-variable
       this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
         this.songLikes = data;
         for (let i = 0; i < this.songs.length; i++) {
@@ -93,7 +92,6 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-
   getHistorySongs() {
     this.songService.getSong(Number(this.historySong.value)).subscribe(value => {
       this.historySongs = value;
@@ -101,16 +99,6 @@ export class HomeComponent implements OnInit {
   }
 
   playThisSong(id: any) {
-    // this.songService.countViews(id).subscribe(() => console.log());
-    // this.songService.getSongById(id).subscribe(value => {
-    //   this.song = value;
-    //   localStorage.setItem('songSelected', JSON.stringify(this.song));
-    //   let array = [];
-    //   array[0] = this.song.id;
-    //   localStorage.setItem('historySongs', JSON.stringify(array));
-    //   window.location.reload();
-    // });
-
     this.songService.countViews(id).subscribe(() => console.log());
     this.songService.getSongById(id).subscribe(value => {
       this.song = value;
@@ -137,7 +125,7 @@ export class HomeComponent implements OnInit {
 
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
-    this.getAllSong(this.user.id)
+    this.getAllSong(this.user.id);
     // this.getAllLikeSong(this.user.id);
   }
   openScrollableContent(longContent) {
@@ -173,10 +161,11 @@ export class HomeComponent implements OnInit {
         console.log(playlist.song);
       });
       // console.log(this.playlistsNewest);
-    })
+    });
 
   }
   getSongByPlaylist(id: number) {
     return this.songPlaylistService.getSongByPlaylist(id).toPromise();
   }
+
 }
