@@ -6,7 +6,7 @@
           <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)" style="display: inline-block">
             <ng-container *ngFor="let songPl of playlist.song.slice(0,1)"  >
               <div class="article-image">
-                <a [routerLink]="['/playlist', playlist.id]"><img style="width: 200px;height: 250px;" src="{{songPl.avatar}}"></a>
+                <a [routerLink]="['/playlist', playlist.id]"><img style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}"></a>
               </div>
             </ng-container>
             <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
