@@ -14,6 +14,7 @@ import {HomeComponent} from './landing-page/home/home.component';
 import {UpdateProfileComponent} from './client/user/update-profile/update-profile.component';
 import {SearchSongComponent} from './song/search-song/search-song.component';
 import {DetailSongComponent} from './song/detail-song/detail-song.component';
+import {PlaylistDetailsComponent} from './playlist/playlist-details/playlist-details.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: 'songs',
     component: ListSongComponent,
+  },
+  {
+    path: 'playlist/:id',
+    component: PlaylistDetailsComponent,
   },
 ];
 

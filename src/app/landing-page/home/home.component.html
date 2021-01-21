@@ -1,22 +1,25 @@
 <div class="container col-lg-12">
   <div class="container container-flex col-lg-12">
     <main class="col-lg-12 col-md-6">
-      <article class="article-featured flex-space">
-        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
-  display: block;"
-                                                                src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>
+      <div class="row">
+        <div class="col-lg-12">
+          <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)" style="display: inline-block">
+            <ng-container *ngFor="let songPl of playlist.song.slice(0,1)"  >
+              <div class="article-image">
+                <a [routerLink]="['/playlist', playlist.id]"><img style="width: 200px;height: 250px;" src="{{songPl.avatar}}"></a>
+              </div>
+            </ng-container>
+            <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
+            <!--  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>-->
+            <!--        </div>-->
+            <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
+            <!--  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>-->
+            <!--        </div>-->
+            <p class="article-info"></p>
+            <p class="article-body"></p>
+          </article>
         </div>
-        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
-  display: block;"
-                                                                src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>
-        </div>
-        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;
-  display: block;"
-                                                                src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>
-        </div>
-        <p class="article-info"></p>
-        <p class="article-body"></p>
-      </article>
+      </div>
       <article class="latest-release">
         <!--      <a [routerLink]="['/songs/lastest']"><h2 class="latest-release-title">Latest Release</h2></a>-->
         <!--      <a [routerLink]="['/songs/lastest']">-->
@@ -48,10 +51,36 @@
                 <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
               </td>
               <td>
+                <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                                                                                 aria-hidden="true"></i></a>
+              </td>
+              <td>
                 <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
                 <h6>{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
               </td>
             </tr>
+            <div class="modal">
+              <div class="card card-deck">
+                <ng-template #longContent let-modal>
+                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
+                    <div class="modal-header">
+                      <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                    </div>
+                    <div>
+                      <select class="input-group-lg" formControlName="playlist">
+                        <option *ngFor="let pl of playLists" [value]="pl.id">
+                          {{pl.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                    </div>
+                  </form>
+                </ng-template>
+              </div>
+            </div>
             </tbody>
           </table>
         </div>

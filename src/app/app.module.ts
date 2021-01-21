@@ -21,9 +21,10 @@ import {environment} from '../environments/environment';
 import {JwtInterceptor} from './helper/jwt-interceptor';
 import {ErrorInterceptor} from './helper/error-interceptor';
 import { HomeComponent } from './landing-page/home/home.component';
-import {NgbDropdownModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDropdownModule, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { SearchSongComponent } from './song/search-song/search-song.component';
 import { DetailSongComponent } from './song/detail-song/detail-song.component';
+import { PlaylistDetailsComponent } from './playlist/playlist-details/playlist-details.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
     FooterComponent,
     HomeComponent,
     SearchSongComponent,
-    DetailSongComponent
+    DetailSongComponent,
+    PlaylistDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
     ReactiveFormsModule,
     AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgbModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
@@ -58,4 +61,6 @@ import { DetailSongComponent } from './song/detail-song/detail-song.component';
   ],
   bootstrap: [AppComponent]
 })
+
+// @ts-ignore
 export class AppModule { }

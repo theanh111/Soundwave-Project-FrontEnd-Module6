@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {User} from '../../model/user';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../service/auth/auth.service';
-import { first } from 'rxjs/operators';
+import {first} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
     username: '',
     password: ''
   };
+  message: string;
 
   constructor(private router: Router,
               private fb: FormBuilder,
@@ -37,18 +38,15 @@ export class LoginComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   login() {
-    if (this.user.username === '' || this.user.password === '') {
-      alert('Please enter your username, password!');
-    } else {
-      // @ts-ignore
-      this.authService.login(this.user.username, this.user.password)
-        .pipe(first())
-        .subscribe(data => {
-          // tslint:disable-next-line:no-unused-expression
-          localStorage.removeItem('songSelected');
-          window.location.replace('');
-          // this.router.navigate([this.returnUrl]);
-        });
-    }
+    // @ts-ignore
+    this.authService.login(this.user.username, this.user.password)
+      .pipe(first())
+      .subscribe(data => {
+        // tslint:disable-next-line:no-unused-expression
+        localStorage.removeItem('songSelected');
+        window.location.replace('');
+        // this.router.navigate([this.returnUrl]);
+      }, error => {return this.message = 'Username or password is incorrect';
+      });
   }
 }
