@@ -186,7 +186,7 @@ export class HomeComponent implements OnInit {
     this.playListService.getPlaylistsNewest().subscribe((data: any) => {
       this.playlistsNewest = data;
       this.playlistsNewest.map(async playlist => {
-        playlist.song = await this.getSongByPlaylist(playlist.id)
+        playlist.song = await this.getSongByPlaylist(playlist.id);
         console.log(playlist.song);
       });
       // console.log(this.playlistsNewest);
