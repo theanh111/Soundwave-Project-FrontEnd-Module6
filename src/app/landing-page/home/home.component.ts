@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   myPlayLists: Playlist[] = [];
   songLikes: ISong[] = [];
   playList: Playlist;
-  playLists: Playlist[] = [];
+  allPlayLists: Playlist[] = [];
   playlistsNewest: Playlist[] = [];
   songPlaylistForm: FormGroup = this.fb.group({
     song: new FormControl(),
@@ -182,7 +182,10 @@ export class HomeComponent implements OnInit {
   }
   getAllPlaylist() {
     this.playListService.getAllPlaylist().subscribe(value => {
-      this.playLists = value;
+      this.allPlayLists = value;
+      this.playlistsNewest.map(async playlist => {
+        playlist.song = await this.getSongByPlaylist(playlist.id);
+      });
     });
   }
   getAllPlaylistNewest() {
