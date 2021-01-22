@@ -29,6 +29,7 @@ import { PlayingSongsComponent } from './landing-page/playing-songs/playing-song
 import { MenuComponent } from './landing-page/menu/menu.component';
 import {CommentListComponent} from './song/comment-list/comment-list.component';
 import { CommentPlaylistComponent } from './playlist/comment-playlist/comment-playlist.component';
+import { MyPlaylistsComponent } from './client/user/my-playlists/my-playlists.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CommentPlaylistComponent } from './playlist/comment-playlist/comment-pl
     PlayingSongsComponent,
     MenuComponent,
     PlaylistDetailsComponent,
-    CommentPlaylistComponent
+    CommentPlaylistComponent,
+    MyPlaylistsComponent
   ],
   imports: [
     BrowserModule,
