@@ -10,4 +10,6 @@ export interface Playlist {
   views?: number;
   description?: string;
   song?: ISong[];
+  isLike?: boolean;
+  like?: number
 }

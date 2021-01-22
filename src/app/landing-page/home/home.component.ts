@@ -13,6 +13,7 @@ import {CategoryService} from '../../service/category/category.service';
 import {SongPlaylistService} from '../../service/songPlaylist/song-playlist.service';
 import {PlayListService} from '../../service/playList/play-list.service';
 import {Playlist} from '../../model/playList/playlist';
+import {LikePlaylistService} from '../../service/like/like-playlist.service';
 
 @Component({
   selector: 'app-home',
@@ -31,6 +32,7 @@ export class HomeComponent implements OnInit {
   user: User;
   myPlayLists: Playlist[] = [];
   songLikes: ISong[] = [];
+  playlistLikes: Playlist[] = [];
   playList: Playlist;
   playLists: Playlist[] = [];
   allPlayLists: Playlist[] = [];
@@ -50,6 +52,7 @@ export class HomeComponent implements OnInit {
     private categoryService: CategoryService,
     private songPlaylistService: SongPlaylistService,
     private playListService: PlayListService,
+    private likePlaylistService: LikePlaylistService
   ) {
   }
 
@@ -72,12 +75,13 @@ export class HomeComponent implements OnInit {
         this.getAllSong(this.user.id);
         this.getTopSong(this.user.id);
         this.getMyPlaylists(this.user.id);
+        this.getAllPlaylistNewest(this.user.id);
         // console.log(this.songLikes);
 
       });
     });
     this.getAllPlaylist();
-    this.getAllPlaylistNewest();
+
     // console.log(this.songs);
     // console.log(this.playlistsNewest);
   }
@@ -185,22 +189,39 @@ export class HomeComponent implements OnInit {
       this.playLists = value;
     });
   }
-  getAllPlaylistNewest() {
-    this.playListService.getPlaylistsNewest().subscribe((data: any) => {
+  getAllPlaylistNewest(userId: any) {
+    this.playListService.getAllPlaylist().subscribe((data: any) => {
       this.playlistsNewest = data;
       this.playlistsNewest.map(async playlist => {
+        playlist.isLike = false;
         playlist.song = await this.getSongByPlaylist(playlist.id);
-        console.log(playlist.song);
+        this.likePlaylistService.getLikePlaylist(playlist.id).subscribe(value => {
+          playlist.like = value;
+        });
       });
-      // console.log(this.playlistsNewest);
+      this.likePlaylistService.getAllLikeUser(userId).subscribe((data: any) => {
+        this.playlistLikes = data;
+        for (let i = 0; i < this.playlistsNewest.length; i++) {
+          for (let j = 0; j < this.playlistLikes.length; j++) {
+            if (this.playlistsNewest[i].id === this.playlistLikes[j].id) {
+              this.playlistsNewest[i].isLike = true;
+            }
+          }
+        }
+      });
     });
-
   }
   getSongByPlaylist(id: number) {
     return this.songPlaylistService.getSongByPlaylist(id).toPromise();
   }
   getMyPlaylists(id) {
     this.playListService.getMyPlaylists(id).subscribe(value => this.myPlayLists = value);
+  }
+  likePlaylist(p_id: any) {
+    this.likePlaylistService.likePlaylist(p_id, this.user.id).subscribe(() => console.log(this.user.id));
+    this.getAllSong(this.user.id);
+    this.getTopSong(this.user.id)
+    this.getAllPlaylistNewest(this.user.id);
   }
 
 }
