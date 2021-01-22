@@ -11,6 +11,7 @@ import {User} from '../../model/user';
 import {ICommentSong} from '../../model/comment/ICommentSong';
 import {UserToken} from '../../model/user-token';
 import {ICommentPlaylist} from '../../model/comment/icomment-playlist';
+import {Playlist} from '../../model/playList/playlist';
 
 @Component({
   selector: 'app-comment-playlist',
@@ -29,7 +30,7 @@ export class CommentPlaylistComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private userService: UserService,
-    private playListService: PlayListService,
+    private playlistService: PlayListService,
     private fb: FormBuilder
   ) { }
 
@@ -43,6 +44,7 @@ export class CommentPlaylistComponent implements OnInit {
       this.user = value;
     });
     this.getAllComment();
+
   }
   getAllComment() {
     this.activatedRoute.paramMap.subscribe((param: ParamMap) => {
@@ -53,20 +55,23 @@ export class CommentPlaylistComponent implements OnInit {
       });
     });
   }
-  addComment() {
+
+  getOnePlaylist(id: any) {
+    return this.playlistService.getOnePlaylist(id).toPromise();
+  }
+  async addComment() {
+    const playlist: Playlist = await this.getOnePlaylist(this.id);
     // @ts-ignore
     if (document.getElementById('inputComment').value !== '') {
-      this.playListService.getOnePlaylist(this.id).subscribe(value => {
-        const commentTest: ICommentPlaylist = this.addCommentForm.value;
-        commentTest.comment = this.addCommentForm.value.comment;
-        commentTest.user = this.user;
-        commentTest.playlist = value;
-        this.commentPlaylistService.addComment(commentTest).subscribe(() => {
-          this.commentPlaylistService.getCommentByPlaylistId(this.id).subscribe(value1 => {
-            this.comments = value1;
-            console.log(this.comments);
-            this.getAllComment();
-          });
+      const commentTest: ICommentPlaylist = this.addCommentForm.value;
+      commentTest.comment = this.addCommentForm.value.comment;
+      commentTest.user = this.user;
+      commentTest.playList = playlist;
+      this.commentPlaylistService.addComment(commentTest).subscribe(() => {
+        this.commentPlaylistService.getCommentByPlaylistId(this.id).subscribe(value1 => {
+          this.comments = value1;
+          console.log(this.comments);
+          this.getAllComment();
         });
       });
       this.clear();
