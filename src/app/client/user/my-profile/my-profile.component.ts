@@ -28,6 +28,7 @@ export class MyProfileComponent implements OnInit {
   song: ISong;
   user: User;
   id: number;
+  playlists: Playlist[] = [];
   categories: ICategory[] = [];
   songLikes: ISong[] = [];
   closeResult: string;
@@ -42,6 +43,7 @@ export class MyProfileComponent implements OnInit {
     song: new FormControl(),
     playlist: new FormControl()
   });
+  playUpForm: FormGroup;
 
   constructor(
     private songService: SongService,
@@ -59,10 +61,16 @@ export class MyProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.playUpForm = this.fb.group({
+        name: [null],
+        category: [null],
+        description: [null]
+      })
     const userFromLocalStorage = this.authService.currentUserValue;
     this.userService.getUserByUsername(userFromLocalStorage.username).subscribe(value => {
       this.user = value;
       this.getMySongs(this.user.id);
+      this.getMyPlaylists(this.user.id);
     });
     this.getAllCategory();
     this.getAllPlaylist();
@@ -115,7 +123,8 @@ export class MyProfileComponent implements OnInit {
   }
 
   async setNewPlayList() {
-    const category: ICategory = await this.getCategory();
+    const category_id = +this.playForm.get('category')?.value;
+    const category: ICategory = await this.getCategory(category_id);
     const playList: Playlist = {
       name: this.playForm.get('name').value,
       description: this.playForm.get('description').value,
@@ -139,10 +148,8 @@ export class MyProfileComponent implements OnInit {
     this.categoryService.getAllCategory().subscribe(value => this.categories = value);
   }
 
-  getCategory() {
-    // tslint:disable-next-line:variable-name
-    const category_id = +this.playForm.get('category')?.value;
-    return this.categoryService.getCategory(category_id).toPromise();
+  getCategory(id: any) {
+    return this.categoryService.getCategory(id).toPromise();
   }
 
   getAllPlaylist() {
@@ -157,6 +164,29 @@ export class MyProfileComponent implements OnInit {
 
   checkSongPlaylist(id, song: ISong) {
     return this.songPlaylistService.checkSongPlaylist(id, song).toPromise();
+  }
+  getOnePlaylist(id: any) {
+    return this.playListService.getOnePlaylist(id).toPromise()
+  }
+  async setNewPlaylistUp() {
+    const category_id = +this.playUpForm.value.category;
+    const category: ICategory = await this.getCategory(category_id);
+    const playList: Playlist = {
+      name: this.playUpForm.value.name,
+      description: this.playUpForm.value.description,
+      user: this.user
+    }
+    if (category != null) {
+      playList.category = category;
+    }
+    return playList;
+  }
+  async updateMyPlaylist(p_id: any) {
+    const playlist: Playlist = await this.setNewPlaylistUp();
+    this.playListService.updateMyPlaylist(p_id, this.user.id , playlist).subscribe(()=>{
+      alert("update successful");
+      this.getAllPlaylist();
+    });
   }
 
   async addSongToPlaylist(id: number) {
@@ -180,5 +210,8 @@ export class MyProfileComponent implements OnInit {
     )
   formatter = (x: { name: string, id: number }) => {
     x.name, x.id
+  }
+  getMyPlaylists(id) {
+    this.playListService.getMyPlaylists(id).subscribe(value => this.playlists = value);
   }
 }

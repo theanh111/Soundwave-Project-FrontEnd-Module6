@@ -43,6 +43,50 @@
       </div>
     </div>
     <br>
+    <div *ngFor="let playlistUpdate of playLists">
+      <span>{{playlistUpdate.name}}</span>
+      <a id="edit2" (click)="openScrollableContent(updatePlaylist)" ><i class="fas fa-edit"></i></a>
+      <div class="modal">
+        <div class="card card-deck">
+          <ng-template #updatePlaylist let-modal>
+            <div style="background-color: #1a1e33" class="modal-header">
+              <h4 class="modal-title">Update a new playlist</h4>
+            </div>
+            <form [formGroup]="playUpForm" (ngSubmit)="updateMyPlaylist(playlistUpdate.id)">
+              <span>{{playlistUpdate.name}}</span>
+              <div style=" border-radius: 10px; color:#1a1e33">
+                <table style="color: #1a1e33;margin: auto" cellpadding="10px">
+                  <tr><span>{{playlistUpdate.name}}</span></tr>
+                  <tr>
+                    <td><label class="col-form-label-lg">Name</label></td>
+                    <td><input [value]="playlistUpdate.name"  type="text" formControlName="name"></td>
+                    <td><input type="text" [value]="playlistUpdate.name"></td>
+                  </tr>
+                  <tr>
+                    <td><label class="col-form-label-lg">Description</label></td>
+                    <td><input [value]="playlistUpdate.description"  type="text" formControlName="description"></td>
+                  </tr>
+                  <tr>
+                    <td><label class="col-form-label-lg">Category</label></td>
+                    <td>
+                      <select style="width: 100%;height: 30px" class="input-group-lg" formControlName="category">
+                        <option *ngFor="let c of categories" [value]="c.id">
+                          {{c.name}}
+                        </option>
+                      </select>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-success" (click)="modal.close('Close click')">Update</button>
+                <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close</button>
+              </div>
+            </form>
+          </ng-template>
+        </div>
+      </div>
+    </div>
     <div class="playlist-next-item flex-space" *ngFor="let song of songs; let i = index">
       <div class="playlist-next-item-entry flex-space">
         <div style="width: 50%" class="playlist-next-item-entry-info flex-space">
