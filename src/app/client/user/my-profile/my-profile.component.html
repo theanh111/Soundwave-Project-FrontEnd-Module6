@@ -1,4 +1,4 @@
-<div class="container container-flex">
+<div class="container container-flex" *ngIf="user">
   <main>
     <div class="featured-playlist flex-space">
       <div class="featured-playlist-image" style="">
@@ -43,8 +43,8 @@
       </div>
     </div>
     <br>
-    <div *ngFor="let playlistUpdate of playLists">
-      <span>{{playlistUpdate.name}}</span>
+    <div *ngFor="let playlistUpdate of myPlayLists">
+      <a [routerLink]="['/playlist', playlistUpdate.id]"><span>{{playlistUpdate.name}}</span></a>
       <a id="edit2" (click)="openScrollableContent(updatePlaylist)" ><i class="fas fa-edit"></i></a>
       <div class="modal">
         <div class="card card-deck">
@@ -59,8 +59,8 @@
                   <tr><span>{{playlistUpdate.name}}</span></tr>
                   <tr>
                     <td><label class="col-form-label-lg">Name</label></td>
-                    <td><input [value]="playlistUpdate.name"  type="text" formControlName="name"></td>
-                    <td><input type="text" [value]="playlistUpdate.name"></td>
+                    <td><input value="{{playlistUpdate.name}}"  type="text" formControlName="name"></td>
+                    <td><input type="text" value="{{playlistUpdate.name}}"></td>
                   </tr>
                   <tr>
                     <td><label class="col-form-label-lg">Description</label></td>
@@ -123,7 +123,7 @@
               </div>
               <div>
                 <select class="input-group-lg" formControlName="playlist">
-                  <option *ngFor="let pl of playLists" [value]="pl.id">
+                  <option *ngFor="let pl of myPlayLists" [value]="pl.id">
                     {{pl.name}}
                   </option>
                 </select>
