@@ -29,6 +29,7 @@ import { PlayingSongsComponent } from './landing-page/playing-songs/playing-song
 import { MenuComponent } from './landing-page/menu/menu.component';
 import {CommentListComponent} from './song/comment-list/comment-list.component';
 import { TermOfUserComponent } from './client/user/term-of-user/term-of-user.component';
+import { CommentPlaylistComponent } from './playlist/comment-playlist/comment-playlist.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TermOfUserComponent } from './client/user/term-of-user/term-of-user.com
     PlayingSongsComponent,
     MenuComponent,
     PlaylistDetailsComponent,
-    TermOfUserComponent
+    TermOfUserComponent,
+    CommentPlaylistComponent
   ],
   imports: [
     BrowserModule,

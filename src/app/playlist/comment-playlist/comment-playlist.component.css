@@ -1,0 +1,159 @@
+.formComments::-webkit-scrollbar {
+  display: none;
+}
+
+input[type="text"] {
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.chatTitleContainer {
+  text-align: left;
+  font-size: 15pt;
+  vertical-align: middle;
+  display: table-cell;
+  height: 15px;
+  width: 100%;
+  font-family: Expert-Sans-Regular, verdana, Arial, helvetica, sans-serif;
+  color: white;
+
+}
+
+.chatContainer {
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  background-color: #1a1e33;
+  padding: 20px;
+
+}
+
+.chatHistoryContainer {
+  padding: 20px;
+  height: 300px;
+  width: 100%;
+  background-color: #240b36;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+
+}
+
+.form-control:hover {
+  transition: 0.5s;
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
+.chatMessageControls {
+
+  margin-top: 6px;
+  padding: 10px;
+  width: 100%;
+  background-color: #fff;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+
+}
+
+.fa {
+  margin-right: 6px;
+}
+
+.formComments {
+  list-style-type: none;
+  overflow-y: scroll;
+  height: 100%;
+  padding-bottom: 60px;
+  padding-left: 0px;
+
+}
+
+.formComments li {
+
+  margin-bottom: 10px;
+
+}
+
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #1a93ca;
+  background-clip: border-box;
+  border: 0px solid transparent;
+  border-radius: 0px
+}
+
+.card-body {
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem
+}
+
+.card .card-title {
+  position: relative;
+  font-weight: 600;
+  margin-bottom: 10px
+}
+
+.comment-widgets {
+  position: relative;
+  margin-bottom: 10px
+}
+
+.comment-widgets .comment-row {
+  border-bottom: 1px solid transparent;
+  padding: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 10px 0
+}
+
+.p-2 {
+  padding: 0.5rem !important
+}
+
+.comment-text {
+  padding-left: 15px
+}
+
+.w-100 {
+  width: 100% !important
+}
+
+.m-b-15 {
+  margin-bottom: 15px
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.76563rem;
+  line-height: 1.5;
+  border-radius: 1px
+}
+
+.btn-cyan {
+  color: #fff;
+  background-color: #27a9e3;
+  border-color: #27a9e3
+}
+
+.btn-cyan:hover {
+  color: #fff;
+  background-color: #1a93ca;
+  border-color: #198bbe
+}
+
+.comment-widgets .comment-row:hover {
+  background: rgba(0, 0, 0, 0.05)
+}

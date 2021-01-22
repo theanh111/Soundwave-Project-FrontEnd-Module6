@@ -1,8 +1,8 @@
 import {ISong} from '../song/ISong';
-import {PlayList} from '../playList/play-list';
+import {Playlist} from '../playList/playlist';
 
 export interface SongPlaylist {
   id?: number;
   song: ISong;
-  playlist: PlayList;
+  playlist: Playlist;
 }
