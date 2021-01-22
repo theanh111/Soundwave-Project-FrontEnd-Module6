@@ -33,7 +33,7 @@ export class MyProfileComponent implements OnInit {
   songLikes: ISong[] = [];
   closeResult: string;
   playList: Playlist;
-  playLists: Playlist[] = [];
+  myPlayLists: Playlist[] = [];
   playForm: FormGroup = this.fb.group({
     name: new FormControl(),
     category: new FormControl(),
@@ -154,11 +154,11 @@ export class MyProfileComponent implements OnInit {
 
   getAllPlaylist() {
     this.playListService.getAllPlaylist().subscribe(value => {
-      this.playLists = value;
+      this.myPlayLists = value;
     });
   }
 
-  getSongAddToList(id) {
+   getSongAddToList(id) {
     return this.songService.getSongById(id).toPromise();
   }
 
@@ -205,13 +205,13 @@ export class MyProfileComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term.length < 1 ? []
-        : this.playLists.filter(v => v.name.toLowerCase()
+        : this.playlists.filter(v => v.name.toLowerCase()
           .indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
   formatter = (x: { name: string, id: number }) => {
     x.name, x.id
   }
   getMyPlaylists(id) {
-    this.playListService.getMyPlaylists(id).subscribe(value => this.playlists = value);
+    this.playListService.getMyPlaylists(id).subscribe(value => this.myPlayLists = value);
   }
 }
