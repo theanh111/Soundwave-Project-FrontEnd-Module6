@@ -8,7 +8,6 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {CommentSongService} from '../../service/comment/comment-song.service';
 import {ICommentSong} from '../../model/comment/ICommentSong';
 import {SongService} from '../../service/song/song.service';
-import {log} from 'util';
 import {UserToken} from '../../model/user-token';
 
 @Component({

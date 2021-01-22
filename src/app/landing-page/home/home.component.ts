@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
   testString: string;
   userCurrent: UserToken;
   user: User;
+  myPlayLists: Playlist[] = [];
   songLikes: ISong[] = [];
   playList: Playlist;
   playLists: Playlist[] = [];
@@ -63,12 +64,14 @@ export class HomeComponent implements OnInit {
       });
     }
     this.getHistorySongs();
+
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
         this.getAllSong(this.user.id);
         this.getTopSong(this.user.id);
+        this.getMyPlaylists(this.user.id);
         // console.log(this.songLikes);
 
       });
@@ -196,5 +199,7 @@ export class HomeComponent implements OnInit {
   getSongByPlaylist(id: number) {
     return this.songPlaylistService.getSongByPlaylist(id).toPromise();
   }
-
+  getMyPlaylists(id) {
+    this.playListService.getMyPlaylists(id).subscribe(value => this.myPlayLists = value);
+  }
 }
