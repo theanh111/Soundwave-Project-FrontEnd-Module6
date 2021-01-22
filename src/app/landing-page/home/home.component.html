@@ -1,33 +1,13 @@
 <app-carousel></app-carousel>
-<div class="container col-lg-12">
-  <div class="container container-flex col-lg-12">
-    <main class="col-lg-12 col-md-6">
-      <div class="row">
-        <div class="col-lg-12">
-          <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)" style="display: inline-block">
-            <ng-container *ngFor="let songPl of playlist.song.slice(0,1)"  >
-              <div class="article-image">
-                <a [routerLink]="['/playlist', playlist.id]"><img style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}"></a>
-              </div>
-            </ng-container>
-            <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
-            <!--  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>-->
-            <!--        </div>-->
-            <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
-            <!--  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>-->
-            <!--        </div>-->
-            <p class="article-info"></p>
-            <p class="article-body"></p>
-          </article>
-        </div>
-      </div>
-      <article class="latest-release">
-        <div id="title">
-          <h1>New Songs</h1>
-        </div>
+<br>
+<div class="container-flex">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="row-cols-lg-6">
         <div class="container">
-          <table id="myTable" cellpadding="15" style="align-content: center">
-            <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
+          <h3>Songs Most Like</h3><br>
+          <table id="table_mostlike" cellpadding="15" style="align-content: center">
+            <tbody *ngFor="let songmostlike of songMostLike.slice(0, 6); let i = index">
             <tr >
               <td>
                 <h1 *ngIf="i == 0" class="numberOne">{{i + 1}}</h1>
@@ -37,239 +17,301 @@
               </td>
               <td class="imageSong">
                 <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
-                     src="{{song.avatar}}" (click)="playThisSong(song.id)">
+                     src="{{songmostlike.avatar}}" (click)="playThisSong(songmostlike.id)">
               </td>
               <td>
-                <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
+                <a  [routerLink]="['/songs/detail', songmostlike.id]"> <h4>{{songmostlike.name}}</h4></a>
               </td>
               <td>
-                <p>{{song.singer.name}}</p>
+                <h6>{{songmostlike.singer.name}}</h6>
               </td>
+              <!--            <td>-->
+              <!--              <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>-->
+              <!--              <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>-->
+              <!--            </td>-->
               <td>
-                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
-                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
-              </td>
-              <td>
-                <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
-                                                                                 aria-hidden="true"></i></a>
-              </td>
-              <td>
-                <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
-                <h6>{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
+                <h6>{{songmostlike.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                <h6>{{songmostlike.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
               </td>
             </tr>
-            <div class="modal">
-              <div class="card card-deck">
-                <ng-template #longContent let-modal>
-                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
-                    <div class="modal-header">
-                      <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
-                    </div>
-                    <div>
-                      <select class="input-group-lg" formControlName="playlist">
-                        <option *ngFor="let pl of playLists" [value]="pl.id">
-                          {{pl.name}}
-                        </option>
-                      </select>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
-                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
-                    </div>
-                  </form>
-                </ng-template>
-              </div>
-            </div>
             </tbody>
           </table>
         </div>
-      </article>
-      <article class="popular-artists">
-        <a [routerLink]="['/singers']"><h2 class="popular-artists-title">Popular Artists</h2></a>
-        <div class="artist-container flex-space">
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
-  display: block;"
-                                                 src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
-            <p>Suni Hạ Linh</p></div>
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
-  display: block;"
-                                                 src="https://lh3.googleusercontent.com/proxy/ABglV1sk_5z95_OAXqunFeumYBcXRpUFW4ijPM186nDOkaxmKUZdQvGRu_p38dOuoEAW9ECg2pLTazEjKW9Uw_YIYLPoyBxt-LzSZ5RJZMExsQ">
-            <p>Erik</p></div>
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
-          display: block;"
-                                                 src="https://cdn.vietnammoi.vn/stores/news_dataimages/vudt/122016/12/11/2503_MBI_7016.jpg">
-            <p>Sơn Tùng MTP</p></div>
-          <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
-          display: block;"
-                                                 src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg">
-            <p>Jack</p></div>
-          <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;
-  display: block;"
-                                                  src="https://esportsobserver.com/wp-content/uploads/2019/02/Marshmellow-Fortnite-Concert-Opinion.jpg">
-            <p>Marshmello</p></div>
-          <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;
-  display: block;"
-                                                  src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            <p>Drake</p></div>
+      </div>
+    </div>
+    <div class="col-lg-7">
+      <div class="col-lg-12 col-md-6">
+        <div class="row">
+          <div class="col-lg-12">
+            <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)" style="display: inline-block">
+              <ng-container *ngFor="let songPl of playlist.song.slice(0,1)"  >
+                <div class="article-image">
+                  <a [routerLink]="['/playlist', playlist.id]"><img style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}"></a>
+                </div>
+              </ng-container>
+              <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
+              <!--  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>-->
+              <!--        </div>-->
+              <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
+              <!--  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>-->
+              <!--        </div>-->
+              <p class="article-info"></p>
+              <p class="article-body"></p>
+            </article>
+          </div>
         </div>
-      </article>
-      <article class="stations flex-space">
-        <div class="stations-entry"><img style="max-width: 100%;
+        <article class="latest-release">
+          <div id="title">
+            <h1>New Songs</h1>
+          </div>
+          <div class="container">
+            <table id="myTable" cellpadding="15" style="align-content: center">
+              <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
+              <tr >
+                <td>
+                  <h1 *ngIf="i == 0" class="numberOne">{{i + 1}}</h1>
+                  <h1 *ngIf="i == 1" class="numberTwo">{{i + 1}}</h1>
+                  <h1 *ngIf="i == 2" class="numberThree">{{i + 1}}</h1>
+                  <h1 *ngIf="i > 2">{{i + 1}}</h1>
+                </td>
+                <td class="imageSong">
+                  <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
+                       src="{{song.avatar}}" (click)="playThisSong(song.id)">
+                </td>
+                <td>
+                  <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
+                </td>
+                <td>
+                  <p>{{song.singer.name}}</p>
+                </td>
+                <td>
+                  <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+                  <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+                </td>
+                <td>
+                  <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                                                                                   aria-hidden="true"></i></a>
+                </td>
+                <td>
+                  <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                  <h6>{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
+                </td>
+              </tr>
+              <div class="modal">
+                <div class="card card-deck">
+                  <ng-template #longContent let-modal>
+                    <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
+                      <div class="modal-header">
+                        <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                      </div>
+                      <div>
+                        <select class="input-group-lg" formControlName="playlist">
+                          <option *ngFor="let pl of playLists" [value]="pl.id">
+                            {{pl.name}}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
+                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                      </div>
+                    </form>
+                  </ng-template>
+                </div>
+              </div>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="popular-artists">
+          <a [routerLink]="['/singers']"><h2 class="popular-artists-title">Popular Artists</h2></a>
+          <div class="artist-container flex-space">
+            <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                   src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
+              <p>Suni Hạ Linh</p></div>
+            <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                   src="https://lh3.googleusercontent.com/proxy/ABglV1sk_5z95_OAXqunFeumYBcXRpUFW4ijPM186nDOkaxmKUZdQvGRu_p38dOuoEAW9ECg2pLTazEjKW9Uw_YIYLPoyBxt-LzSZ5RJZMExsQ">
+              <p>Erik</p></div>
+            <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+          display: block;"
+                                                   src="https://cdn.vietnammoi.vn/stores/news_dataimages/vudt/122016/12/11/2503_MBI_7016.jpg">
+              <p>Sơn Tùng MTP</p></div>
+            <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
+          display: block;"
+                                                   src="https://image.thanhnien.vn/768/uploaded/ngocthanh/2020_07_05/j02-anhnoibat_kieu.jpg">
+              <p>Jack</p></div>
+            <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                    src="https://esportsobserver.com/wp-content/uploads/2019/02/Marshmellow-Fortnite-Concert-Opinion.jpg">
+              <p>Marshmello</p></div>
+            <div class="popular-artist-entry "><img style="width: 100px; height: 100px; object-fit: cover;
+  display: block;"
+                                                    src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              <p>Drake</p></div>
+          </div>
+        </article>
+        <article class="stations flex-space">
+          <div class="stations-entry"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-        </div>
-        <div class="stations-entry"><img style="max-width: 100%;
+          </div>
+          <div class="stations-entry"><img style="max-width: 100%;
         display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered">Love</div>
-        </div>
-        <div class="stations-entry"><img style="max-width: 100%;
+            <div class="stations-centered">Love</div>
+          </div>
+          <div class="stations-entry"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered">Retro</div>
-        </div>
-        <div class="stations-entry"><img style="max-width: 100%;
+            <div class="stations-centered">Retro</div>
+          </div>
+          <div class="stations-entry"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered">Chill</div>
-        </div>
-        <div class="stations-entry"><img style="max-width: 100%;
+            <div class="stations-centered">Chill</div>
+          </div>
+          <div class="stations-entry"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered">Workout</div>
-        </div>
-        <div class="stations-entry display-none"><img style="max-width: 100%;
+            <div class="stations-centered">Workout</div>
+          </div>
+          <div class="stations-entry display-none"><img style="max-width: 100%;
   display: block;"
-                                                      src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered">Rock</div>
-        </div>
-        <div class="stations-entry display-none"><img style="max-width: 100%;
+                                                        src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+            <div class="stations-centered">Rock</div>
+          </div>
+          <div class="stations-entry display-none"><img style="max-width: 100%;
   display: block;"
-                                                      src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered">Pop</div>
-        </div>
-      </article>
+                                                        src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+            <div class="stations-centered">Pop</div>
+          </div>
+        </article>
 
-      <article class="middle-featured article-featured flex-space">
-        <div class="article-image"><img style="max-width: 100%;
+        <article class="middle-featured article-featured flex-space">
+          <div class="article-image"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered mid-featured-font">Party</div>
-        </div>
-        <div class="article-image"><img style="max-width: 100%;
+            <div class="stations-centered mid-featured-font">Party</div>
+          </div>
+          <div class="article-image"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="mid-featured-font stations-centered">Electronic</div>
-        </div>
-        <div class="article-image"><img style="max-width: 100%;
+            <div class="mid-featured-font stations-centered">Electronic</div>
+          </div>
+          <div class="article-image"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="mid-featured-font stations-centered">Road Trip</div>
-        </div>
-        <p class="article-info"></p>
-        <p class="article-body"></p>
-      </article>
+            <div class="mid-featured-font stations-centered">Road Trip</div>
+          </div>
+          <p class="article-info"></p>
+          <p class="article-body"></p>
+        </article>
 
-      <article class="latest-language">
-        <h2 class="latest-language-title">Latest English</h2>
-        <div class="song-container flex-space">
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
+        <article class="latest-language">
+          <h2 class="latest-language-title">Latest English</h2>
+          <div class="song-container flex-space">
+            <div class="language-song-entry">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+                                               src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry display-none">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+                                               src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry display-none">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry display-none">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+                                               src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
           </div>
-        </div>
-      </article>
-      <article class="latest-language">
-        <h2 class="latest-language-title">Latest Hindi</h2>
-        <div class="song-container flex-space">
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
+        </article>
+        <article class="latest-language">
+          <h2 class="latest-language-title">Latest Hindi</h2>
+          <div class="song-container flex-space">
+            <div class="language-song-entry">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry display-none">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+                                               src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry display-none">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                               src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
+            <div class="language-song-entry display-none">
+              <div class="language-image"><img style="max-width: 100%;
   display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+                                               src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
+              </div>
+              <p><b>Bad Guy</b></p>
+              <p class="language-sub latest-release-sub">MAR 29, 2019</p>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
           </div>
-        </div>
-      </article>
-    </main>
-    <app-playing-songs></app-playing-songs>
+        </article>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <app-playing-songs></app-playing-songs>
+    </div>
   </div>
 </div>
 

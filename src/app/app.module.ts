@@ -29,7 +29,7 @@ import { PlayingSongsComponent } from './landing-page/playing-songs/playing-song
 import { MenuComponent } from './landing-page/menu/menu.component';
 import {CommentListComponent} from './song/comment-list/comment-list.component';
 import { CommentPlaylistComponent } from './playlist/comment-playlist/comment-playlist.component';
-import {CarouselComponent} from "./landing-page/carousel/carousel.component";
+import { CarouselComponent } from './landing-page/carousel/carousel.component';
 
 
 @NgModule({

@@ -61,4 +61,8 @@ export class SongService {
   getSongByCategoryId(id: number): Observable<any> {
     return this.httpClient.get(URL_API + `/songs/category/${id}`);
   }
+
+  getSongsMostLike(): Observable<any>{
+    return this.httpClient.get(URL_API + '/songs/most-likes');
+  }
 }

@@ -1,15 +1,17 @@
-<div class="sidenav">
-  <a>History</a>
-  <div class="ProfileItem"  *ngFor="let history of historySongs">
-    <table cellpadding="5" class="song">
-      <tr>
-        <td rowspan="2"><img style="object-fit: cover; height: 50px; width: 50px; border-radius: 5px" src="{{history.avatar}}"></td>
-        <td style="height: 50px">
-          <p style="display: inline-block; margin-top: 10px; margin-bottom: 0; width: 180px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis;"><b>{{history.name}}</b></p>
-          <span style="display: inline-block; margin-bottom: 10px; width: 180px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; font-size: 12px">{{history.singer.name}}</span>
-        </td>
-      </tr>
-    </table>
+<div class="row">
+  <div class="container-fluid">
+    <a>History</a>
+    <div class="ProfileItem"  *ngFor="let history of historySongs">
+      <table cellpadding="5" class="song">
+        <tr>
+          <td rowspan="2"><img style="object-fit: cover; height: 50px; width: 50px; border-radius: 5px" src="{{history.avatar}}"></td>
+          <td style="height: 50px">
+            <p style="display: inline-block; margin-top: 10px; margin-bottom: 0; width: 180px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis;"><b>{{history.name}}</b></p>
+            <span style="display: inline-block; margin-bottom: 10px; width: 180px; white-space: nowrap; overflow: hidden !important; text-overflow: ellipsis; font-size: 12px">{{history.singer.name}}</span>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 

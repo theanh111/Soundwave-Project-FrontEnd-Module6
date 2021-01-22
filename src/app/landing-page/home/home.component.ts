@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
     song: new FormControl(),
     playlist: new FormControl()
   });
+  songMostLike: ISong[] = [];
 
   constructor(
     private songService: SongService,
@@ -57,6 +58,7 @@ export class HomeComponent implements OnInit {
       });
     }
     this.getHistorySongs();
+    this.getAllSongMostLike();
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
@@ -166,6 +168,9 @@ export class HomeComponent implements OnInit {
   }
   getSongByPlaylist(id: number) {
     return this.songPlaylistService.getSongByPlaylist(id).toPromise();
+  }
+  getAllSongMostLike(){
+    this.songService.getSongsMostLike().subscribe(value => {this.songMostLike = value; console.log(this.songMostLike); });
   }
 
 }
