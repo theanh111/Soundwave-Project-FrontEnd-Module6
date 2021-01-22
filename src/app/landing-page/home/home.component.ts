@@ -12,7 +12,7 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {CategoryService} from '../../service/category/category.service';
 import {SongPlaylistService} from '../../service/songPlaylist/song-playlist.service';
 import {PlayListService} from '../../service/playList/play-list.service';
-import {PlayList} from '../../model/playList/play-list';
+import {Playlist} from '../../model/playList/playlist';
 
 @Component({
   selector: 'app-home',
@@ -29,9 +29,9 @@ export class HomeComponent implements OnInit {
   userCurrent: UserToken;
   user: User;
   songLikes: ISong[] = [];
-  playList: PlayList;
-  playLists: PlayList[] = [];
-  playlistsNewest: PlayList[] = [];
+  playList: Playlist;
+  playLists: Playlist[] = [];
+  playlistsNewest: Playlist[] = [];
   songPlaylistForm: FormGroup = this.fb.group({
     song: new FormControl(),
     playlist: new FormControl()

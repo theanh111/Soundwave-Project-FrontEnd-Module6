@@ -10,7 +10,7 @@ import {ISong} from '../../../model/song/ISong';
 import {LikeSongService} from '../../../service/like/like-song.service';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {PlayListService} from '../../../service/playList/play-list.service';
-import {PlayList} from '../../../model/playList/play-list';
+import {Playlist} from '../../../model/playList/playlist';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {ICategory} from '../../../model/category/ICategory';
 import {CategoryService} from '../../../service/category/category.service';
@@ -31,8 +31,8 @@ export class MyProfileComponent implements OnInit {
   categories: ICategory[] = [];
   songLikes: ISong[] = [];
   closeResult: string;
-  playList: PlayList;
-  playLists: PlayList[] = [];
+  playList: Playlist;
+  playLists: Playlist[] = [];
   playForm: FormGroup = this.fb.group({
     name: new FormControl(),
     category: new FormControl(),
@@ -116,7 +116,7 @@ export class MyProfileComponent implements OnInit {
 
   async setNewPlayList() {
     const category: ICategory = await this.getCategory();
-    const playList: PlayList = {
+    const playList: Playlist = {
       name: this.playForm.get('name').value,
       description: this.playForm.get('description').value,
       user: this.user
@@ -128,7 +128,7 @@ export class MyProfileComponent implements OnInit {
   }
 
   async savePlayList() {
-    const newPlay: PlayList = await this.setNewPlayList();
+    const newPlay: Playlist = await this.setNewPlayList();
     this.playListService.savePlayList(newPlay).subscribe(() => {
       alert("Save new playlist successfully");
     })
