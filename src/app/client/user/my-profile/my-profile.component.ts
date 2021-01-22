@@ -187,7 +187,7 @@ export class MyProfileComponent implements OnInit {
     const playlist: Playlist = await this.setNewPlaylistUp();
     this.playListService.updateMyPlaylist(p_id, this.user.id , playlist).subscribe(()=>{
       alert("update successful");
-      this.getAllPlaylist();
+      this.getMyPlaylists(this.user.id);
     });
   }
 
