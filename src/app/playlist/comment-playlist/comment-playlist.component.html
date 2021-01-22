@@ -8,18 +8,18 @@
             <div class="card">
             </div>
             <div class="comment-widgets">
-              <div class="d-flex flex-row comment-row m-t-0">
+              <div style="border-bottom: solid gray 1px" class="d-flex flex-row comment-row m-t-0">
                 <div class="p-2">
                   <img style="object-fit: cover; height: 50px; width: 50px" src="{{comment.user.avatar}}" alt="user"
                        class="rounded-circle">
                 </div>
-                <div class="comment-text w-100">
+                <div  class="comment-text w-100">
                   <h6 style="font-size: 20px" class="font-medium">{{comment.user.username}}</h6>
                   <span style="font-size: 12px" class="m-b-15 d-block">{{comment.comment}}</span>
                   <div class="comment-footer" *ngIf="userCurrent">
                     <span class="text-muted float-right">{{comment.date}}</span>
-                    <button  *ngIf="userCurrent.username === comment.user.username" type="button" class="btn btn-outline-success">Edit</button>
-                    <button  *ngIf="userCurrent.username === comment.user.username" type="button" class="btn btn-outline-danger">Delete</button>
+<!--                    <button  *ngIf="userCurrent.username === comment.user.username" type="button" class="btn btn-outline-success">Edit</button>-->
+<!--                    <button  *ngIf="userCurrent.username === comment.user.username" type="button" class="btn btn-outline-danger">Delete</button>-->
                   </div>
                   <div class="comment-footer" style="margin-top: 20px">
                     <a><i class="fas fa-thumbs-up"></i></a>
