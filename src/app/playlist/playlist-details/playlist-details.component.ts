@@ -4,6 +4,7 @@ import {ISong} from '../../model/song/ISong';
 import {SongService} from '../../service/song/song.service';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 import {SongPlaylistService} from '../../service/songPlaylist/song-playlist.service';
+import {LikeSongService} from '../../service/like/like-song.service';
 
 @Component({
   selector: 'app-playlist-details',
@@ -15,13 +16,15 @@ export class PlaylistDetailsComponent implements OnInit {
   songs: ISong[] = [];
   song: ISong;
   pl_id: number;
+  // songlikes: number;
   nameSearch: string;
 
   constructor(
     private songService: SongService,
     private activatedRoute: ActivatedRoute,
     private playlistService: PlayListService,
-    private songPlaylistService: SongPlaylistService
+    private songPlaylistService: SongPlaylistService,
+    private likeSongService: LikeSongService
   ) {
   }
 
@@ -36,6 +39,11 @@ export class PlaylistDetailsComponent implements OnInit {
   getAllSongPlaylist(id: number) {
     this.songPlaylistService.getSongByPlaylist(id).subscribe((data: any) => {
       this.songs = data;
+      this.songs.map(song => {
+        this.likeSongService.getAllLikeUser(song.id).subscribe(value => {
+          song.like = value;
+        })
+      })
     });
   }
 
