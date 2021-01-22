@@ -48,7 +48,7 @@
                 <a *ngIf="!s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="unlike1" class="fa fa-heart" aria-hidden="true"></i></a>
                 <a *ngIf="s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="like1" class="fa fa-heart" aria-hidden="true"></i></a>
               </td>
-              <td>
+              <td *ngIf="userCurrent">
                 <a role="button" (click)="openScrollableContent(longContent)"><i id="add1" class="fa fa-plus"
                                                                                  aria-hidden="true"></i></a>
               </td>
@@ -92,7 +92,7 @@
             <p>Suni Hạ Linh</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
   display: block;"
-                                                 src="https://lh3.googleusercontent.com/proxy/U-jqTF1HYT8bqZt7cCX1Q2AyuzWfLitSQ9UuDaijSzjXGi3cwiRpHB_omPTY6JeMFrjSq0C6VRdeeIm0Y5obJRcSTH8yny9XkXolEv14jjM0gQ">
+                                                 src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
             <p>Erik</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
           display: block;"
