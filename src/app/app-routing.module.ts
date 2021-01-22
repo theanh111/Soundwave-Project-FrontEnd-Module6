@@ -17,6 +17,8 @@ import {DetailSongComponent} from './song/detail-song/detail-song.component';
 import {PlaylistDetailsComponent} from './playlist/playlist-details/playlist-details.component';
 
 
+
+
 const routes: Routes = [
   {
     path: '',
@@ -69,7 +71,7 @@ const routes: Routes = [
   {
     path: 'playlist/:id',
     component: PlaylistDetailsComponent,
-  },
+  }
 ];
 
 // @ts-ignore
