@@ -11,5 +11,5 @@ export interface Playlist {
   description?: string;
   song?: ISong[];
   isLike?: boolean;
-  like?: number
+  like?: number;
 }

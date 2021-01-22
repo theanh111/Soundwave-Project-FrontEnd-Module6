@@ -25,7 +25,7 @@ export class PlayListService {
     return this.httpClient.get<Playlist[]>(URL_API + `/playlists/date-new`);
   }
   getMyPlaylists(id: number): Observable<any> {
-    return this.httpClient.get<Playlist[]>(URL_API + `/playlists/user/${id}`)
+    return this.httpClient.get<Playlist[]>(URL_API + `/playlists/user/${id}`);
   }
   updateMyPlaylist(p_id: number, u_id: number, playlist: Playlist): Observable<any> {
     return this.httpClient.put<Playlist>(URL_API + `/playlists/${p_id}/${u_id}`,playlist );

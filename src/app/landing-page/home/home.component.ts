@@ -14,7 +14,6 @@ import {SongPlaylistService} from '../../service/songPlaylist/song-playlist.serv
 import {PlayListService} from '../../service/playList/play-list.service';
 import {Playlist} from '../../model/playList/playlist';
 import {LikePlaylistService} from '../../service/like/like-playlist.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -161,7 +160,7 @@ export class HomeComponent implements OnInit {
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id);
-    this.getTopSong(this.user.id)
+    this.getTopSong(this.user.id);
     // this.getAllLikeSong(this.user.id);
   }
   openScrollableContent(longContent) {
@@ -220,7 +219,7 @@ export class HomeComponent implements OnInit {
   likePlaylist(p_id: any) {
     this.likePlaylistService.likePlaylist(p_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id);
-    this.getTopSong(this.user.id)
+    this.getTopSong(this.user.id);
     this.getAllPlaylistNewest(this.user.id);
   }
 

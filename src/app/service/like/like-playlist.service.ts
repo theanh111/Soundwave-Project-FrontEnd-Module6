@@ -17,7 +17,7 @@ export class LikePlaylistService {
     return this.httpClient.post<LikePlaylist>(URL_API + `/like-playlists/like/${p_id}/${u_id}`, p_id);
   }
   getAllLikeUser(id: number): Observable<any> {
-    return this.httpClient.get<Playlist[]>(URL_API + `/like-playlists/all-like/${id}`);
+    return this.httpClient.get<Playlist[]>(URL_API + `/playlists/all-like/${id}`);
   }
   // getSongMostLike(): Observable<any> {
   //   return this.httpClient.get<Playlist[]>(URL_API + `/like-playlists/most-likes`);
