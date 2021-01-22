@@ -3,10 +3,16 @@
     <main class="col-lg-12 col-md-6">
       <div class="row">
         <div class="col-lg-12">
-          <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)" style="display: inline-block">
-            <ng-container *ngFor="let songPl of playlist.song.slice(0,1)"  >
-              <div class="article-image">
-                <a [routerLink]="['/playlist', playlist.id]"><img style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}"></a>
+          <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)"
+                   style="display: inline-block">
+            <ng-container class="show-play-list" *ngFor="let songPl of playlist.song.slice(0,1)">
+              <div style="margin-right: 35px" class="article-image test">
+                <a [routerLink]="['/playlist', playlist.id]">
+                  <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
+                  <div  class="test2">
+                    <div class="text">{{playlist.name}}</div>
+                  </div>
+                </a>
               </div>
             </ng-container>
             <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
@@ -27,7 +33,7 @@
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
             <tbody *ngFor="let s of topSongs.slice(0, 5); let i = index">
-            <tr >
+            <tr>
               <td>
                 <h1 *ngIf="i == 0" class="numberOne">{{i + 1}}</h1>
                 <h1 *ngIf="i == 1" class="numberTwo">{{i + 1}}</h1>
@@ -39,14 +45,16 @@
                      src="{{s.avatar}}" (click)="playThisSong(s.id)">
               </td>
               <td>
-                <a  [routerLink]="['/songs/detail', s.id]"> <h4>{{s.name}}</h4></a>
+                <a [routerLink]="['/songs/detail', s.id]"><h4>{{s.name}}</h4></a>
               </td>
               <td>
                 <p>{{s.singer.name}}</p>
               </td>
               <td>
-                <a *ngIf="!s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="unlike1" class="fa fa-heart" aria-hidden="true"></i></a>
-                <a *ngIf="s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="like1" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="!s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="unlike1" class="fa fa-heart"
+                                                                                 aria-hidden="true"></i></a>
+                <a *ngIf="s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="like1" class="fa fa-heart"
+                                                                                aria-hidden="true"></i></a>
               </td>
               <td *ngIf="userCurrent">
                 <a role="button" (click)="openScrollableContent(longContent)"><i id="add1" class="fa fa-plus"
@@ -54,7 +62,8 @@
               </td>
               <td>
                 <h6 style="width: 50px">{{s.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
-                <h6 style="width: 50px">{{s.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
+                <h6 style="width: 50px">{{s.like}}  <i class="fa fa-heart" style=" color: #FF0099;"
+                                                       aria-hidden="true"></i></h6>
               </td>
             </tr>
             <div class="modal">
@@ -72,8 +81,10 @@
                       </select>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
-                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
+                      </button>
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close
+                      </button>
                     </div>
                   </form>
                 </ng-template>
@@ -114,26 +125,28 @@
       </article>
 
       <article class="latest-release">
-        <div >
+        <div>
           <h1>New Songs</h1>
         </div>
         <div class="container">
-          <table  cellpadding="15" style="align-content: center">
+          <table cellpadding="15" style="align-content: center">
             <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
-            <tr >
+            <tr>
               <td class="imageSong">
                 <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
                      src="{{song.avatar}}" (click)="playThisSong(song.id)">
               </td>
               <td>
-                <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
+                <a [routerLink]="['/songs/detail', song.id]"><h4>{{song.name}}</h4></a>
               </td>
               <td>
                 <p>{{song.singer.name}}</p>
               </td>
               <td>
-                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
-                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart"
+                                                                                       aria-hidden="true"></i></a>
+                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart"
+                                                                                      aria-hidden="true"></i></a>
               </td>
               <td>
                 <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
@@ -141,7 +154,8 @@
               </td>
               <td>
                 <h6 style="width: 50px">{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
-                <h6 style="width: 50px">{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
+                <h6 style="width: 50px">{{song.like}}  <i class="fa fa-heart" style=" color: #FF0099;"
+                                                          aria-hidden="true"></i></h6>
               </td>
             </tr>
             <div class="modal">
@@ -159,8 +173,10 @@
                       </select>
                     </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
-                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
+                      </button>
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close
+                      </button>
                     </div>
                   </form>
                 </ng-template>
