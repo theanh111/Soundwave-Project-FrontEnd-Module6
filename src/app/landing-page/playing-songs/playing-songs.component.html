@@ -1,4 +1,4 @@
-<div class="sidenav">
+<div class="sidenav" *ngIf="userCurrent">
   <a>History</a>
   <div class="ProfileItem"  *ngFor="let history of historySongs">
     <table cellpadding="5" class="song">

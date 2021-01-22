@@ -29,9 +29,11 @@ export class HomeComponent implements OnInit {
   testString: string;
   userCurrent: UserToken;
   user: User;
+  myPlayLists: Playlist[] = [];
   songLikes: ISong[] = [];
   playList: Playlist;
   playLists: Playlist[] = [];
+  allPlayLists: Playlist[] = [];
   playlistsNewest: Playlist[] = [];
   songPlaylistForm: FormGroup = this.fb.group({
     song: new FormControl(),
@@ -69,6 +71,7 @@ export class HomeComponent implements OnInit {
         this.user = value1;
         this.getAllSong(this.user.id);
         this.getTopSong(this.user.id);
+        this.getMyPlaylists(this.user.id);
         // console.log(this.songLikes);
 
       });
@@ -195,6 +198,9 @@ export class HomeComponent implements OnInit {
   }
   getSongByPlaylist(id: number) {
     return this.songPlaylistService.getSongByPlaylist(id).toPromise();
+  }
+  getMyPlaylists(id) {
+    this.playListService.getMyPlaylists(id).subscribe(value => this.myPlayLists = value);
   }
 
 }
