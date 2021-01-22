@@ -140,6 +140,8 @@ export class MyProfileComponent implements OnInit {
     const newPlay: Playlist = await this.setNewPlayList();
     this.playListService.savePlayList(newPlay).subscribe(() => {
       alert("Save new playlist successfully");
+      this.getMyPlaylists(this.user.id);
+      this.getMySongs(this.user.id);
     })
   }
 

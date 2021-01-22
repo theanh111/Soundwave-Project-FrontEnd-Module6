@@ -58,6 +58,7 @@ export class HomeComponent implements OnInit {
       });
     }
     if (this.userCurrent == null) {
+      // @ts-ignore
       this.songService.getTopViewSong().subscribe(value => {
         this.topSongs = value;
       });
@@ -101,6 +102,7 @@ export class HomeComponent implements OnInit {
   }
 
   getTopSong(userId: any) {
+    // @ts-ignore
     this.songService.getTopViewSong().subscribe((data: any) => {
       this.topSongs = data;
       this.topSongs.map(song => {
