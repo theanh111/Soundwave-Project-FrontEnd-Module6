@@ -22,6 +22,10 @@ export class SongService {
     return this.httpClient.get<any>(URL_API + '/songs/date-new');
   }
 
+  getTopViewSong(): Observable<ISong[]> {
+    return this.httpClient.get<any>(URL_API + '/songs/most-views');
+  }
+
   createSong(song: ISong): Observable<any> {
     return this.httpClient.post<ISong>(URL_API + `/songs`, song);
   }

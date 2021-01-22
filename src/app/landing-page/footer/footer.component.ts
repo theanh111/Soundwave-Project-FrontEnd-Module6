@@ -15,7 +15,9 @@ export class FooterComponent implements OnInit {
   song: ISong;
   id: number;
   allId: number;
+  allSong: ISong[];
   idNext: number;
+  i: number;
   constructor(
     private songService: SongService
   ) {
@@ -27,34 +29,40 @@ export class FooterComponent implements OnInit {
     //     this.song = value;
     //   });
     // }
+    this.songService.getAllSong().subscribe(value => this.allId = value.length);
+    this.songService.getAllSong().subscribe(value => this.allSong = value);
     if (this.songCurrentObject.value !== null) {
       this.song = this.songCurrentObject.value;
     }
-    this.songService.getAllSong().subscribe(value => this.allId = value.length);
   }
 
   nextSong() {
-    if (this.allId === this.songCurrentObject.value.id ){
-      this.idNext = 1;
-    }else {
-      this.idNext = this.songCurrentObject.value.id + 1;
+    for (let j = 0; j < this.allSong.length; j++) {
+      if (this.songCurrentObject.value.id === this.allSong[j].id) {
+        this.song = this.allSong[j + 1];
+        console.log(this.song);
+      }
+      if (this.songCurrentObject.value.id === this.allSong[this.allSong.length - 1].id) {
+        this.song = this.allSong[0];
+        console.log(this.song);
+      }
     }
-    this.songService.getSong(this.idNext).subscribe(value => {
-      this.song = value;
-      localStorage.setItem('songSelected', JSON.stringify(this.song));
-      window.location.reload();
-    });
+    localStorage.setItem('songSelected', JSON.stringify(this.song));
+    window.location.reload();
   }
+
   backSong() {
-    if (1 === this.songCurrentObject.value.id ){
-      this.idNext = this.allId;
-    }else {
-      this.idNext = this.songCurrentObject.value.id - 1;
+    for (let j = 0; j < this.allSong.length; j++) {
+      if (this.songCurrentObject.value.id === this.allSong[j].id) {
+        this.song = this.allSong[j - 1];
+        console.log(this.song);
+      }
+      if (this.songCurrentObject.value.id === this.allSong[0].id) {
+        this.song = this.allSong[this.allSong.length - 1];
+        console.log(this.song);
+      }
     }
-    this.songService.getSong(this.idNext).subscribe(value => {
-      this.song = value;
-      localStorage.setItem('songSelected', JSON.stringify(this.song));
-      window.location.reload();
-    });
+    localStorage.setItem('songSelected', JSON.stringify(this.song));
+    window.location.reload();
   }
 }

@@ -11,7 +11,7 @@ body {
 }
 
 .sidenav {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 1000px;
   width: 300px;
   position: fixed;
@@ -21,6 +21,12 @@ body {
   background-color: transparent;
   overflow-x: hidden;
   padding-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .sidenav {
+    display: none;
+  }
 }
 
 .sidenav a {

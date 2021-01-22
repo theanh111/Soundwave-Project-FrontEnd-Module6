@@ -22,11 +22,11 @@
       </div>
       <article class="latest-release">
         <div id="title">
-          <h1>New Songs</h1>
+          <h1>Top Songs</h1>
         </div>
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
-            <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
+            <tbody *ngFor="let s of topSongs.slice(0, 5); let i = index">
             <tr >
               <td>
                 <h1 *ngIf="i == 0" class="numberOne">{{i + 1}}</h1>
@@ -36,25 +36,25 @@
               </td>
               <td class="imageSong">
                 <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
-                     src="{{song.avatar}}" (click)="playThisSong(song.id)">
+                     src="{{s.avatar}}" (click)="playThisSong(s.id)">
               </td>
               <td>
-                <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
+                <a  [routerLink]="['/songs/detail', s.id]"> <h4>{{s.name}}</h4></a>
               </td>
               <td>
-                <p>{{song.singer.name}}</p>
+                <p>{{s.singer.name}}</p>
               </td>
               <td>
-                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
-                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="!s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="unlike1" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="s.isLiked && userCurrent" (click)="likeSong(s.id)"><i id="like1" class="fa fa-heart" aria-hidden="true"></i></a>
               </td>
               <td>
-                <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                <a role="button" (click)="openScrollableContent(longContent)"><i id="add1" class="fa fa-plus"
                                                                                  aria-hidden="true"></i></a>
               </td>
               <td>
-                <h6>{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
-                <h6>{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
+                <h6 style="width: 50px">{{s.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                <h6 style="width: 50px">{{s.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
               </td>
             </tr>
             <div class="modal">
@@ -84,7 +84,7 @@
         </div>
       </article>
       <article class="popular-artists">
-        <a [routerLink]="['/singers']"><h2 class="popular-artists-title">Popular Artists</h2></a>
+        <h1 class="title">Popular Artists</h1>
         <div class="artist-container flex-space">
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
   display: block;"
@@ -92,7 +92,7 @@
             <p>Suni Hạ Linh</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
   display: block;"
-                                                 src="https://lh3.googleusercontent.com/proxy/ABglV1sk_5z95_OAXqunFeumYBcXRpUFW4ijPM186nDOkaxmKUZdQvGRu_p38dOuoEAW9ECg2pLTazEjKW9Uw_YIYLPoyBxt-LzSZ5RJZMExsQ">
+                                                 src="https://lh3.googleusercontent.com/proxy/U-jqTF1HYT8bqZt7cCX1Q2AyuzWfLitSQ9UuDaijSzjXGi3cwiRpHB_omPTY6JeMFrjSq0C6VRdeeIm0Y5obJRcSTH8yny9XkXolEv14jjM0gQ">
             <p>Erik</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
           display: block;"
@@ -112,6 +112,65 @@
             <p>Drake</p></div>
         </div>
       </article>
+
+      <article class="latest-release">
+        <div >
+          <h1>New Songs</h1>
+        </div>
+        <div class="container">
+          <table  cellpadding="15" style="align-content: center">
+            <tbody *ngFor="let song of songs.slice(0, 5); let i = index">
+            <tr >
+              <td class="imageSong">
+                <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
+                     src="{{song.avatar}}" (click)="playThisSong(song.id)">
+              </td>
+              <td>
+                <a  [routerLink]="['/songs/detail', song.id]"> <h4>{{song.name}}</h4></a>
+              </td>
+              <td>
+                <p>{{song.singer.name}}</p>
+              </td>
+              <td>
+                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+              </td>
+              <td>
+                <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                                                                                 aria-hidden="true"></i></a>
+              </td>
+              <td>
+                <h6 style="width: 50px">{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                <h6 style="width: 50px">{{song.like}}  <i class="fa fa-heart"  style=" color: #FF0099;" aria-hidden="true"></i> </h6>
+              </td>
+            </tr>
+            <div class="modal">
+              <div class="card card-deck">
+                <ng-template #longContent let-modal>
+                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
+                    <div class="modal-header">
+                      <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                    </div>
+                    <div>
+                      <select class="input-group-lg" formControlName="playlist">
+                        <option *ngFor="let pl of playLists" [value]="pl.id">
+                          {{pl.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist</button>
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close</button>
+                    </div>
+                  </form>
+                </ng-template>
+              </div>
+            </div>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
       <article class="stations flex-space">
         <div class="stations-entry"><img style="max-width: 100%;
   display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">

@@ -47,6 +47,7 @@ export class CommentListComponent implements OnInit {
   }
 
   addComment() {
+    // @ts-ignore
     if (document.getElementById('inputComment').value !== '') {
       this.songService.getSongById(this.id).subscribe(value => {
         const commentTest: ICommentSong = this.addCommentForm.value;

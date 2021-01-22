@@ -22,6 +22,7 @@ import {PlayList} from '../../model/playList/play-list';
 export class HomeComponent implements OnInit {
   historySong: BehaviorSubject<number> = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('historySongs')));
   songs: ISong[] = [];
+  topSongs: ISong[] = [];
   song: ISong;
   array: [];
   historySongs: ISong[];
@@ -56,12 +57,18 @@ export class HomeComponent implements OnInit {
         this.songs = value;
       });
     }
+    if (this.userCurrent == null) {
+      this.songService.getTopViewSong().subscribe(value => {
+        this.topSongs = value;
+      });
+    }
     this.getHistorySongs();
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
         this.user = value1;
         this.getAllSong(this.user.id);
+        this.getTopSong(this.user.id);
         // console.log(this.songLikes);
 
       });
@@ -85,6 +92,27 @@ export class HomeComponent implements OnInit {
           for (let j = 0; j < this.songLikes.length; j++) {
             if (this.songs[i].id === this.songLikes[j].id) {
               this.songs[i].isLiked = true;
+            }
+          }
+        }
+        console.log(this.songLikes);
+      });
+    });
+  }
+
+  getTopSong(userId: any) {
+    this.songService.getTopViewSong().subscribe((data: any) => {
+      this.topSongs = data;
+      this.topSongs.map(song => {
+        song.isLiked = false;
+        this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
+      });
+      this.likeService.getAllLikeUser(userId).subscribe((data: any) => {
+        this.songLikes = data;
+        for (let i = 0; i < this.topSongs.length; i++) {
+          for (let j = 0; j < this.songLikes.length; j++) {
+            if (this.topSongs[i].id === this.songLikes[j].id) {
+              this.topSongs[i].isLiked = true;
             }
           }
         }
@@ -126,6 +154,7 @@ export class HomeComponent implements OnInit {
   likeSong(s_id: any) {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id);
+    this.getTopSong(this.user.id)
     // this.getAllLikeSong(this.user.id);
   }
   openScrollableContent(longContent) {

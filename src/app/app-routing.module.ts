@@ -15,12 +15,17 @@ import {UpdateProfileComponent} from './client/user/update-profile/update-profil
 import {SearchSongComponent} from './song/search-song/search-song.component';
 import {DetailSongComponent} from './song/detail-song/detail-song.component';
 import {PlaylistDetailsComponent} from './playlist/playlist-details/playlist-details.component';
+import {TermOfUserComponent} from './client/user/term-of-user/term-of-user.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
+  },
+  {
+    path: 'termofservice',
+    component: TermOfUserComponent,
   },
   {
     path: 'resetpassword',
