@@ -18,11 +18,38 @@
                       <a *ngIf="playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="like2" class="fa fa-heart"
                                                                                                        aria-hidden="true"></i></a>
                       <br>
+                      <a role="button" (click)="openScrollableContent(addArraySong)"><i (click)="getAllSongNotInPlaylist(playlist.id)" id="add2" class="fa fa-plus"
+                                                                                       aria-hidden="true"></i></a>
+                      <br>
                       <span>{{playlist.like}} <i class="fa fa-heart" style=" color: #FF0099;"
                                                                     aria-hidden="true"></i></span>
                     </div>
                     </div>
-
+              </div>
+              <div class="modal">
+                <div class="card card-deck">
+                  <ng-template #addArraySong let-modal>
+                    <form [formGroup]="songPlaylistForm" (ngSubmit)="addArraySongToPlaylist(playlist.id)">
+                      <div class="modal-header">
+                        <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                      </div>
+                      <div *ngFor="let song of songsNotInPlaylist">
+                        <span style="color: black">{{song.name}}</span>
+                        <a style="color: black" *ngIf="!song.isLiked" role="button" (click)="addSongToArrayBFAdd(playlist.id, song.id)">Cộng<i style="color: red;" id="add3" class="fa fa-plus"
+                                                                                          aria-hidden="true"></i></a>
+                        <a style="color: black;;" *ngIf="song.isLiked" role="button" (click)="subSongFromArrayAdd(playlist.id,song.id)">Trừ<i style="color: red;" id="add3" class="fa fa-plus"
+                                                                                                aria-hidden="true"></i></a>
+                      </div>
+<!--                      <span style="color: black" *ngIf="messageAdd != ''">{{messageAdd}}</span>-->
+                      <div class="modal-footer">
+                        <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
+                        </button>
+                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close
+                        </button>
+                      </div>
+                    </form>
+                  </ng-template>
+                </div>
               </div>
             </ng-container>
             <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
