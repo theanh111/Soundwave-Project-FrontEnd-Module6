@@ -715,3 +715,19 @@ aside {
   }
 }
 
+#unlike1,#unlike2 {
+  transition: 0.2s;
+  cursor: pointer;
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+}
+
+#like1, #like2 {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #FF0099;
+  transition: 0.2s;
+  cursor: pointer;
+  color: #FF0099;
+}
+

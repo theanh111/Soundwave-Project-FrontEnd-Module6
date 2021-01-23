@@ -160,8 +160,8 @@
             <i id="delete" class="fas fa-trash-alt"></i></a>
           <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
                                                                            aria-hidden="true"></i></a>
-          <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
-          <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
+          <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart" aria-hidden="true"></i></a>
+          <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="modal">
