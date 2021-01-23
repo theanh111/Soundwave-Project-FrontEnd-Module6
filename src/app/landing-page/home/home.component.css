@@ -63,7 +63,7 @@ h4:hover {
   font-weight: bold;
 }
 
-#unlike, #unlike1 {
+#unlike, #unlike1,#unlike2 {
   transition: 0.2s;
   cursor: pointer;
   color: transparent;
@@ -71,7 +71,7 @@ h4:hover {
   -webkit-text-stroke-color: white;
 }
 
-#like, #like1 {
+#like, #like1, #like2 {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: #FF0099;
   transition: 0.2s;
