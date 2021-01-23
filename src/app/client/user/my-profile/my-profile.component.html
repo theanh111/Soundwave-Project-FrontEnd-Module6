@@ -43,100 +43,6 @@
       </div>
     </div>
     <br>
-
-
-    <!--    &lt;!&ndash;    tab menu&ndash;&gt;-->
-    <!--    <div class="container-flex">-->
-    <!--      <div class="col-lg-12">-->
-    <!--        <h2>Ok Nguoi AE</h2>-->
-    <!--        <br>-->
-    <!--        &lt;!&ndash; Nav tabs &ndash;&gt;-->
-    <!--        <ul class="nav nav-tabs" role="tablist">-->
-    <!--          <li class="nav-item">-->
-    <!--            <a class="nav-link " data-toggle="tab" role="tab" href="#my-songs">My Songs</a>-->
-    <!--          </li>-->
-    <!--          <li class="nav-item">-->
-    <!--            <a class="nav-link active" data-toggle="tab" role="tab" href="#menu1">Menu 1</a>-->
-    <!--          </li>-->
-    <!--        </ul>-->
-
-    <!--        &lt;!&ndash; Tab panes &ndash;&gt;-->
-    <!--        <div class="tab-content">-->
-    <!--          <div role="tabpanel" id="my-songs" class="container tab-pane active"><br>-->
-    <!--            <div class="playlist-next-item flex-space" *ngFor="let song of songs; let i = index">-->
-    <!--              <div class="playlist-next-item-entry flex-space">-->
-    <!--                <div style="width: 100%" class="playlist-next-item-entry-info flex-space">-->
-    <!--                  <div style="width: 15px;">-->
-    <!--                  </div>-->
-    <!--                  <div class="playlist-next-item-entry-info-image">-->
-    <!--                    <img (click)="playThisSong(song.id)" style="height: 70px; width: 70px; object-fit: cover"-->
-    <!--                         src="{{song.avatar}}">-->
-    <!--                  </div>-->
-    <!--                  <div style="width: 15px;">-->
-    <!--                  </div>-->
-    <!--                  <div style="width: 150px;word-break: break-all" class="playlist-next-item-entry-info-name">-->
-    <!--                    <a [routerLink]="['/songs/detail', song.id]"><p><b>{{song.name}}</b></p></a>-->
-    <!--                    <span class="playlist-next-item-entry-info-name-sub">{{song.singer.name}}</span>-->
-    <!--                  </div>-->
-    <!--                </div>-->
-    <!--                <div style="margin-top: 20px; margin-left: 150px">-->
-    <!--                  <span id="categoryName">{{song.category.name}}</span>-->
-    <!--                </div>-->
-    <!--                <div class="playlist-next-item-entry-icons flex-space" style="width: 150px">-->
-    <!--                  <a id="edit" [routerLink]="['/songs/update/', song.id ]"><i class="fas fa-edit"></i></a>-->
-    <!--                  <a class="mytooltip" (click)="deleteSong(song.id)">-->
-    <!--                    <i id="delete" class="fas fa-trash-alt"></i></a>-->
-    <!--                  <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"-->
-    <!--                                                                                   aria-hidden="true"></i></a>-->
-    <!--                  <a *ngIf="song.isLiked" (click)="likeSong(song.id)"><i id="unlike" class="fa fa-heart"-->
-    <!--                                                                         aria-hidden="true"></i></a>-->
-    <!--                  <a *ngIf="!song.isLiked" (click)="likeSong(song.id)"><i id="like" class="fa fa-heart"-->
-    <!--                                                                          aria-hidden="true"></i></a>-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--              <div class="modal">-->
-    <!--                <div class="card card-deck">-->
-    <!--                  <ng-template #longContent let-modal>-->
-    <!--                    <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">-->
-    <!--                      <div class="modal-header">-->
-    <!--                        <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>-->
-    <!--                      </div>-->
-    <!--                      <div>-->
-    <!--                        <select class="input-group-lg" formControlName="playlist">-->
-    <!--                          <option *ngFor="let pl of myPlayLists" [value]="pl.id">-->
-    <!--                            {{pl.name}}-->
-    <!--                          </option>-->
-    <!--                        </select>-->
-    <!--                      </div>-->
-    <!--                      <div class="modal-footer">-->
-    <!--                        <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist-->
-    <!--                        </button>-->
-    <!--                        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close-->
-    <!--                        </button>-->
-    <!--                      </div>-->
-    <!--                    </form>-->
-    <!--                  </ng-template>-->
-    <!--                </div>-->
-    <!--              </div>-->
-    <!--            </div>-->
-
-    <!--          </div>-->
-    <!--          <div id="menu1" role="tabpanel" class="container tab-pane fade"><br>-->
-    <!--            <h3>Menu 1</h3>-->
-    <!--            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo-->
-    <!--              consequat.</p>-->
-    <!--          </div>-->
-    <!--          <div id="menu2" class="container tab-pane fade"><br>-->
-    <!--            <h3>Menu 2</h3>-->
-    <!--            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam-->
-    <!--              rem aperiam.</p>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <span id="show">View More</span>-->
-    <!--  </main>-->
-
     <div class="playlist-next-item flex-space" *ngFor="let song of songs; let i = index">
       <div class="playlist-next-item-entry flex-space">
         <div style="width: 50%" class="playlist-next-item-entry-info flex-space">
@@ -292,10 +198,13 @@
         <div class="queue-entry flex-space">
           <table style="margin-bottom: 20px;border-bottom: darkgray solid 1px" width="100%">
             <tr>
+              <td></td>
               <td><a [routerLink]="['/playlist', playlistUpdate.id]"><span>{{playlistUpdate.name}}</span></a></td>
               <td style="text-align: right"><a id="edit2" (click)="openScrollableContent(updatePlaylist)"><span><i class="fas fa-edit"></i></span></a></td>
             </tr>
             <tr >
+              <td><a role="button" (click)="openScrollableContent(addArraySong)"><i (click)="getAllSongNotInPlaylist(playlistUpdate.id)" id="add2" class="fa fa-plus"
+                                                                                    aria-hidden="true"></i></a></td>
               <td>{{playlistUpdate.category.name}}</td>
               <td style="text-align: right">{{playlistUpdate.views}} <i class="fa fa-headphones"></i></td>
             </tr>
@@ -337,6 +246,31 @@
                   <button type="submit" class="btn btn-outline-success" (click)="modal.close('Close click')">Update
                   </button>
                   <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close</button>
+                </div>
+              </form>
+            </ng-template>
+          </div>
+        </div>
+        <div class="modal">
+          <div class="card card-deck">
+            <ng-template #addArraySong let-modal>
+              <form [formGroup]="songPlaylistForm" (ngSubmit)="addArraySongToPlaylist(playlistUpdate.id)">
+                <div class="modal-header">
+                  <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                </div>
+                <div *ngFor="let song of songsNotInPlaylist">
+                  <span style="color: black">{{song.name}}</span>
+                  <a style="color: black" *ngIf="!song.isLiked" role="button" (click)="addSongToArrayBFAdd(playlistUpdate.id, song.id)"><i style="color: red;" id="add3" class="fa fa-plus"
+                                                                                                                                         aria-hidden="true"></i></a>
+                  <a style="color: black;;" *ngIf="song.isLiked" role="button" (click)="subSongFromArrayAdd(playlistUpdate.id,song.id)"><i style="color: red;" id="add4" class="fa fa-minus"
+                                                                                                                                        aria-hidden="true"></i></a>
+                </div>
+                <!--                      <span style="color: black" *ngIf="messageAdd != ''">{{messageAdd}}</span>-->
+                <div class="modal-footer">
+                  <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
+                  </button>
+                  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close
+                  </button>
                 </div>
               </form>
             </ng-template>
