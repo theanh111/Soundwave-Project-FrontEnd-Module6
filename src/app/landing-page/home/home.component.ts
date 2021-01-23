@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   historySong: BehaviorSubject<number> = new BehaviorSubject<number>(JSON.parse(localStorage.getItem('historySongs')));
   songs: ISong[] = [];
   topSongs: ISong[] = [];
+  topSongLikes: ISong[] = [];
   song: ISong;
   arraySong: ISong[] = [];
   songsNotInPlaylist: ISong[] = [];
@@ -81,11 +82,14 @@ export class HomeComponent implements OnInit {
         this.getTopSong(this.user.id);
         this.getMyPlaylists(this.user.id);
         this.getAllPlaylistNewest(this.user.id);
+
         // console.log(this.songLikes);
 
       });
     });
     this.getAllPlaylist();
+    this.getTopSongLikes();
+
 
     // console.log(this.songs);
     // console.log(this.playlistsNewest);
@@ -167,7 +171,7 @@ export class HomeComponent implements OnInit {
     this.likeService.likeSong(s_id, this.user.id).subscribe(() => console.log(this.user.id));
     this.getAllSong(this.user.id);
     this.getTopSong(this.user.id);
-    // this.getAllLikeSong(this.user.id);
+    this.getTopSongLikes();
   }
   openScrollableContent(longContent) {
     this.modalService.open(longContent, {scrollable: true});
@@ -265,5 +269,25 @@ export class HomeComponent implements OnInit {
       this.songPlaylistService.addSongToPlaylist(p_id, this.arraySong[i]).subscribe(() => console.log());
     }
     alert("add to playlist success");
+  }
+  getTopSongLikes() {
+    this.likeService.getSongMostLike().subscribe(value => {
+      this.topSongLikes = value;
+      this.topSongLikes.map(song => {
+        song.isLiked = false;
+        this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
+      });
+      // this.likeService.getAllLikeUser(user_id).subscribe((data: any) => {
+      //   this.songLikes = data;
+      //   for (let i = 0; i < this.songs.length; i++) {
+      //     for (let j = 0; j < this.songLikes.length; j++) {
+      //       if (this.songs[i].id === this.songLikes[j].id) {
+      //         this.songs[i].isLiked = true;
+      //       }
+      //     }
+      //   }
+      //   console.log(this.songLikes);
+      // });
+    })
   }
 }

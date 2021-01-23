@@ -118,6 +118,11 @@ h4:hover {
   transform: scale(1.1);
   cursor: pointer;
 }
+.fa fa-heart, .unlike1:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
+}
 
 .popular-artist-entry img {
   -moz-transition: all 0.3s;
