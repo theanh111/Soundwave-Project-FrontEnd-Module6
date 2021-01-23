@@ -195,7 +195,7 @@ export class HomeComponent implements OnInit {
     });
   }
   getAllPlaylistNewest(userId: any) {
-    this.playListService.getAllPlaylist().subscribe((data: any) => {
+    this.playListService.getPlaylistsNewest().subscribe((data: any) => {
       this.playlistsNewest = data;
       this.playlistsNewest.map(async playlist => {
         playlist.isLike = false;
