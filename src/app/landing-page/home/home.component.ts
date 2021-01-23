@@ -218,8 +218,8 @@ export class HomeComponent implements OnInit {
   }
   likePlaylist(p_id: any) {
     this.likePlaylistService.likePlaylist(p_id, this.user.id).subscribe(() => console.log(this.user.id));
-    this.getAllSong(this.user.id);
-    this.getTopSong(this.user.id);
+    // this.getAllSong(this.user.id);
+    // this.getTopSong(this.user.id);
     this.getAllPlaylistNewest(this.user.id);
   }
 
