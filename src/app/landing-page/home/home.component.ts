@@ -14,6 +14,7 @@ import {SongPlaylistService} from '../../service/songPlaylist/song-playlist.serv
 import {PlayListService} from '../../service/playList/play-list.service';
 import {Playlist} from '../../model/playList/playlist';
 import {LikePlaylistService} from '../../service/like/like-playlist.service';
+import {element} from 'protractor';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,6 +25,11 @@ export class HomeComponent implements OnInit {
   songs: ISong[] = [];
   topSongs: ISong[] = [];
   song: ISong;
+  arraySong: ISong[] = [];
+  songsNotInPlaylist: ISong[] = [];
+  addSong: boolean = false;
+  subSong: ISong;
+  messageAdd: string = '';
   array: [];
   historySongs: ISong[];
   testString: string;
@@ -222,5 +228,42 @@ export class HomeComponent implements OnInit {
     // this.getTopSong(this.user.id);
     this.getAllPlaylistNewest(this.user.id);
   }
-
+  getAllSongNotInPlaylist(id: number) {
+    this.songService.getSongNotInPlaylist(id).subscribe(value => {
+      this.songsNotInPlaylist = value
+      this.songsNotInPlaylist.map(song => {
+        song.isLiked = false;
+      })
+      for (let i = 0; i < this.arraySong.length; i++) {
+        for (let j = 0; j < this.songsNotInPlaylist.length; j++) {
+          if (this.arraySong[i].id == this.songsNotInPlaylist[j].id) {
+            this.songsNotInPlaylist[j].isLiked = true;
+          }
+        }
+      }
+    });
+  }
+  subSongFromArrayAdd(p_id: any, s_id: any) {
+    this.songService.getSong(s_id).subscribe( value => {
+      this.subSong = value;
+      for (let i = 0; i < this.arraySong.length; i++) {
+        if (this.subSong.id == this.arraySong[i].id) {
+          this.arraySong.splice(i,1);
+          this.getAllSongNotInPlaylist(p_id);
+        }
+      }
+    })
+  }
+  addSongToArrayBFAdd(p_id: number, s_id: any) {
+    this.songService.getSong(s_id).subscribe( value => {
+      this.arraySong.push(value);
+      this.getAllSongNotInPlaylist(p_id);
+    })
+  }
+  addArraySongToPlaylist(p_id: any) {
+    for (let i = 0; i < this.arraySong.length; i++) {
+      this.songPlaylistService.addSongToPlaylist(p_id, this.arraySong[i]).subscribe(() => console.log());
+    }
+    alert("add to playlist success");
+  }
 }
