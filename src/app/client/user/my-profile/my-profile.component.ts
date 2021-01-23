@@ -65,7 +65,7 @@ export class MyProfileComponent implements OnInit {
         name: [null],
         category: [null],
         description: [null]
-      })
+      });
     const userFromLocalStorage = this.authService.currentUserValue;
     this.userService.getUserByUsername(userFromLocalStorage.username).subscribe(value => {
       this.user = value;
@@ -86,7 +86,7 @@ export class MyProfileComponent implements OnInit {
         this.songLikes = data;
         for (let i = 0; i < this.songs.length; i++) {
           for (let j = 0; j < this.songLikes.length; j++) {
-            if (this.songs[i].id == this.songLikes[j].id) {
+            if (this.songs[i].id === this.songLikes[j].id) {
               this.songs[i].isLiked = true;
             }
           }
@@ -129,7 +129,7 @@ export class MyProfileComponent implements OnInit {
       name: this.playForm.get('name').value,
       description: this.playForm.get('description').value,
       user: this.user
-    }
+    };
     if (category != null) {
       playList.category = category;
     }
@@ -142,7 +142,7 @@ export class MyProfileComponent implements OnInit {
       alert("Save new playlist successfully");
       this.getMyPlaylists(this.user.id);
       this.getMySongs(this.user.id);
-    })
+    });
   }
 
   // @ts-ignore
@@ -177,7 +177,7 @@ export class MyProfileComponent implements OnInit {
       name: this.playUpForm.value.name,
       description: this.playUpForm.value.description,
       user: this.user
-    }
+    };
     if (category != null) {
       playList.category = category;
     }
@@ -211,7 +211,7 @@ export class MyProfileComponent implements OnInit {
           .indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
   formatter = (x: { name: string, id: number }) => {
-    x.name, x.id
+    x.name, x.id;
   }
   getMyPlaylists(id) {
     this.playListService.getMyPlaylists(id).subscribe(value => this.myPlayLists = value);
