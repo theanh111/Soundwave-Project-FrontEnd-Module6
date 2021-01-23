@@ -114,7 +114,7 @@ export class MyProfileComponent implements OnInit {
   deleteSong(id: any) {
     if (confirm('Are you sure')) {
       this.songService.deleteSong(id).subscribe(() => console.log('ok'));
-      window.location.reload();
+      this.getMySongs(this.user.id);
     }
   }
 
