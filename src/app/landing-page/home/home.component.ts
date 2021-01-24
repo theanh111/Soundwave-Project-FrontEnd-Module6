@@ -320,4 +320,7 @@ export class HomeComponent implements OnInit {
   getAllPlaylistClient() {
     this.playListService.getAllPlaylist().subscribe(value => this.allPlaylist = value);
   }
+  countViewPlaylist(id: any) {
+    this.playListService.countViewPlaylist(id).subscribe(() => console.log());
+  }
 }
