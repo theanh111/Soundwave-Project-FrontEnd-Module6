@@ -17,13 +17,15 @@
     <div class="card card-deck">
       <ng-template #updatePlaylist let-modal>
         <div style="background-color: #1a1e33" class="modal-header">
-          <h4 class="modal-title">Update a new playlist</h4>
+          <h4 class="modal-title">Update playlist</h4>
         </div>
         <form [formGroup]="playUpForm" (ngSubmit)="updateMyPlaylist(playlistCurrent.id)">
-          <span>{{playlistCurrent.name}}</span>
+
           <div style=" border-radius: 10px; color:#1a1e33">
             <table style="color: #1a1e33;margin: auto" cellpadding="10px">
-              <tr><span>{{playlistCurrent.name}}</span></tr>
+              <tr>
+                <th><h5>{{playlistCurrent.name}}</h5></th>
+              </tr>
               <tr>
                 <td><label class="col-form-label-lg">Name</label></td>
                 <td><input value="{{playlistCurrent.name}}" type="text" formControlName="name"></td>
