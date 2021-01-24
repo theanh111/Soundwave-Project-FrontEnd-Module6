@@ -257,6 +257,7 @@ export class HomeComponent implements OnInit {
     // this.getAllSong(this.user.id);
     // this.getTopSong(this.user.id);
     this.getAllPlaylistNewest(this.user.id);
+    this.getAllPlaylistMostView(this.user.id);
   }
   getAllSongNotInPlaylist(id: number) {
     this.songService.getSongNotInPlaylist(id).subscribe(value => {
