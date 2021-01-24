@@ -258,4 +258,7 @@ export class MyProfileComponent implements OnInit {
     }
     alert("add to playlist success");
   }
+  countViewPlaylist(id: any) {
+    this.playListService.countViewPlaylist(id).subscribe(() => console.log());
+  }
 }

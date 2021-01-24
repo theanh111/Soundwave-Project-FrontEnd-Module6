@@ -199,7 +199,7 @@
           <table style="margin-bottom: 20px;border-bottom: darkgray solid 1px" width="100%">
             <tr>
               <td>{{j+1}}</td>
-              <td><a [routerLink]="['/playlist', playlistUpdate.id]"><span>{{playlistUpdate.name}}</span></a></td>
+              <td><a (click)="countViewPlaylist(playlistUpdate.id)" [routerLink]="['/playlist', playlistUpdate.id]"><span>{{playlistUpdate.name}}</span></a></td>
               <td style="text-align: right"><a role="button" (click)="openScrollableContent(addArraySong)"><i (click)="getAllSongNotInPlaylist(playlistUpdate.id)" id="add2" class="fa fa-plus"
                                                                                     aria-hidden="true"></i></a></td>
 <!--              <td style="text-align: right"><a id="edit2" (click)="openScrollableContent(updatePlaylist)"><span><i class="fas fa-edit"></i></span></a></td>-->
