@@ -11,6 +11,10 @@ import {User} from '../../model/user';
 import {UserService} from '../../service/user/user.service';
 import {Playlist} from '../../model/playList/playlist';
 import {LikePlaylistService} from '../../service/like/like-playlist.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {FormBuilder, FormGroup} from '@angular/forms';
+import {ICategory} from '../../model/category/ICategory';
+import {CategoryService} from '../../service/category/category.service';
 
 @Component({
   selector: 'app-playlist-details',
@@ -21,12 +25,16 @@ export class PlaylistDetailsComponent implements OnInit {
 
   songs: ISong[] = [];
   song: ISong;
+  // tslint:disable-next-line:variable-name
   pl_id: number;
   playlistCurrent: Playlist;
   userCurrent: UserToken;
   user: User;
   songLikes: ISong[] = [];
   playlistLikes: Playlist[] = [];
+  playUpForm: FormGroup;
+  myPlayLists: Playlist[] = [];
+  categories: ICategory[] = [];
 
   constructor(
     private songService: SongService,
@@ -36,11 +44,20 @@ export class PlaylistDetailsComponent implements OnInit {
     private likeSongService: LikeSongService,
     private authService: AuthService,
     private userService: UserService,
-    private likePlaylistService: LikePlaylistService
+    private likePlaylistService: LikePlaylistService,
+    private modalService: NgbModal,
+    private fb: FormBuilder,
+    private categoryService: CategoryService,
+    private playListService: PlayListService
   ) {
   }
 
   ngOnInit(): void {
+    this.playUpForm = this.fb.group({
+      name: [null],
+      category: [null],
+      description: [null]
+    });
     this.authService.currentUser.subscribe(value => {
       this.userCurrent = value;
       this.userService.getUserByUsername(value.username).subscribe(value1 => {
@@ -53,7 +70,7 @@ export class PlaylistDetailsComponent implements OnInit {
         });
       });
     });
-
+this.getAllCategory();
   }
 
   getPlaylistCurrent(userId) {
@@ -68,14 +85,18 @@ export class PlaylistDetailsComponent implements OnInit {
         });
         this.likePlaylistService.getAllLikeUser(userId).subscribe((data: any) => {
           this.playlistLikes = data;
-            for (let j = 0; j < this.playlistLikes.length; j++) {
-              if (this.playlistCurrent.id === this.playlistLikes[j].id) {
-                this.playlistCurrent.isLike = true;
-              }
+          for (let j = 0; j < this.playlistLikes.length; j++) {
+            if (this.playlistCurrent.id === this.playlistLikes[j].id) {
+              this.playlistCurrent.isLike = true;
             }
+          }
         });
       });
     });
+  }
+
+  openScrollableContent(longContent) {
+    this.modalService.open(longContent, {scrollable: true});
   }
 
   likePlaylist(p_id: any) {
@@ -120,5 +141,40 @@ export class PlaylistDetailsComponent implements OnInit {
       this.pl_id = param.get('id');
       this.getAllSongPlaylist(this.pl_id, this.user.id);
     });
+  }
+
+  getCategory(id: any) {
+    return this.categoryService.getCategory(id).toPromise();
+  }
+
+  async setNewPlaylistUp() {
+    const category_id = +this.playUpForm.value.category;
+    const category: ICategory = await this.getCategory(category_id);
+    const playList: Playlist = {
+      name: this.playUpForm.value.name,
+      description: this.playUpForm.value.description,
+      user: this.user
+    };
+    if (category != null) {
+      playList.category = category;
+    }
+    return playList;
+  }
+
+  async updateMyPlaylist(p_id: any) {
+    const playlist: Playlist = await this.setNewPlaylistUp();
+    this.playListService.updateMyPlaylist(p_id, this.user.id, playlist).subscribe(() => {
+      alert('update successful');
+      this.getMyPlaylists(this.user.id);
+      window.location.reload();
+    });
+  }
+  getMyPlaylists(id) {
+    this.playListService.getMyPlaylists(id).subscribe(value => this.myPlayLists = value);
+  }
+
+  // @ts-ignore
+  getAllCategory(): ICategory[] {
+    this.categoryService.getAllCategory().subscribe(value => this.categories = value);
   }
 }
