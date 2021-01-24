@@ -13,18 +13,18 @@
       <div style="background-color: #f1f3f4; border-radius: 50px">
         <table>
           <tr>
-            <td><button style="border: none;padding-left: 20px;border-radius: 25%;outline: none" (click)="backSong()"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+            <td><button style="border: none;margin-left: 20px;border-radius: 25%;outline: none" (click)="backSong()"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
             </td>
             <td>
               <iframe style="display: none" src="{{song.urlMp3}}" allow="autoplay" id="audio"></iframe>
-              <audio autoplay controls id="player" src="{{song.urlMp3}}" (ended)="nextSong()">
+              <audio autoplay controls id="player" src="{{song.urlMp3}}" (ended)="nextSong()" style="margin-top: 3px">
                 <source src="{{song.urlMp3}}" type="audio/ogg">
                 <source src="{{song.urlMp3}}" type="audio/mpeg">
                 Your browser does not support the audio element.
               </audio>
             </td>
             <td>
-              <button style="border: none;padding-right: 20px;border-radius: 25%;outline: none" (click)="nextSong()"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+              <button style="border: none;margin-right: 20px;border-radius: 25%;outline: none" (click)="nextSong()"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
             </td>
           </tr>
         </table>
