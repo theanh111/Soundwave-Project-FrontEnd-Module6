@@ -287,15 +287,17 @@
         <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
       </div>
 
-      <div *ngFor="let playlistUpdate of myPlayLists">
+      <div *ngFor="let playlistUpdate of myPlayLists; let j = index">
 
         <div class="queue-entry flex-space">
           <table style="margin-bottom: 20px;border-bottom: darkgray solid 1px" width="100%">
             <tr>
+              <td>{{j+1}}</td>
               <td><a [routerLink]="['/playlist', playlistUpdate.id]"><span>{{playlistUpdate.name}}</span></a></td>
               <td style="text-align: right"><a id="edit2" (click)="openScrollableContent(updatePlaylist)"><span><i class="fas fa-edit"></i></span></a></td>
             </tr>
             <tr >
+              <td></td>
               <td>{{playlistUpdate.category.name}}</td>
               <td style="text-align: right">{{playlistUpdate.views}} <i class="fa fa-headphones"></i></td>
             </tr>
@@ -313,6 +315,7 @@
                   <table style="color: #1a1e33;margin: auto" cellpadding="10px">
                     <tr><span>{{playlistUpdate.name}}</span></tr>
                     <tr>
+
                       <td><label class="col-form-label-lg">Name</label></td>
                       <td><input value="{{playlistUpdate.name}}" type="text" formControlName="name"></td>
                       <td><input type="text" value="{{playlistUpdate.name}}"></td>
