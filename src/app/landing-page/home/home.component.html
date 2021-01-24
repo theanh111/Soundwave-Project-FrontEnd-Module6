@@ -8,23 +8,27 @@
             <ng-container class="show-play-list" *ngFor="let songPl of playlist.song.slice(0,1)">
               <div style="margin-right: 35px" class="article-image test">
 
-                  <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
-                  <div  class="test2">
-                    <a [routerLink]="['/playlist', playlist.id]">
-                    <div class="text">{{playlist.name}}</div></a>
-                    <div style="margin-top: 50px" class=text>
-                      <a *ngIf="!playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="unlike2" class="fa fa-heart"
-                                                                                                                      aria-hidden="true"></i></a>
-                      <a *ngIf="playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="like2" class="fa fa-heart"
-                                                                                                       aria-hidden="true"></i></a>
-                      <br>
-                      <a role="button" (click)="openScrollableContent(addArraySong)"><i (click)="getAllSongNotInPlaylist(playlist.id)" id="add2" class="fa fa-plus"
-                                                                                       aria-hidden="true"></i></a>
-                      <br>
-                      <span>{{playlist.like}} <i class="fa fa-heart" style=" color: #FF0099;"
-                                                                    aria-hidden="true"></i></span>
-                    </div>
-                    </div>
+                <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
+                <div class="test2">
+                  <a [routerLink]="['/playlist', playlist.id]">
+                    <div class="text">{{playlist.name}}</div>
+                  </a>
+                  <div style="margin-top: 50px" class=text>
+                    <a *ngIf="!playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="unlike2"
+                                                                                                      class="fa fa-heart"
+                                                                                                      aria-hidden="true"></i></a>
+                    <a *ngIf="playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="like2"
+                                                                                                     class="fa fa-heart"
+                                                                                                     aria-hidden="true"></i></a>
+                    <br>
+                    <a role="button" (click)="openScrollableContent(addArraySong)"><i
+                      (click)="getAllSongNotInPlaylist(playlist.id)" id="add2" class="fa fa-plus"
+                      aria-hidden="true"></i></a>
+                    <br>
+                    <span>{{playlist.like}} <i class="fa fa-heart" style=" color: #FF0099;"
+                                               aria-hidden="true"></i></span>
+                  </div>
+                </div>
               </div>
               <div class="modal">
                 <div class="card card-deck">
@@ -35,12 +39,16 @@
                       </div>
                       <div *ngFor="let song of songsNotInPlaylist">
                         <span style="color: black">{{song.name}}</span>
-                        <a style="color: black" *ngIf="!song.isLiked" role="button" (click)="addSongToArrayBFAdd(playlist.id, song.id)">Cộng<i style="color: red;" id="add3" class="fa fa-plus"
-                                                                                          aria-hidden="true"></i></a>
-                        <a style="color: black;;" *ngIf="song.isLiked" role="button" (click)="subSongFromArrayAdd(playlist.id,song.id)">Trừ<i style="color: red;" id="add3" class="fa fa-plus"
-                                                                                                aria-hidden="true"></i></a>
+                        <a style="color: black" *ngIf="!song.isLiked" role="button"
+                           (click)="addSongToArrayBFAdd(playlist.id, song.id)">Cộng<i style="color: red;" id="add3"
+                                                                                      class="fa fa-plus"
+                                                                                      aria-hidden="true"></i></a>
+                        <a style="color: black;;" *ngIf="song.isLiked" role="button"
+                           (click)="subSongFromArrayAdd(playlist.id,song.id)">Trừ<i style="color: red;" id="add4"
+                                                                                    class="fa fa-plus"
+                                                                                    aria-hidden="true"></i></a>
                       </div>
-<!--                      <span style="color: black" *ngIf="messageAdd != ''">{{messageAdd}}</span>-->
+                      <!--                      <span style="color: black" *ngIf="messageAdd != ''">{{messageAdd}}</span>-->
                       <div class="modal-footer">
                         <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
                         </button>
@@ -65,7 +73,7 @@
       </div>
       <article class="latest-release">
         <div id="title">
-          <h1>Top Songs</h1>
+          <h1>Top Songs view</h1>
         </div>
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
@@ -106,7 +114,7 @@
             <div class="modal">
               <div class="card card-deck">
                 <ng-template #longContent let-modal>
-                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
+                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(s.id)">
                     <div class="modal-header">
                       <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
                     </div>
@@ -273,57 +281,66 @@
         <p class="article-body"></p>
       </article>
 
-      <article class="latest-language">
-        <h2 class="latest-language-title">Latest English</h2>
-        <div class="song-container flex-space">
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+      <article class="latest-release">
+        <div>
+          <h1>Top Songs Most Like</h1>
+        </div>
+        <div class="container">
+          <table cellpadding="15" style="align-content: center">
+            <tbody *ngFor="let song of topSongLikes.slice(0, 5); let i = index">
+            <tr>
+              <td class="imageSong">
+                <img class="test" style="border-radius: 5px;height: 80px; width: 80px; object-fit: cover"
+                     src="{{song.avatar}}" (click)="playThisSong(song.id)">
+              </td>
+              <td>
+                <a [routerLink]="['/songs/detail', song.id]"><h4>{{song.name}}</h4></a>
+              </td>
+              <td>
+                <p>{{song.singer.name}}</p>
+              </td>
+              <td>
+                <a *ngIf="!song.isLiked && userCurrent" (click)="likeSong(song.id)"><i  class="fa fa-heart"
+                                                                                       aria-hidden="true"></i></a>
+                <a *ngIf="song.isLiked && userCurrent" (click)="likeSong(song.id)"><i  class="fa fa-heart"
+                                                                                      aria-hidden="true"></i></a>
+              </td>
+              <td>
+                <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                                                                                 aria-hidden="true"></i></a>
+              </td>
+              <td>
+                <h6 style="width: 50px">{{song.views}} <i class="fa fa-headphones" aria-hidden="true"></i></h6>
+                <h6 style="width: 50px">{{song.like}}  <i class="fa fa-heart" style=" color: #FF0099;"
+                                                          aria-hidden="true"></i></h6>
+              </td>
+            </tr>
+            <div class="modal">
+              <div class="card card-deck">
+                <ng-template #longContent let-modal>
+                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addSongToPlaylist(song.id)">
+                    <div class="modal-header">
+                      <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                    </div>
+                    <div>
+                      <select class="input-group-lg" formControlName="playlist">
+                        <option *ngFor="let pl of myPlayLists" [value]="pl.id">
+                          {{pl.name}}
+                        </option>
+                      </select>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
+                      </button>
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </div>
             </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
+            </tbody>
+          </table>
         </div>
       </article>
       <article class="latest-language">
