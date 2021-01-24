@@ -3,6 +3,13 @@
     <main class="col-lg-12 col-md-6">
       <div class="row">
         <div class="col-lg-12">
+          <article class="article-featured flex-space" *ngFor="let playlist of allPlaylist"
+                   style="display: inline-block">
+            <a [routerLink]="['/playlist', playlist.id]">
+              <h3>{{playlist.name}}</h3></a>
+            <p class="article-info"></p>
+            <p class="article-body"></p>
+          </article>
           <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)"
                    style="display: inline-block">
             <ng-container class="show-play-list" *ngFor="let songPl of playlist.song.slice(0,1)">
@@ -21,7 +28,7 @@
                                                                                                      class="fa fa-heart"
                                                                                                      aria-hidden="true"></i></a>
                     <br>
-                    <a role="button" (click)="openScrollableContent(addArraySong)"><i
+                    <a *ngIf="userCurrent" role="button" (click)="openScrollableContent(addArraySong)"><i
                       (click)="getAllSongNotInPlaylist(playlist.id)" id="add2" class="fa fa-plus"
                       aria-hidden="true"></i></a>
                     <br>
@@ -44,7 +51,7 @@
                                                                                       class="fa fa-plus"
                                                                                       aria-hidden="true"></i></a>
                         <a style="color: black;;" *ngIf="song.isLiked" role="button"
-                           (click)="subSongFromArrayAdd(playlist.id,song.id)">Trừ<i style="color: red;" id="add4"
+                           (click)="subSongFromArrayAdd(playlist.id,song.id)">Trừ<i style="color: red;" id="add7"
                                                                                     class="fa fa-plus"
                                                                                     aria-hidden="true"></i></a>
                       </div>
@@ -194,7 +201,7 @@
                                                                                       aria-hidden="true"></i></a>
               </td>
               <td>
-                <a role="button" (click)="openScrollableContent(longContent)"><i id="add" class="fa fa-plus"
+                <a role="button" (click)="openScrollableContent(longContent)"><i id="add4" class="fa fa-plus"
                                                                                  aria-hidden="true"></i></a>
               </td>
               <td>
