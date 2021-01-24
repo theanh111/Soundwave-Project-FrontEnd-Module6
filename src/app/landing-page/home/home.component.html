@@ -4,18 +4,17 @@
       <div class="row">
         <div class="col-lg-12">
           <article >
-            <div *ngIf="!playlistsMostView.length==0" id="title1">
-              <h1>Most Listen Playlists</h1>
-            </div>
+<!--            <div *ngIf="!playlistsMostView.length == 0" id="title1">-->
+<!--              <h1>Most Listen Playlists</h1>-->
+<!--            </div>-->
             <div class="article-featured flex-space" *ngFor="let plm of playlistsMostView.slice(0,3)"
                  style="display: inline-block">
             <ng-container class="show-play-list" *ngFor="let songPl of plm.song.slice(0,1)">
               <div style="margin-right: 35px" class="article-image test">
-
                 <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
                 <div class="test2">
                   <a [routerLink]="['/playlist', plm.id]">
-                    <div class="text">{{plm.name}}</div>
+                    <div class="text" (click)="countViewPlaylist(plm.id)">{{plm.name}}</div>
                   </a>
                   <div style="margin-top: 50px" class=text>
                     <a *ngIf="!plm.isLike && userCurrent" (click)="likePlaylist(plm.id)"><i id="unlike2"
@@ -168,9 +167,9 @@
         </div>
       </article>
       <article >
-        <div *ngIf="!playlistsNewest.length==0" id="title2">
-          <h1>Your Playlists</h1>
-        </div>
+<!--        <div *ngIf="playlistsNewest.length != 0" id="title2">-->
+<!--          <h1>Your Playlists</h1>-->
+<!--        </div>-->
         <div class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)"
              style="display: inline-block">
           <ng-container class="show-play-list" *ngFor="let songPl of playlist.song.slice(0,1)">
@@ -179,7 +178,7 @@
               <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
               <div class="test2">
                 <a [routerLink]="['/playlist', playlist.id]">
-                  <div class="text">{{playlist.name}}</div>
+                  <div class="text" (click)="countViewPlaylist(playlist.id)">{{playlist.name}}</div>
                 </a>
                 <div style="margin-top: 50px" class=text>
                   <a *ngIf="!playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="unlike3"
