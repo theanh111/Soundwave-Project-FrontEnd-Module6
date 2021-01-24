@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
   playlistLikes: Playlist[] = [];
   playList: Playlist;
   playLists: Playlist[] = [];
+  allPlaylist: Playlist[] = [];
   allPlayLists: Playlist[] = [];
   playlistsNewest: Playlist[] = [];
   songPlaylistForm: FormGroup = this.fb.group({
@@ -89,6 +90,7 @@ export class HomeComponent implements OnInit {
     });
     this.getAllPlaylist();
     this.getTopSongLikes();
+    this.getAllPlaylistClient();
 
 
     // console.log(this.songs);
@@ -270,6 +272,7 @@ export class HomeComponent implements OnInit {
     }
     alert("add to playlist success");
   }
+
   getTopSongLikes() {
     this.likeService.getSongMostLike().subscribe(value => {
       this.topSongLikes = value;
@@ -289,5 +292,8 @@ export class HomeComponent implements OnInit {
       //   console.log(this.songLikes);
       // });
     })
+  }
+  getAllPlaylistClient() {
+    this.playListService.getAllPlaylist().subscribe(value => this.allPlaylist = value);
   }
 }
