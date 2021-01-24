@@ -49,8 +49,8 @@
 <!--                  <span >Confirm password is required.</span>-->
 <!--                </div>-->
                 <div class="alert alert-danger mt-1" role="alert"
-                     *ngIf="comparePassword(formRegister.value.password, formRegister.value.confirmPassword)
-                      && formRegister.get('confirmPassword')!.invalid">
+                     *ngIf="comparePassword(formRegister.get('password').value, formRegister.get('confirmPassword').value)
+                      && formRegister.get('confirmPassword')!.touched">
                   <span >Password must match .</span></div>
                 <div class="group"><label for="phonenumber" class="label">Phone Number</label>
                   <input id="phonenumber"

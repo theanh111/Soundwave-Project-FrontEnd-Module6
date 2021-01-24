@@ -3,36 +3,32 @@
     <main class="col-lg-12 col-md-6">
       <div class="row">
         <div class="col-lg-12">
-<!--          <article class="article-featured flex-space" *ngFor="let playlist of allPlaylist"-->
-<!--                   style="display: inline-block">-->
-<!--            <a [routerLink]="['/playlist', playlist.id]">-->
-<!--              <h3>{{playlist.name}}</h3></a>-->
-<!--            <p class="article-info"></p>-->
-<!--            <p class="article-body"></p>-->
-<!--          </article>-->
-          <article class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)"
-                   style="display: inline-block">
-            <ng-container class="show-play-list" *ngFor="let songPl of playlist.song.slice(0,1)">
+          <article >
+            <div *ngIf="!playlistsMostView.length==0" id="title1">
+              <h1>Most Listen Playlists</h1>
+            </div>
+            <div class="article-featured flex-space" *ngFor="let plm of playlistsMostView.slice(0,3)"
+                 style="display: inline-block">
+            <ng-container class="show-play-list" *ngFor="let songPl of plm.song.slice(0,1)">
               <div style="margin-right: 35px" class="article-image test">
 
                 <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
                 <div class="test2">
-                  <a [routerLink]="['/playlist', playlist.id]">
-                    <div class="text">{{playlist.name}}</div>
+                  <a [routerLink]="['/playlist', plm.id]">
+                    <div class="text">{{plm.name}}</div>
                   </a>
                   <div style="margin-top: 50px" class=text>
-                    <a *ngIf="!playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="unlike2"
+                    <a *ngIf="!plm.isLike && userCurrent" (click)="likePlaylist(plm.id)"><i id="unlike2"
                                                                                                       class="fa fa-heart"
                                                                                                       aria-hidden="true"></i></a>
-                    <a *ngIf="playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="like2"
+                    <a *ngIf="plm.isLike && userCurrent" (click)="likePlaylist(plm.id)"><i id="like2"
                                                                                                      class="fa fa-heart"
                                                                                                      aria-hidden="true"></i></a>
-                    <br>
-                    <a *ngIf="userCurrent" role="button" (click)="openScrollableContent(addArraySong)"><i
-                      (click)="getAllSongNotInPlaylist(playlist.id)" id="add2" class="fa fa-plus"
+                    <a style="margin-left: 10px" *ngIf="userCurrent" role="button" (click)="openScrollableContent(addArraySong)"><i
+                      (click)="getAllSongNotInPlaylist(plm.id)" id="add6" class="fa fa-plus"
                       aria-hidden="true"></i></a>
                     <br>
-                    <span>{{playlist.like}} <i class="fa fa-heart" style=" color: #FF0099;"
+                    <span>{{plm.like}} <i class="fa fa-heart" style=" color: #FF0099;"
                                                aria-hidden="true"></i></span>
                   </div>
                 </div>
@@ -40,22 +36,24 @@
               <div class="modal">
                 <div class="card card-deck">
                   <ng-template #addArraySong let-modal>
-                    <form [formGroup]="songPlaylistForm" (ngSubmit)="addArraySongToPlaylist(playlist.id)">
+                    <form [formGroup]="songPlaylistForm" (ngSubmit)="addArraySongToPlaylist(plm.id)">
                       <div class="modal-header">
-                        <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
+                        <h4 style="color: #1b1b1b" class="modal-title">Pick song to add your playlist:</h4>
                       </div>
-                      <div *ngFor="let song of songsNotInPlaylist">
-                        <span style="color: black">{{song.name}}</span>
-                        <a style="color: black" *ngIf="!song.isLiked" role="button"
-                           (click)="addSongToArrayBFAdd(playlist.id, song.id)">Cộng<i style="color: red;" id="add3"
-                                                                                      class="fa fa-plus"
-                                                                                      aria-hidden="true"></i></a>
-                        <a style="color: black;;" *ngIf="song.isLiked" role="button"
-                           (click)="subSongFromArrayAdd(playlist.id,song.id)">Trừ<i style="color: red;" id="add7"
-                                                                                    class="fa fa-plus"
-                                                                                    aria-hidden="true"></i></a>
-                      </div>
-                      <!--                      <span style="color: black" *ngIf="messageAdd != ''">{{messageAdd}}</span>-->
+                      <table width="100%" cellpadding="10px">
+                        <tr *ngFor="let song of songsNotInPlaylist">
+                          <td style="color: black; width: 80%">{{song.name}}</td>
+                          <td><a style="color: black" *ngIf="!song.isLiked" role="button"
+                                 (click)="addSongToArrayBFAdd(plm.id, song.id)"><i style="color: red;" id="add3"
+                                                                                            class="fa fa-plus"
+                                                                                            aria-hidden="true"></i></a>
+                            <a style="color: black;;" *ngIf="song.isLiked" role="button"
+                               (click)="subSongFromArrayAdd(plm.id,song.id)"><i style="color: red;" id="add4"
+                                                                                        class="fa fa-minus"
+                                                                                        aria-hidden="true"></i></a></td>
+                        </tr>
+                      </table>
+
                       <div class="modal-footer">
                         <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
                         </button>
@@ -67,20 +65,14 @@
                 </div>
               </div>
             </ng-container>
-            <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
-            <!--  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg"></a>-->
-            <!--        </div>-->
-            <!--        <div class="article-image"><a href="playlist.html"><img style="max-width: 100%;-->
-            <!--  display: block;" src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg"></a>-->
-            <!--        </div>-->
-            <p class="article-info"></p>
-            <p class="article-body"></p>
+            </div>
+
           </article>
         </div>
       </div>
       <article class="latest-release">
         <div id="title">
-          <h1>Top Songs view</h1>
+          <h1>Most Listen</h1>
         </div>
         <div class="container">
           <table id="myTable" cellpadding="15" style="align-content: center">
@@ -125,8 +117,8 @@
                     <div class="modal-header">
                       <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
                     </div>
-                    <div>
-                      <select class="input-group-lg" formControlName="playlist">
+                    <div style="text-align: center">
+                      <select style="height: 30px;width: 90%; margin: 10px" class="input-group-lg" formControlName="playlist">
                         <option *ngFor="let pl of myPlayLists" [value]="pl.id">
                           {{pl.name}}
                         </option>
@@ -155,7 +147,7 @@
             <p>Suni Hạ Linh</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
   display: block;"
-                                                 src="https://thenewsmexico.com/wp-content/uploads/2018/11/image2-6.jpg">
+                                                 src="data:image/jpeg;base64,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">
             <p>Erik</p></div>
           <div class="popular-artist-entry"><img style="width: 100px; height: 100px; object-fit: cover;
           display: block;"
@@ -174,6 +166,71 @@
                                                   src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
             <p>Drake</p></div>
         </div>
+      </article>
+      <article >
+        <div *ngIf="!playlistsNewest.length==0" id="title2">
+          <h1>Your Playlists</h1>
+        </div>
+        <div class="article-featured flex-space" *ngFor="let playlist of playlistsNewest.slice(0,3)"
+             style="display: inline-block">
+          <ng-container class="show-play-list" *ngFor="let songPl of playlist.song.slice(0,1)">
+            <div style="margin-right: 35px" class="article-image test">
+
+              <img class="imagek" style="width: 200px;height: 250px; object-fit: cover" src="{{songPl.avatar}}">
+              <div class="test2">
+                <a [routerLink]="['/playlist', playlist.id]">
+                  <div class="text">{{playlist.name}}</div>
+                </a>
+                <div style="margin-top: 50px" class=text>
+                  <a *ngIf="!playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="unlike3"
+                                                                                                    class="fa fa-heart"
+                                                                                                    aria-hidden="true"></i></a>
+                  <a *ngIf="playlist.isLike && userCurrent" (click)="likePlaylist(playlist.id)"><i id="like3"
+                                                                                                   class="fa fa-heart"
+                                                                                                   aria-hidden="true"></i></a>
+                  <a style="margin-left: 10px" *ngIf="userCurrent" role="button" (click)="openScrollableContent(addArraySong)"><i
+                    (click)="getAllSongNotInPlaylist(playlist.id)" id="add8" class="fa fa-plus"
+                    aria-hidden="true"></i></a>
+                  <br>
+                  <span>{{playlist.like}} <i class="fa fa-heart" style=" color: #FF0099;"
+                                             aria-hidden="true"></i></span>
+                </div>
+              </div>
+            </div>
+            <div class="modal">
+              <div class="card card-deck">
+                <ng-template #addArraySong let-modal>
+                  <form [formGroup]="songPlaylistForm" (ngSubmit)="addArraySongToPlaylist(playlist.id)">
+                    <div class="modal-header">
+                      <h4 style="color: #1b1b1b" class="modal-title">Pick song to add your playlist:</h4>
+                    </div>
+                    <table width="100%" cellpadding="10px">
+                      <tr *ngFor="let song of songsNotInPlaylist">
+                        <td style="color: black; width: 80%">{{song.name}}</td>
+                        <td><a style="color: black" *ngIf="!song.isLiked" role="button"
+                               (click)="addSongToArrayBFAdd(playlist.id, song.id)"><i style="color: red;" id="add7"
+                                                                                      class="fa fa-plus"
+                                                                                      aria-hidden="true"></i></a>
+                          <a style="color: black;;" *ngIf="song.isLiked" role="button"
+                             (click)="subSongFromArrayAdd(playlist.id,song.id)"><i style="color: red;" id="add5"
+                                                                                   class="fa fa-minus"
+                                                                                   aria-hidden="true"></i></a></td>
+                      </tr>
+                    </table>
+
+                    <div class="modal-footer">
+                      <button type="submit" class="btn-danger" (click)="modal.close('Close click')">Add to playlist
+                      </button>
+                      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Close click')">Close
+                      </button>
+                    </div>
+                  </form>
+                </ng-template>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
       </article>
 
       <article class="latest-release">
@@ -201,7 +258,7 @@
                                                                                       aria-hidden="true"></i></a>
               </td>
               <td>
-                <a role="button" (click)="openScrollableContent(longContent)"><i id="add4" class="fa fa-plus"
+                <a role="button" (click)="openScrollableContent(longContent)"><i id="add2" class="fa fa-plus"
                                                                                  aria-hidden="true"></i></a>
               </td>
               <td>
@@ -217,8 +274,8 @@
                     <div class="modal-header">
                       <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
                     </div>
-                    <div>
-                      <select class="input-group-lg" formControlName="playlist">
+                    <div style="text-align: center">
+                      <select style="height: 30px;width: 90%; margin: 10px" class="input-group-lg" formControlName="playlist">
                         <option *ngFor="let pl of myPlayLists" [value]="pl.id">
                           {{pl.name}}
                         </option>
@@ -238,59 +295,47 @@
           </table>
         </div>
       </article>
-
+      <div id="title3">
+        <h1>Popular Categories</h1>
+      </div>
       <article class="stations flex-space">
-        <div class="stations-entry"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-        </div>
-        <div class="stations-entry"><img style="max-width: 100%;
-        display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+
+        <div class="stations-entry"><img style="width: 93px;height: 93px; object-fit: cover;
+  display: block;" src="https://www.eharmony.co.uk/dating-advice/wp-content/uploads/2018/04/whatislove-960x640.jpg">
           <div class="stations-centered">Love</div>
         </div>
-        <div class="stations-entry"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-entry"><img style="width: 93px;height: 93px; object-fit: cover;
+        display: block;" src="https://i.ytimg.com/vi/Jllu94-8PxI/maxresdefault.jpg">
+          <div class="stations-centered">Sad</div>
+        </div>
+        <div class="stations-entry"><img style="width: 93px;height: 93px; object-fit: cover;
+  display: block;" src="https://www.muralswallpaper.com/app/uploads/retro-surf-mural-wallpaper-Plain.jpg">
           <div class="stations-centered">Retro</div>
         </div>
-        <div class="stations-entry"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-entry"><img style="width: 93px;height: 93px; object-fit: cover;
+  display: block;" src="https://i.ytimg.com/vi/BMXb42rDwAA/maxresdefault.jpg">
           <div class="stations-centered">Chill</div>
         </div>
-        <div class="stations-entry"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+        <div class="stations-entry"><img style="width: 93px;height: 93px; object-fit: cover;
+  display: block;" src="https://media1.popsugar-assets.com/files/thumbor/WoXGvbj4le-XQgSlRfhSfbTAoOA/862x0:5692x4830/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2019/07/16/731/n/1922729/85d1ce265d2dfc639070a3.22857928_/i/25-Minute-Total-Body-Strength-Workout.jpg">
           <div class="stations-centered">Workout</div>
         </div>
-        <div class="stations-entry display-none"><img style="max-width: 100%;
+        <div class="stations-entry display-none"><img style="width: 93px;height: 93px; object-fit: cover;
   display: block;"
-                                                      src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                                      src="https://farm8.staticflickr.com/7419/11085737985_ab1a5f66d7.jpg">
           <div class="stations-centered">Rock</div>
         </div>
-        <div class="stations-entry display-none"><img style="max-width: 100%;
+        <div class="stations-entry display-none"><img style="width: 93px;height: 93px; object-fit: cover;
   display: block;"
-                                                      src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
+                                                      src="https://static01.nyt.com/images/2018/12/30/arts/30yearend-pop2/merlin_147857643_8e0c5c65-4549-4946-b51d-49425b9dcf24-articleLarge.jpg?quality=75&auto=webp&disable=upscale">
           <div class="stations-centered">Pop</div>
         </div>
       </article>
 
-      <article class="middle-featured article-featured flex-space">
-        <div class="article-image"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="stations-centered mid-featured-font">Party</div>
-        </div>
-        <div class="article-image"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="mid-featured-font stations-centered">Electronic</div>
-        </div>
-        <div class="article-image"><img style="max-width: 100%;
-  display: block;" src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-          <div class="mid-featured-font stations-centered">Road Trip</div>
-        </div>
-        <p class="article-info"></p>
-        <p class="article-body"></p>
-      </article>
 
       <article class="latest-release">
         <div>
-          <h1>Top Songs Most Like</h1>
+          <h1>Top Songs</h1>
         </div>
         <div class="container">
           <table cellpadding="15" style="align-content: center">
@@ -329,8 +374,8 @@
                     <div class="modal-header">
                       <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
                     </div>
-                    <div>
-                      <select class="input-group-lg" formControlName="playlist">
+                    <div style="text-align: center">
+                      <select style="height: 30px;width: 90%; margin: 10px" class="input-group-lg" formControlName="playlist">
                         <option *ngFor="let pl of myPlayLists" [value]="pl.id">
                           {{pl.name}}
                         </option>
@@ -350,59 +395,29 @@
           </table>
         </div>
       </article>
-      <article class="latest-language">
-        <h2 class="latest-language-title">Latest Hindi</h2>
-        <div class="song-container flex-space">
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/f4/a0/8e/f4a08e93ac7cd83ee6cdd7719e54db9a.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-          <div class="language-song-entry display-none">
-            <div class="language-image"><img style="max-width: 100%;
-  display: block;"
-                                             src="https://i.pinimg.com/736x/ee/64/fa/ee64fad515bf0b8a03ffb21e964eab61.jpg">
-            </div>
-            <p><b>Bad Guy</b></p>
-            <p class="language-sub latest-release-sub">MAR 29, 2019</p>
-          </div>
-        </div>
-      </article>
+<!--      <aside class="playlist-aside">-->
+<!--        <div class="recently-played-title similar-artists-title flex-space">-->
+<!--          <h5>Your Playlist</h5>-->
+<!--          <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>-->
+<!--        </div>-->
+<!--        <table class="article-featured flex-space" *ngFor="let playlistside of allPlaylist,let k = index"-->
+<!--                 style="display: inline-block; border-bottom: solid gray 1px">-->
+<!--          <tr>-->
+<!--            <td>{{k+1}}</td>-->
+<!--            <td><a [routerLink]="['/playlist', playlistside.id]">-->
+<!--              <h3>{{playlistside.name}}</h3></a></td>-->
+<!--            <td>{{playlistside.views}} <i class="fa fa-headphones"></i></td>-->
+<!--          </tr>-->
+<!--          <tr>-->
+<!--            <td></td>-->
+<!--            <td>{{playlistside.category.name}}</td>-->
+<!--            <td>{{playlistside.like}} <i class="fa fa-heart"></i></td>-->
+<!--          </tr>-->
+
+
+<!--        </table>-->
+<!--      </aside>-->
+
     </main>
     <app-playing-songs></app-playing-songs>
   </div>

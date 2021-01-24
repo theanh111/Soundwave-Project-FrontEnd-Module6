@@ -18,6 +18,9 @@ export class PlayListService {
   getAllPlaylist(): Observable<any> {
     return this.httpClient.get<Playlist>(URL_API + `/playlists`);
   }
+  getAllPlaylistByView(): Observable<any> {
+    return this.httpClient.get<Playlist>(URL_API + `/playlists/mostviews`);
+  }
   getOnePlaylist(id: number): Observable<any> {
     return this.httpClient.get<Playlist>(URL_API + `/playlists/${id}`);
   }

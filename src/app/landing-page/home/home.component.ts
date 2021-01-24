@@ -44,6 +44,7 @@ export class HomeComponent implements OnInit {
   allPlaylist: Playlist[] = [];
   allPlayLists: Playlist[] = [];
   playlistsNewest: Playlist[] = [];
+  playlistsMostView: Playlist[] = [];
   songPlaylistForm: FormGroup = this.fb.group({
     song: new FormControl(),
     playlist: new FormControl()
@@ -83,6 +84,7 @@ export class HomeComponent implements OnInit {
         this.getTopSong(this.user.id);
         this.getMyPlaylists(this.user.id);
         this.getAllPlaylistNewest(this.user.id);
+        this.getAllPlaylistMostView(this.user.id);
 
         // console.log(this.songLikes);
 
@@ -216,6 +218,28 @@ export class HomeComponent implements OnInit {
           for (let j = 0; j < this.playlistLikes.length; j++) {
             if (this.playlistsNewest[i].id === this.playlistLikes[j].id) {
               this.playlistsNewest[i].isLike = true;
+            }
+          }
+        }
+      });
+    });
+  }
+  getAllPlaylistMostView(userId: any) {
+    this.playListService.getAllPlaylistByView().subscribe((data: any) => {
+      this.playlistsMostView = data;
+      this.playlistsMostView.map(async playlist => {
+        playlist.isLike = false;
+        playlist.song = await this.getSongByPlaylist(playlist.id);
+        this.likePlaylistService.getLikePlaylist(playlist.id).subscribe(value => {
+          playlist.like = value;
+        });
+      });
+      this.likePlaylistService.getAllLikeUser(userId).subscribe((data: any) => {
+        this.playlistLikes = data;
+        for (let i = 0; i < this.playlistsMostView.length; i++) {
+          for (let j = 0; j < this.playlistLikes.length; j++) {
+            if (this.playlistsMostView[i].id === this.playlistLikes[j].id) {
+              this.playlistsMostView[i].isLike = true;
             }
           }
         }

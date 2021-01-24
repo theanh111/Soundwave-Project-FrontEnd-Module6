@@ -77,8 +77,8 @@
               <div class="modal-header">
                 <h4 style="color: #1b1b1b" class="modal-title">Pick your playlist to add song:</h4>
               </div>
-              <div>
-                <select class="input-group-lg" formControlName="playlist">
+              <div style="text-align: center">
+                <select style="height: 30px;width: 90%; margin: 10px" class="input-group-lg" formControlName="playlist">
                   <option *ngFor="let pl of myPlayLists" [value]="pl.id">
                     {{pl.name}}
                   </option>
@@ -193,64 +193,65 @@
         <a class="display-none-960" href=""><p class="similar-artists-sub">View All</p></a>
       </div>
 
-      <div *ngFor="let playlistUpdate of myPlayLists">
+      <div *ngFor="let playlistUpdate of myPlayLists; let j = index">
 
         <div class="queue-entry flex-space">
           <table style="margin-bottom: 20px;border-bottom: darkgray solid 1px" width="100%">
             <tr>
-              <td></td>
+              <td>{{j+1}}</td>
               <td><a [routerLink]="['/playlist', playlistUpdate.id]"><span>{{playlistUpdate.name}}</span></a></td>
-              <td style="text-align: right"><a id="edit2" (click)="openScrollableContent(updatePlaylist)"><span><i class="fas fa-edit"></i></span></a></td>
+              <td style="text-align: right"><a role="button" (click)="openScrollableContent(addArraySong)"><i (click)="getAllSongNotInPlaylist(playlistUpdate.id)" id="add2" class="fa fa-plus"
+                                                                                    aria-hidden="true"></i></a></td>
+<!--              <td style="text-align: right"><a id="edit2" (click)="openScrollableContent(updatePlaylist)"><span><i class="fas fa-edit"></i></span></a></td>-->
             </tr>
             <tr >
-              <td><a role="button" (click)="openScrollableContent(addArraySong)"><i (click)="getAllSongNotInPlaylist(playlistUpdate.id)" id="add2" class="fa fa-plus"
-                                                                                    aria-hidden="true"></i></a></td>
+              <td></td>
               <td>{{playlistUpdate.category.name}}</td>
               <td style="text-align: right">{{playlistUpdate.views}} <i class="fa fa-headphones"></i></td>
             </tr>
           </table>
         </div>
-        <div class="modal">
-          <div class="card card-deck">
-            <ng-template #updatePlaylist let-modal>
-              <div style="background-color: #1a1e33" class="modal-header">
-                <h4 class="modal-title">Update a new playlist</h4>
-              </div>
-              <form [formGroup]="playUpForm" (ngSubmit)="updateMyPlaylist(playlistUpdate.id)">
-                <span>{{playlistUpdate.name}}</span>
-                <div style=" border-radius: 10px; color:#1a1e33">
-                  <table style="color: #1a1e33;margin: auto" cellpadding="10px">
-                    <tr><span>{{playlistUpdate.name}}</span></tr>
-                    <tr>
-                      <td><label class="col-form-label-lg">Name</label></td>
-                      <td><input value="{{playlistUpdate.name}}" type="text" formControlName="name"></td>
-                      <td><input type="text" value="{{playlistUpdate.name}}"></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-form-label-lg">Description</label></td>
-                      <td><input [value]="playlistUpdate.description" type="text" formControlName="description"></td>
-                    </tr>
-                    <tr>
-                      <td><label class="col-form-label-lg">Category</label></td>
-                      <td>
-                        <select style="width: 100%;height: 30px" class="input-group-lg" formControlName="category">
-                          <option *ngFor="let c of categories" [value]="c.id">
-                            {{c.name}}
-                          </option>
-                        </select>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-outline-success" (click)="modal.close('Close click')">Update
-                  </button>
-                  <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close</button>
-                </div>
-              </form>
-            </ng-template>
-          </div>
-        </div>
+<!--        <div class="modal">-->
+<!--          <div class="card card-deck">-->
+<!--            <ng-template #updatePlaylist let-modal>-->
+<!--              <div style="background-color: #1a1e33" class="modal-header">-->
+<!--                <h4 class="modal-title">Update a new playlist</h4>-->
+<!--              </div>-->
+<!--              <form [formGroup]="playUpForm" (ngSubmit)="updateMyPlaylist(playlistUpdate.id)">-->
+<!--                <span>{{playlistUpdate.name}}</span>-->
+<!--                <div style=" border-radius: 10px; color:#1a1e33">-->
+<!--                  <table style="color: #1a1e33;margin: auto" cellpadding="10px">-->
+<!--                    <tr><span>{{playlistUpdate.name}}</span></tr>-->
+<!--                    <tr>-->
+<!--                      <td><label class="col-form-label-lg">Name</label></td>-->
+<!--                      <td><input value="{{playlistUpdate.name}}" type="text" formControlName="name"></td>-->
+<!--                      <td><input type="text" value="{{playlistUpdate.name}}"></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td><label class="col-form-label-lg">Description</label></td>-->
+<!--                      <td><input [value]="playlistUpdate.description" type="text" formControlName="description"></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                      <td><label class="col-form-label-lg">Category</label></td>-->
+<!--                      <td>-->
+<!--                        <select style="width: 100%;height: 30px" class="input-group-lg" formControlName="category">-->
+<!--                          <option *ngFor="let c of categories" [value]="c.id">-->
+<!--                            {{c.name}}-->
+<!--                          </option>-->
+<!--                        </select>-->
+<!--                      </td>-->
+<!--                    </tr>-->
+<!--                  </table>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                  <button type="submit" class="btn btn-outline-success" (click)="modal.close('Close click')">Update-->
+<!--                  </button>-->
+<!--                  <button type="button" class="btn btn-outline-danger" (click)="modal.close('Close click')">Close</button>-->
+<!--                </div>-->
+<!--              </form>-->
+<!--            </ng-template>-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="modal">
           <div class="card card-deck">
             <ng-template #addArraySong let-modal>
