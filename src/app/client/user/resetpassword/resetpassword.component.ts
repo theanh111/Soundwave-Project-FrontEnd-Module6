@@ -44,10 +44,10 @@ export class ResetpasswordComponent implements OnInit {
       if (value && (this.resetPassForm.value.password !== this.resetPassForm.value.newpassword)) {
         this.userService.resetPassword(this.user.username, this.resetPassForm.value.newpassword).subscribe();
         this.authService.logout();
-        alert('Reset Password Successfully! Please Log In!');
+        alert('Change password successfully! Please Log In!');
         this.router.navigate(['/login']);
       } else {
-        alert('Xin kiểm tra lại mật khẩu cũ và Mật khẩu mới không được trùng mật khẩu cũ!');
+        alert('Please check again, you cant not use your old password!');
       }
     });
   }

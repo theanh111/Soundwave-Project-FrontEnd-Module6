@@ -164,7 +164,7 @@ this.getAllCategory();
   async updateMyPlaylist(p_id: any) {
     const playlist: Playlist = await this.setNewPlaylistUp();
     this.playListService.updateMyPlaylist(p_id, this.user.id, playlist).subscribe(() => {
-      alert('update successful');
+      alert('Update successful');
       this.getMyPlaylists(this.user.id);
       window.location.reload();
     });

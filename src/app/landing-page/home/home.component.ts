@@ -193,10 +193,10 @@ export class HomeComponent implements OnInit {
     let p_id = +this.songPlaylistForm.get('playlist').value;
     let checkSong: boolean = await this.checkSongPlaylist(p_id, newSong);
     if (checkSong) {
-      this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert('add to playlist ok!'));
+      this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert('Add to playlist successfully!'));
     }
     else {
-      alert('this song had in this playlist');
+      alert('This song already in this playlist');
     }
   }
   getAllPlaylist() {
@@ -297,7 +297,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.arraySong.length; i++) {
       this.songPlaylistService.addSongToPlaylist(p_id, this.arraySong[i]).subscribe(() => console.log());
     }
-    alert("add to playlist success");
+    alert("Add to playlist successfully");
   }
 
   getTopSongLikes() {

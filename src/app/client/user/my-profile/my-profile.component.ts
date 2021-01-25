@@ -190,7 +190,7 @@ export class MyProfileComponent implements OnInit {
   async updateMyPlaylist(p_id: any) {
     const playlist: Playlist = await this.setNewPlaylistUp();
     this.playListService.updateMyPlaylist(p_id, this.user.id , playlist).subscribe(()=>{
-      alert("update successful");
+      alert("Update successfully");
       this.getMyPlaylists(this.user.id);
     });
   }
@@ -200,9 +200,9 @@ export class MyProfileComponent implements OnInit {
     let p_id = +this.songPlaylistForm.get('playlist').value;
     let checkSong: boolean = await this.checkSongPlaylist(p_id, newSong);
     if (checkSong) {
-      this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert('add to playlist ok!'));
+      this.songPlaylistService.addSongToPlaylist(p_id, newSong).subscribe(() => alert('Add to playlist successfully'));
     } else {
-      alert('this song had in this playlist');
+      alert('This song already in this playlist');
     }
   }
 
@@ -256,7 +256,7 @@ export class MyProfileComponent implements OnInit {
     for (let i = 0; i < this.arraySong.length; i++) {
       this.songPlaylistService.addSongToPlaylist(p_id, this.arraySong[i]).subscribe(() => console.log());
     }
-    alert("add to playlist success");
+    alert("Add to playlist successful");
   }
   countViewPlaylist(id: any) {
     this.playListService.countViewPlaylist(id).subscribe(() => console.log());
