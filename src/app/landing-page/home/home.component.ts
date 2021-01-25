@@ -15,6 +15,7 @@ import {PlayListService} from '../../service/playList/play-list.service';
 import {Playlist} from '../../model/playList/playlist';
 import {LikePlaylistService} from '../../service/like/like-playlist.service';
 import {element} from 'protractor';
+import {Router} from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -60,7 +61,8 @@ export class HomeComponent implements OnInit {
     private categoryService: CategoryService,
     private songPlaylistService: SongPlaylistService,
     private playListService: PlayListService,
-    private likePlaylistService: LikePlaylistService
+    private likePlaylistService: LikePlaylistService,
+    private router: Router
   ) {
   }
 
@@ -305,23 +307,31 @@ export class HomeComponent implements OnInit {
         song.isLiked = false;
         this.likeService.getLikeSong(song.id).subscribe(value => song.like = value);
       });
-      // this.likeService.getAllLikeUser(user_id).subscribe((data: any) => {
-      //   this.songLikes = data;
-      //   for (let i = 0; i < this.songs.length; i++) {
-      //     for (let j = 0; j < this.songLikes.length; j++) {
-      //       if (this.songs[i].id === this.songLikes[j].id) {
-      //         this.songs[i].isLiked = true;
-      //       }
-      //     }
-      //   }
-      //   console.log(this.songLikes);
-      // });
-    })
+      this.likeService.getAllLikeUser(this.user.id).subscribe((data: any) => {
+        this.songLikes = data;
+        for (let i = 0; i < this.songs.length; i++) {
+          for (let j = 0; j < this.songLikes.length; j++) {
+            if (this.songs[i].id === this.songLikes[j].id) {
+              this.songs[i].isLiked = true;
+            }
+          }
+        }
+        console.log(this.songLikes);
+      });
+    });
   }
   getAllPlaylistClient() {
     this.playListService.getAllPlaylist().subscribe(value => this.allPlaylist = value);
   }
   countViewPlaylist(id: any) {
     this.playListService.countViewPlaylist(id).subscribe(() => console.log());
+  }
+
+  getSongsByCategoryName(name: string) {
+    this.router.navigate([`songs/categoryname/${name}`]);
+  }
+
+  getSongsBySingerName(name: string) {
+    this.router.navigate([`songs/singer/${name}`]);
   }
 }

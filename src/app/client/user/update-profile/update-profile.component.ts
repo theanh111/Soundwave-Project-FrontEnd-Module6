@@ -75,6 +75,7 @@ export class UpdateProfileComponent implements OnInit {
     this.userService.updateUser(this.user).subscribe(() => {
       alert('Cập nhật User thành công!');
       this.router.navigate(['/profile']);
+      window.location.reload();
     }, error => {
       alert('Lỗi!');
     });

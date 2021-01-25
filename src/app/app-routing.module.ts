@@ -16,6 +16,8 @@ import {SearchSongComponent} from './song/search-song/search-song.component';
 import {DetailSongComponent} from './song/detail-song/detail-song.component';
 import {PlaylistDetailsComponent} from './playlist/playlist-details/playlist-details.component';
 import {TermOfUserComponent} from './client/user/term-of-user/term-of-user.component';
+import {SongsByCategorynameComponent} from './song/songs-by-categoryname/songs-by-categoryname.component';
+import {SongsBySingernameComponent} from './song/songs-by-singername/songs-by-singername.component';
 
 
 const routes: Routes = [
@@ -66,6 +68,14 @@ const routes: Routes = [
   {
     path: 'songs/search/:name',
     component: SearchSongComponent
+  },
+  {
+    path: 'songs/categoryname/:name',
+    component: SongsByCategorynameComponent
+  },
+  {
+    path: 'songs/singer/:name',
+    component: SongsBySingernameComponent
   },
   {
     path: 'songs',

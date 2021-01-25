@@ -65,6 +65,13 @@ export class SongService {
   getSongByCategoryId(id: number): Observable<any> {
     return this.httpClient.get(URL_API + `/songs/category/${id}`);
   }
+  getSongByCategoryName(name: string): Observable<any> {
+    return this.httpClient.get(URL_API + `/songs/categoryname/${name}`);
+  }
+
+  getSongBySingerName(name: string): Observable<any> {
+    return this.httpClient.get(URL_API + `/songs/singer/${name}`);
+  }
   getSongNotInPlaylist(id: number): Observable<any> {
     return this.httpClient.get<ISong[]>(URL_API + `/songs/have-not/${id}`);
   }

@@ -30,6 +30,8 @@ import { MenuComponent } from './landing-page/menu/menu.component';
 import {CommentListComponent} from './song/comment-list/comment-list.component';
 import { TermOfUserComponent } from './client/user/term-of-user/term-of-user.component';
 import { CommentPlaylistComponent } from './playlist/comment-playlist/comment-playlist.component';
+import { SongsByCategorynameComponent } from './song/songs-by-categoryname/songs-by-categoryname.component';
+import { SongsBySingernameComponent } from './song/songs-by-singername/songs-by-singername.component';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { CommentPlaylistComponent } from './playlist/comment-playlist/comment-pl
     PlaylistDetailsComponent,
     CommentPlaylistComponent,
     TermOfUserComponent,
-    CommentPlaylistComponent
+    CommentPlaylistComponent,
+    SongsByCategorynameComponent,
+    SongsBySingernameComponent
   ],
   imports: [
     BrowserModule,
