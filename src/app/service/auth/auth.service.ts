@@ -4,7 +4,6 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 // @ts-ignore
 import { HttpClient } from '@angular/common/http';
-// import {environment} from '../../../../../Project_Sound_Wave_FrontEnd/src/environments/environment';
 import { environment } from '../../../environments/environment';
 // @ts-ignore
 import { map } from 'rxjs/operators';
