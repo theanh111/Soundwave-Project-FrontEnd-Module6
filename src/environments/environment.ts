@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  firebaseConfig : {
+  firebaseConfig: {
     // apiKey: 'AIzaSyAaF7cyqh4DoWEU2TkDXnUeFe0Le10uH6A',
     // authDomain: 'sound-wave-9d45d.firebaseapp.com',
     // databaseURL: 'https://sound-wave-9d45d-default-rtdb.firebaseio.com/',
@@ -13,16 +13,16 @@ export const environment = {
     // messagingSenderId: '368542689977',
     // appId: '1:368542689977:web:2f10c095d4d791959b8968',
     // measurementId: 'G-XKDW7R2CS7'
-    apiKey: "AIzaSyADoaN1AaFkzx3AHsQSoBFl3Iv_JLqb0XE",
-    authDomain: "sound-wave-cd.firebaseapp.com",
+    apiKey: 'AIzaSyADoaN1AaFkzx3AHsQSoBFl3Iv_JLqb0XE',
+    authDomain: 'sound-wave-cd.firebaseapp.com',
     databaseURL: 'https://sound-wave-cd-default-rtdb.firebaseio.com/',
-    projectId: "sound-wave-cd",
-    storageBucket: "sound-wave-cd.appspot.com",
-    messagingSenderId: "996131844816",
-    appId: "1:996131844816:web:641a25610d96cf9452e4d5",
-    measurementId: "G-Q84RZCNF5J"
+    projectId: 'sound-wave-cd',
+    storageBucket: 'sound-wave-cd.appspot.com',
+    messagingSenderId: '996131844816',
+    appId: '1:996131844816:web:641a25610d96cf9452e4d5',
+    measurementId: 'G-Q84RZCNF5J',
   },
-  apiUrl: 'http://localhost:8080'
+  apiUrl: 'https://soundwave-project.herokuapp.com',
 };
 
 /*
